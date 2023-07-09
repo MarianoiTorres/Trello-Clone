@@ -1,22 +1,28 @@
-import { DataTypes, Sequelize } from "sequelize";
-import sequelize from "../db/postgres";
+import { Schema, Types, model, Model } from "mongoose";
 
-const defineUserModel = (sequelize: Sequelize) => {
-    const User = sequelize.define('User', {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-    })
+const userSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    surname: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    }
+}, {
+    timestamps: true,
+    versionKey: false,
+})
 
-    return User;
-}
+const UserModel = model('users', userSchema)
 
-const UserModel = defineUserModel(sequelize)
 export default UserModel
 

@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+/*import dotenv from "dotenv";
 import { Sequelize } from "sequelize";
 import UserModel from "../models/usersModel";
 
@@ -18,3 +18,4 @@ async function syncModels() {
   syncModels()
 
 export default sequelize;
+*/ 

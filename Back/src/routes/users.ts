@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { postUserHandler } from "../handlers/usersHandler";
+import { loginUserHandler, postUserHandler } from "../handlers/usersHandler/usersHandler";
 
 const router = Router()
 
 router.post('/', postUserHandler)
+router.post('/login', loginUserHandler)
 
 export {router}
