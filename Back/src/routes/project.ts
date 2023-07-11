@@ -10,7 +10,7 @@ import {
 const router = Router();
 
 router.get("/projects/:id", getProjects);
-router.get("/project/:id", getProject);
+router.get("/:id", getProject);
 router.post("/", postProject);
 router.delete("/:id", deleteProject);
 router.put('/project/:id', putProject)

@@ -30,3 +30,7 @@ const taskSchema = new Schema({
     timestamps: true,
     versionKey: false
 })
+
+const taskModel = model("task",taskSchema)
+
+export default taskModel
