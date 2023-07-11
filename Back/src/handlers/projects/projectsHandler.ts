@@ -3,6 +3,7 @@ import {
   addMemberProject,
   createNewProject,
   deleteProjectCtrl,
+  deleteUserOfProject,
   getAllProjects,
   getProjectById,
 } from "../../controllers/projects/projectsController";
@@ -40,8 +41,7 @@ const postProject = async (req: Request, res: Response) => {
 const deleteProject = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { userId } = req.query;
-    
+    const {userId} = req.query;
     const projectDeleted = await deleteProjectCtrl(id, userId);
     res.status(200).json(projectDeleted);
   } catch (error) {
@@ -60,4 +60,22 @@ const putProject = async (req: Request, res: Response) => {
   }
 };
 
-export { getProjects, getProject, postProject, deleteProject, putProject };
+const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { userId } = req.body;
+    const userDeleted = await deleteUserOfProject(id, userId)
+    res.status(200).json(userDeleted)
+  } catch (error) {
+    res.status(400).json({error})
+  }
+};
+
+export {
+  getProjects,
+  getProject,
+  postProject,
+  deleteProject,
+  putProject,
+  deleteUser,
+};

@@ -1,6 +1,6 @@
-import QueryString from "qs";
 import { Project } from "../../interfaces/project";
 import ProjectModel from "../../models/projectModel";
+import QueryString from "qs";
 
 const getAllProjects = async (userId: string) => {
   const allProjects = await ProjectModel.find({
@@ -19,9 +19,25 @@ const createNewProject = async (body: Project) => {
   return newProject;
 };
 
-const deleteProjectCtrl = async (id: string, userId: string | string[] | QueryString.ParsedQs | QueryString.ParsedQs[] | undefined) => {
-  const projectDeleted = await ProjectModel.updateOne({ _id: id }, {$pull: {member: userId}});
-  return projectDeleted;
+const deleteProjectCtrl = async (
+  id: string,
+  userId:
+    | string
+    | string[]
+    | QueryString.ParsedQs
+    | QueryString.ParsedQs[]
+    | undefined
+) => {
+  const project = await ProjectModel.findOne({ _id: id }); 
+  
+  if (project?.userCreator.toString() === userId) {
+    const projectDeleted = await ProjectModel.deleteOne({ _id: id });
+    return projectDeleted;
+  }
+  else 
+  {
+    return {message: "solo el creador del proyecto puede eliminarlo"}
+  }
 };
 
 const addMemberProject = async (id: string, userId: string) => {
@@ -32,10 +48,19 @@ const addMemberProject = async (id: string, userId: string) => {
   return projectUpdated;
 };
 
+const deleteUserOfProject = async (id: string, userId: string) => {
+  const userDeleted = await ProjectModel.updateOne(
+    { _id: id },
+    { $pull: { member: userId } }
+  );
+  return userDeleted;
+};
+
 export {
   getAllProjects,
   getProjectById,
   createNewProject,
   deleteProjectCtrl,
   addMemberProject,
+  deleteUserOfProject,
 };

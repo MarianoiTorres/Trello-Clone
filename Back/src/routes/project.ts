@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   deleteProject,
+  deleteUser,
   getProject,
   getProjects,
   postProject,
@@ -13,6 +14,7 @@ router.get("/projects/:id", getProjects);
 router.get("/:id", getProject);
 router.post("/", postProject);
 router.delete("/:id", deleteProject);
-router.put('/project/:id', putProject)
+router.put('/:id', putProject)
+router.put('/deleteUser/:id', deleteUser)
 
 export {router}

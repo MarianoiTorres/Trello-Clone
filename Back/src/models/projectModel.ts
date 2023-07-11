@@ -5,6 +5,10 @@ const projectSchema = new Schema({
         type: String,
         required: true,
     },
+    userCreator: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
     member: [{
         type: Schema.Types.ObjectId,
         ref: 'UserModel'
