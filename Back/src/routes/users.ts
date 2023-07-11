@@ -3,7 +3,7 @@ import { loginUserHandler, postUserHandler } from "../handlers/usersHandler/user
 
 const router = Router()
 
-router.post('/', postUserHandler)
 router.post('/login', loginUserHandler)
+router.post('/register', postUserHandler)
 
 export {router}
