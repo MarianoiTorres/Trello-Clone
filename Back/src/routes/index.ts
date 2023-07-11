@@ -18,4 +18,4 @@ readdirSync(PATH_ROUTER).filter((fileName) => {
   }
 });
 
-export {router};
+export { router };
