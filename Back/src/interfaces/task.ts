@@ -6,5 +6,6 @@ export interface Task {
   description: String;
   state: String;
   priority: String;
+  deadline: String;
   member: mongoose.Types.ObjectId[];
 }

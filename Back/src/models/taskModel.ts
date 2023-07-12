@@ -20,6 +20,9 @@ const taskSchema = new Schema({
     priority: {
         type: String,
     },
+    deadline: {
+        type: String,
+    },
     member: [{
         type: Schema.Types.ObjectId,
         ref: 'UserModel'
@@ -31,6 +34,6 @@ const taskSchema = new Schema({
     versionKey: false
 })
 
-const taskModel = model("task",taskSchema)
+const TaskModel = model("task",taskSchema)
 
-export default taskModel
+export default TaskModel
