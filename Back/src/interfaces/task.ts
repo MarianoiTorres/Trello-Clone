@@ -8,4 +8,5 @@ export interface Task {
   priority: String;
   deadline: String;
   member: mongoose.Types.ObjectId[];
+  coments: mongoose.Types.ObjectId[];
 }

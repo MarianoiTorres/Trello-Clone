@@ -26,8 +26,11 @@ const taskSchema = new Schema({
     member: [{
         type: Schema.Types.ObjectId,
         ref: 'UserModel'
+    }],
+    coments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'ComentModel'
     }]
-
 },
 {
     timestamps: true,
