@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createUser, loginUser } from "../../controllers/usersController/usersController";
+import { createUser, loginUser } from '../../controllers/users/usersController' 
 
 const postUserHandler = async (req: Request, res: Response) => {
   try {
