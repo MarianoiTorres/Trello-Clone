@@ -11,7 +11,7 @@ const postComent = async (req: Request, res: Response) => {
     const newComent = await createNewComent(body);
     res.status(200).json(newComent);
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).json({ error: (error as Error).message });
   }
 };
 
@@ -22,7 +22,7 @@ const putComent = async (req: Request, res: Response) => {
     const comentUpdated = await updateComent(id, body);
     res.status(200).json(comentUpdated);
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).json({ error: (error as Error).message });
   }
 };
 
@@ -33,7 +33,7 @@ const deleteComent = async (req: Request, res: Response) => {
     const comentDeleted = await deleteComentCtrl(id, userId);
     res.status(200).json(comentDeleted);
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).json({ error: (error as Error).message });
   }
 };
 

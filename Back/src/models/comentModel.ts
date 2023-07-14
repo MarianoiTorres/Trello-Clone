@@ -7,6 +7,11 @@ const comentSchema = new Schema(
       ref: "UserModel",
       required: true,
     },
+    taskId: {
+      type: Schema.Types.ObjectId,
+      ref: "TaskModel",
+      required: true,
+    },
     coment: {
       type: String,
       required: true,
