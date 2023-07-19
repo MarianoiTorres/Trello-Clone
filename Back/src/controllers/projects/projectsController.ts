@@ -6,6 +6,8 @@ const getAllProjects = async (userId: string) => {
   const allProjects = await ProjectModel.find({
     member: { $in: [userId] }, // in = que dentro del array de member este userId
   }).exec(); //exec convierte la consulta en un array
+  console.log(allProjects);
+  
   return allProjects;
 };
 

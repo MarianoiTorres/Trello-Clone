@@ -1,6 +1,8 @@
 import { Task } from "../../interfaces/task";
 import TaskModel from "../../models/taskModel";
 import ComentModel from "../../models/comentModel";
+import ProjectModel from "../../models/projectModel";
+import UserModel from "../../models/usersModel";
 
 const createNewTask = async (body: Task) => {
   const newTask = await TaskModel.create(body);
@@ -8,7 +10,7 @@ const createNewTask = async (body: Task) => {
 };
 
 const getAllTasks = async (projectId: string) => {
-  const allTasks = await TaskModel.find({ projectId }).exec();
+  const allTasks = await TaskModel.find({ projectId }).populate({ path: 'projectId', model: ProjectModel }).populate({path: 'member', model: UserModel}).exec();
   return allTasks;
 };
 
