@@ -1,0 +1,37 @@
+.divTask {
+    width: 200px;
+    border: 1px solid black;
+}
+
+.firstContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.secondContainer{
+    border: 2px solid red;
+    width: 80%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.lista {
+    width: 25%;
+    border: 1px solid black;
+    height: fit-content;
+}
+
+.proceso {
+    width: 25%;
+    border: 1px solid black;
+    height: fit-content;
+}
+
+.hecho {
+    width: 25%;
+    border: 1px solid black;
+    height: fit-content;
+}

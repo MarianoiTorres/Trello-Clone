@@ -1,0 +1,22 @@
+<app-nav></app-nav>
+<div class="firstContainer">
+    <div class="secondContainer">
+        <div class="lista">
+            <h2>Lista de tareas</h2>
+            <button>Añada una tarea</button>
+        </div>
+        <div class="proceso">
+            <h2>En proceso</h2>
+            <button>Añada una tarea</button>
+        </div>
+        <div class="hecho">
+            <h2>Hecho</h2>
+            <button>Añada una tarea</button>
+        </div>
+    </div>
+    <div class="divTask" *ngFor="let task of getTasksService.allTasks">
+        <h3>{{task?.name}}</h3>
+        <p>{{task?.deadline}}</p>
+        <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>
+    </div>
+</div>
