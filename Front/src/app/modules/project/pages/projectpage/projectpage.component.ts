@@ -10,6 +10,13 @@ import { GetTasksService } from 'src/app/services/get-tasks/get-tasks.service';
 export class ProjectpageComponent {
 
   projectId: string = ''
+  mostrar: string = ''
+
+  newTaskToCreate: any = {
+    projectId: '',
+    name: '',
+    state: ''
+  }
 
   constructor(public route: ActivatedRoute, public getTasksService: GetTasksService){
   }
@@ -19,5 +26,23 @@ export class ProjectpageComponent {
       this.projectId = value['id']
       this.getTasksService.getAllTasks(this.projectId)
     })
+  }
+
+  newTask(state: string){
+    if(this.mostrar === '')
+    {
+      this.mostrar = state
+      this.newTaskToCreate.state = state
+    }
+    else
+    {
+      this.mostrar = '' 
+    }
+  }
+
+  createNewTask(){
+    this.newTaskToCreate.projectId = this.projectId
+    this.getTasksService.createTask(this.newTaskToCreate)
+    this.ngOnInit()
   }
 }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectpageComponent } from './pages/projectpage/projectpage.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     ProjectRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class ProjectModule { }

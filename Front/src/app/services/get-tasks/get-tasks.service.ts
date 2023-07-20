@@ -10,9 +10,20 @@ export class GetTasksService {
 
   allTasks: any
 
+  
+
   getAllTasks(projectId: string){
     this.http.get(`http://localhost:3001/task/${projectId}`).subscribe((value) => {
       this.allTasks = value
+    })
+  }
+
+  createTask(task: object){
+    this.http.post('http://localhost:3001/task/', task).subscribe((response) => {
+      console.log('tarea creada', response)
+    }, 
+    (error) => {
+      console.log('error ', error)
     })
   }
 }
