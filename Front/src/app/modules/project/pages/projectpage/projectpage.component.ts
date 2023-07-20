@@ -29,19 +29,14 @@ export class ProjectpageComponent {
   }
 
   newTask(state: string){
-    if(this.mostrar === '')
-    {
       this.mostrar = state
       this.newTaskToCreate.state = state
-    }
-    else
-    {
-      this.mostrar = '' 
-    }
   }
 
   createNewTask(){
     this.newTaskToCreate.projectId = this.projectId
+    console.log(this.newTaskToCreate);
+    
     this.getTasksService.createTask(this.newTaskToCreate)
     this.ngOnInit()
   }

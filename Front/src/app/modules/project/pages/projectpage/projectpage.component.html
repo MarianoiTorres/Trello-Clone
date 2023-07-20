@@ -3,6 +3,7 @@
     <div class="secondContainer">
         <div class="lista">
             <h2>Lista de tareas</h2>    
+            
             <div *ngFor="let task of getTasksService.allTasks" >
                 <div *ngIf="task.state === 'lista'">
                     <h3>{{task?.name}}</h3>
@@ -10,12 +11,16 @@
                     <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>
                 </div>
             </div>
+
             <input type="text" *ngIf="mostrar === 'lista'" [(ngModel)]="newTaskToCreate.name">
-            <button *ngIf="!mostrar" (click)="newTask('lista')">Añada una tarea</button>
-            <button *ngIf="mostrar" (click)="createNewTask()">Añadir tarea</button>
+
+            <button *ngIf="mostrar !== 'lista'" (click)="newTask('lista')">Añada una tarea</button>
+            <button *ngIf="mostrar === 'lista'" (click)="createNewTask()">Añadir tarea</button>
+            <button *ngIf="mostrar === 'lista'" (click)="newTask('')">X</button>
         </div>
         <div class="proceso">
             <h2>En proceso</h2>
+
             <div *ngFor="let task of getTasksService.allTasks" >
                 <div *ngIf="task.state === 'en proceso'">
                     <h3>{{task?.name}}</h3>
@@ -23,11 +28,16 @@
                     <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>
                 </div>
             </div>
-            <input type="text" *ngIf="mostrar === 'proceso'">
-            <button (click)="newTask('proceso')">Añada una tarea</button>
+
+            <input type="text" *ngIf="mostrar === 'proceso'" [(ngModel)]="newTaskToCreate.name">
+
+            <button *ngIf="mostrar !== 'proceso'" (click)="newTask('proceso')">Añada una tarea</button>
+            <button *ngIf="mostrar === 'proceso'" (click)="createNewTask()">Añadir tarea</button>
+            <button *ngIf="mostrar === 'proceso'" (click)="newTask('')">X</button>
         </div>
         <div class="hecho">
             <h2>Hecho</h2>
+
             <div *ngFor="let task of getTasksService.allTasks" >
                 <div *ngIf="task.state === 'hecho'">
                     <h3>{{task?.name}}</h3>
@@ -35,8 +45,12 @@
                     <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>
                 </div>
             </div>
-            <input type="text" *ngIf="mostrar === 'hecho'">
-            <button (click)="newTask('hecho')">Añada una tarea</button>
+
+            <input type="text" *ngIf="mostrar === 'hecho'" [(ngModel)]="newTaskToCreate.name">
+
+            <button *ngIf="mostrar !== 'hecho'" (click)="newTask('hecho')">Añada una tarea</button>
+            <button *ngIf="mostrar === 'hecho'" (click)="createNewTask()">Añadir tarea</button>
+            <button *ngIf="mostrar === 'hecho'" (click)="newTask('')">X</button>
         </div>
     </div>
 </div>
