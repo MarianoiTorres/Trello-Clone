@@ -4,8 +4,8 @@
         <div class="lista">
             <h2>Lista de tareas</h2>    
             
-            <div *ngFor="let task of getTasksService.allTasks" >
-                <div *ngIf="task.state === 'lista'">
+            <div *ngFor="let task of getTasksService.allTasks" cdkDropList (cdkDropListDropped)="dragAndDrop($event)"> 
+                <div class="divTask" *ngIf="task.state === 'lista'" cdkDrag [cdkDragData]="task">
                     <h3>{{task?.name}}</h3>
                     <p>{{task?.deadline}}</p>
                     <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>
@@ -20,9 +20,13 @@
         </div>
         <div class="proceso">
             <h2>En proceso</h2>
+            <div class="contenedor" >
+                <div class="contenedor-tarea" cdkDropList (cdkDropListDropped)="dragAndDrop($event, 'en proceso')">
 
-            <div *ngFor="let task of getTasksService.allTasks" >
-                <div *ngIf="task.state === 'en proceso'">
+                </div>
+            </div>
+            <div *ngFor="let task of getTasksService.allTasks" cdkDropList (cdkDropListDropped)="dragAndDrop($event, 'en proceso')">
+                <div class="divTask" *ngIf="task.state === 'en proceso'" cdkDrag [cdkDragData]="task">
                     <h3>{{task?.name}}</h3>
                     <p>{{task?.deadline}}</p>
                     <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>
@@ -38,8 +42,8 @@
         <div class="hecho">
             <h2>Hecho</h2>
 
-            <div *ngFor="let task of getTasksService.allTasks" >
-                <div *ngIf="task.state === 'hecho'">
+            <div *ngFor="let task of getTasksService.allTasks" cdkDropList (cdkDropListDropped)="dragAndDrop($event)">
+                <div class="divTask" *ngIf="task.state === 'hecho'" cdkDrag [cdkDragData]="task">
                     <h3>{{task?.name}}</h3>
                     <p>{{task?.deadline}}</p>
                     <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>

@@ -35,3 +35,19 @@
     border: 1px solid black;
     height: fit-content;
 }
+
+.divTask {
+    border: 2px solid blue;
+    cursor: pointer;
+}
+
+.contenedor {
+    width: 300px;
+
+}
+
+.contenedor-tarea {
+    border: 1px solid red;
+    width: 100%;
+    height: 100px;
+}
