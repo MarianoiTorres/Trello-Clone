@@ -4,8 +4,9 @@
         <div class="lista">
             <h2>Lista de tareas</h2>    
             
-            <div  cdkDropList [cdkDropListData]="lista" (cdkDropListDropped)="drop($event, 'lista')" > 
+            <div class="containerTask" cdkDropList [cdkDropListData]="lista" (cdkDropListDropped)="drop($event, 'lista')" > 
                 <div class="divTask" *ngFor="let task of lista" cdkDrag (cdkDragStarted)="onDragStart(task)">
+                    <div class="custom-placeholder" *cdkDragPlaceholder></div>
                     <h3>{{task?.name}}</h3>
                     <p>{{task?.deadline}}</p>
                     <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>
@@ -20,25 +21,27 @@
         </div>
         <div class="proceso">
             <h2>En proceso</h2>
-            <div  cdkDropList [cdkDropListData]="proceso" (cdkDropListDropped)="drop($event, 'en proceso')" >
+            <div class="containerTask" cdkDropList [cdkDropListData]="proceso" (cdkDropListDropped)="drop($event, 'en proceso')" >
                 <div class="divTask" *ngFor="let task of proceso" cdkDrag (cdkDragStarted)="onDragStart(task)">
+                    <div class="custom-placeholder" *cdkDragPlaceholder></div>
                     <h3>{{task?.name}}</h3>
                     <p>{{task?.deadline}}</p>
                     <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>
                 </div>
             </div>
 
-            <input type="text" *ngIf="mostrar === 'proceso'" [(ngModel)]="newTaskToCreate.name">
+            <input type="text" *ngIf="mostrar === 'en proceso'" [(ngModel)]="newTaskToCreate.name">
 
-            <button *ngIf="mostrar !== 'proceso'" (click)="newTask('proceso')">Añada una tarea</button>
-            <button *ngIf="mostrar === 'proceso'" (click)="createNewTask()">Añadir tarea</button>
-            <button *ngIf="mostrar === 'proceso'" (click)="newTask('')">X</button>
+            <button *ngIf="mostrar !== 'en proceso'" (click)="newTask('en proceso')">Añada una tarea</button>
+            <button *ngIf="mostrar === 'en proceso'" (click)="createNewTask()">Añadir tarea</button>
+            <button *ngIf="mostrar === 'en proceso'" (click)="newTask('')">X</button>
         </div>
         <div class="hecho">
             <h2>Hecho</h2>
 
-            <div  cdkDropList [cdkDropListData]="hecho" (cdkDropListDropped)="drop($event, 'hecho')">
+            <div class="containerTask"  cdkDropList [cdkDropListData]="hecho" (cdkDropListDropped)="drop($event, 'hecho')">
                 <div class="divTask" *ngFor="let task of hecho" cdkDrag (cdkDragStarted)="onDragStart(task)">
+                    <div class="custom-placeholder" *cdkDragPlaceholder></div>
                     <h3>{{task?.name}}</h3>
                     <p>{{task?.deadline}}</p>
                     <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>

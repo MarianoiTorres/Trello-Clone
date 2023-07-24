@@ -6,6 +6,7 @@ import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
+  CdkDragPlaceholder
 } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -44,6 +45,10 @@ export class ProjectpageComponent {
         this.lista = this.allTasks.filter((task: any) => task.state === 'lista')
         this.proceso = this.allTasks.filter((task: any) => task.state === 'en proceso')
         this.hecho = this.allTasks.filter((task: any) => task.state === 'hecho')
+        console.log(this.allTasks);
+        console.log(this.lista);
+        console.log(this.proceso);
+        console.log(this.hecho);
       })
     })
      
@@ -63,11 +68,7 @@ export class ProjectpageComponent {
   drop(event: CdkDragDrop<NewTaskToCreate[]>, task: string) {
     console.log(event.previousContainer === event.container);
     
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex)
-    }
-    else
-    {
+    
 
       const stateTask = {
         state: task
@@ -79,11 +80,7 @@ export class ProjectpageComponent {
         event.container.data,
         event.previousIndex,
         event.currentIndex,
-      );
-      this.ngOnInit()
-
-    }
-    
+      )
   }
 
   onDragStart(task: object){

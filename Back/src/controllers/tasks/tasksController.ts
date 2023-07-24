@@ -10,7 +10,7 @@ const createNewTask = async (body: Task) => {
 };
 
 const getAllTasks = async (projectId: string) => {
-  const allTasks = await TaskModel.find({ projectId }).populate({ path: 'projectId', model: ProjectModel }).populate({path: 'member', model: UserModel}).exec();
+  const allTasks = await TaskModel.find({ projectId }).populate({ path: 'projectId', model: ProjectModel }).populate({path: 'member', model: UserModel}).sort({updatedAt: -1}).exec();
   return allTasks;
 };
 

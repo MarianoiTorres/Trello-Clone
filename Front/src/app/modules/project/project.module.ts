@@ -9,6 +9,7 @@ import {
   CdkDrag,
   CdkDropList,
   CdkDropListGroup,
+  CdkDragPlaceholder
 } from '@angular/cdk/drag-drop';
 
 @NgModule({
@@ -21,6 +22,7 @@ import {
     CdkDropList,
     CdkDropListGroup,
     CdkDrag,
+    CdkDragPlaceholder
   ],
 })
 export class ProjectModule {}
