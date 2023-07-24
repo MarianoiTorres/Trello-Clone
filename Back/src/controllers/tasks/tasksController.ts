@@ -3,6 +3,7 @@ import TaskModel from "../../models/taskModel";
 import ComentModel from "../../models/comentModel";
 import ProjectModel from "../../models/projectModel";
 import UserModel from "../../models/usersModel";
+import ListModel from "../../models/listOfTaskModel";
 
 const createNewTask = async (body: Task) => {
   const newTask = await TaskModel.create(body);
@@ -31,4 +32,10 @@ const updateTask = async (id: string, body: Task) => {
   }
 };
 
-export { createNewTask, getAllTasks, getTaskById, updateTask };
+const updateStateTask = async(listId: string, body: Task) => {
+  const list = await ListModel.findById(body.listId)
+  const stateUpdated = await TaskModel.updateMany({listId: listId}, {listId: body.listId, state: list?.name})
+  return stateUpdated
+}
+
+export { createNewTask, getAllTasks, getTaskById, updateTask, updateStateTask };

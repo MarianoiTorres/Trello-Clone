@@ -3,6 +3,7 @@ import {
   createNewTask,
   getAllTasks,
   getTaskById,
+  updateStateTask,
   updateTask,
 } from "../../controllers/tasks/tasksController";
 
@@ -49,4 +50,15 @@ const putTask = async (req: Request, res: Response) => {
   }
 };
 
-export { postTask, getTasks, getTask, putTask };
+const putStateTask = async(req: Request, res: Response) => {
+  try {
+    const {listId} = req.params
+    const {body} = req
+    const updatedState = await updateStateTask(listId, body)
+    res.status(200).json(updatedState)
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message });
+  }
+}
+
+export { postTask, getTasks, getTask, putTask, putStateTask };

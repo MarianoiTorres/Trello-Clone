@@ -6,6 +6,10 @@ const taskSchema = new Schema({
         ref: "ProjectModel",
         required: true,
     },
+    listId: {
+        type: Schema.Types.ObjectId,
+        ref: 'ListModel',
+    },
     name: {
         type: String,
         required: true,
