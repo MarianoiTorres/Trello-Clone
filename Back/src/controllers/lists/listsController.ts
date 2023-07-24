@@ -3,6 +3,16 @@ import ListModel from "../../models/listOfTaskModel"
 import TaskModel from "../../models/taskModel"
 
 const createNewList = async(body: List) => {
+    const list = await ListModel.findOne({
+        projectId: body.projectId,
+        name: body.name
+    })
+    console.log(list?.name);
+    console.log(body.name);
+    
+    console.log(list?.name === body.name);
+    
+    if(list?.name === body.name) return {message: 'esta lista ya existe'}
     const newList = await ListModel.create(body)
     return newList
 }
