@@ -5,19 +5,22 @@ import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectpageComponent } from './pages/projectpage/projectpage.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import {DragDropModule} from '@angular/cdk/drag-drop'
-
+import {
+  CdkDrag,
+  CdkDropList,
+  CdkDropListGroup,
+} from '@angular/cdk/drag-drop';
 
 @NgModule({
-  declarations: [
-    ProjectpageComponent
-  ],
+  declarations: [ProjectpageComponent],
   imports: [
     CommonModule,
     ProjectRoutingModule,
     SharedModule,
     FormsModule,
-    DragDropModule
-  ]
+    CdkDropList,
+    CdkDropListGroup,
+    CdkDrag,
+  ],
 })
-export class ProjectModule { }
+export class ProjectModule {}

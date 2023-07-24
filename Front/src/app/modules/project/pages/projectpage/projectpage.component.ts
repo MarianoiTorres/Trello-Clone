@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetTasksService } from 'src/app/services/get-tasks/get-tasks.service';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { NewTaskToCreate } from './interfaces';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-projectpage',
@@ -10,6 +14,11 @@ import { NewTaskToCreate } from './interfaces';
   styleUrls: ['./projectpage.component.css'],
 })
 export class ProjectpageComponent {
+  constructor(
+    public route: ActivatedRoute,
+    public getTasksService: GetTasksService
+  ) {}
+
   projectId: string = '';
   mostrar: string = '';
 
@@ -19,16 +28,25 @@ export class ProjectpageComponent {
     state: '',
   };
 
-  constructor(
-    public route: ActivatedRoute,
-    public getTasksService: GetTasksService
-  ) {}
+  private draggedTask: any 
+
+  allTasks: any = []
+  lista: any = [];
+  proceso: any = [];
+  hecho: any = [];
+
 
   ngOnInit() {
     this.route.params.subscribe((value) => {
       this.projectId = value['id'];
-      this.getTasksService.getAllTasks(this.projectId);
-    });
+      this.getTasksService.getAllTasks(this.projectId).subscribe((value) => {
+        this.allTasks = value
+        this.lista = this.allTasks.filter((task: any) => task.state === 'lista')
+        this.proceso = this.allTasks.filter((task: any) => task.state === 'en proceso')
+        this.hecho = this.allTasks.filter((task: any) => task.state === 'hecho')
+      })
+    })
+     
   }
 
   newTask(state: string) {
@@ -42,18 +60,33 @@ export class ProjectpageComponent {
     this.ngOnInit();
   }
 
-  dragAndDrop(event: CdkDragDrop<NewTaskToCreate[]>, estado?: string) {
+  drop(event: CdkDragDrop<NewTaskToCreate[]>, task: string) {
+    console.log(event.previousContainer === event.container);
     
-    
-    console.log(event.previousContainer.id)
-    const movedTask = event.item.data;
-    
-    if (movedTask.state !== estado) {
-      movedTask.state = estado;
-
-      console.log(movedTask)
-      
-      
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex)
     }
+    else
+    {
+
+      const stateTask = {
+        state: task
+      }
+      
+      this.getTasksService.updateTask(this.draggedTask._id, stateTask)
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+      this.ngOnInit()
+
+    }
+    
+  }
+
+  onDragStart(task: object){
+    this.draggedTask = task
   }
 }

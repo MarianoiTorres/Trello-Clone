@@ -8,14 +8,8 @@ export class GetTasksService {
 
   constructor(public http: HttpClient) { }
 
-  allTasks: any
-
-  
-
   getAllTasks(projectId: string){
-    this.http.get(`http://localhost:3001/task/${projectId}`).subscribe((value) => {
-      this.allTasks = value
-    })
+    return this.http.get(`http://localhost:3001/task/${projectId}`)
   }
 
   createTask(task: object){
@@ -24,6 +18,15 @@ export class GetTasksService {
     }, 
     (error) => {
       console.log('error ', error)
+    })
+  }
+
+  updateTask(id: string, body: object) {
+    this.http.put(`http://localhost:3001/task/${id}`, body).subscribe((response) => {
+      console.log('actualizado correctamente', response)
+    },
+    (error) => {
+      console.log('error al actualizar', error)
     })
   }
 }
