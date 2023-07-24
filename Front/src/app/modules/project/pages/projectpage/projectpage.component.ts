@@ -2,12 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetTasksService } from 'src/app/services/get-tasks/get-tasks.service';
 import { NewTaskToCreate } from './interfaces';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-  CdkDragPlaceholder
-} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-projectpage',
@@ -20,6 +15,8 @@ export class ProjectpageComponent {
     public getTasksService: GetTasksService
   ) {}
 
+  private draggedTask: any;
+
   projectId: string = '';
   mostrar: string = '';
 
@@ -29,29 +26,34 @@ export class ProjectpageComponent {
     state: '',
   };
 
-  private draggedTask: any 
+  allTasks: any = [];
+  states: any = {
+    lista: [],
+    proceso: [],
+    hecho: [],
+  };
 
-  allTasks: any = []
-  lista: any = [];
-  proceso: any = [];
-  hecho: any = [];
-
+  newList: boolean = false;
+  nameList: string = '';
+  listDivs: any[] = [];
 
   ngOnInit() {
     this.route.params.subscribe((value) => {
       this.projectId = value['id'];
       this.getTasksService.getAllTasks(this.projectId).subscribe((value) => {
-        this.allTasks = value
-        this.lista = this.allTasks.filter((task: any) => task.state === 'lista')
-        this.proceso = this.allTasks.filter((task: any) => task.state === 'en proceso')
-        this.hecho = this.allTasks.filter((task: any) => task.state === 'hecho')
-        console.log(this.allTasks);
-        console.log(this.lista);
-        console.log(this.proceso);
-        console.log(this.hecho);
-      })
-    })
-     
+        this.allTasks = value;
+        this.states.lista = this.allTasks.filter(
+          (task: any) => task.state === 'lista'
+        );
+        this.states.proceso = this.allTasks.filter(
+          (task: any) => task.state === 'en proceso'
+        );
+        this.states.hecho = this.allTasks.filter(
+          (task: any) => task.state === 'hecho' 
+        );
+        
+      });
+    });
   }
 
   newTask(state: string) {
@@ -66,24 +68,28 @@ export class ProjectpageComponent {
   }
 
   drop(event: CdkDragDrop<NewTaskToCreate[]>, task: string) {
-    console.log(event.previousContainer === event.container);
-    
-    
-
-      const stateTask = {
-        state: task
-      }
-      
-      this.getTasksService.updateTask(this.draggedTask._id, stateTask)
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      )
+    const stateTask = {
+      state: task,
+    };
+    this.getTasksService.updateTask(this.draggedTask._id, stateTask);
+    transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
   }
 
-  onDragStart(task: object){
-    this.draggedTask = task
+  onDragStart(task: object) {
+    this.draggedTask = task;
+  }
+
+  addNewList() {
+    const newDiv = {
+       name: this.nameList,
+       state: []
+      };
+    this.listDivs.push(newDiv);
+    console.log(this.listDivs);
   }
 }

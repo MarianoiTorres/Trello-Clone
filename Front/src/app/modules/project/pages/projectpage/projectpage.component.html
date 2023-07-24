@@ -4,8 +4,8 @@
         <div class="lista">
             <h2>Lista de tareas</h2>    
             
-            <div class="containerTask" cdkDropList [cdkDropListData]="lista" (cdkDropListDropped)="drop($event, 'lista')" > 
-                <div class="divTask" *ngFor="let task of lista" cdkDrag (cdkDragStarted)="onDragStart(task)">
+            <div class="containerTask" cdkDropList [cdkDropListData]="states.lista" (cdkDropListDropped)="drop($event, 'lista')" > 
+                <div class="divTask" *ngFor="let task of states.lista" cdkDrag (cdkDragStarted)="onDragStart(task)">
                     <div class="custom-placeholder" *cdkDragPlaceholder></div>
                     <h3>{{task?.name}}</h3>
                     <p>{{task?.deadline}}</p>
@@ -21,8 +21,8 @@
         </div>
         <div class="proceso">
             <h2>En proceso</h2>
-            <div class="containerTask" cdkDropList [cdkDropListData]="proceso" (cdkDropListDropped)="drop($event, 'en proceso')" >
-                <div class="divTask" *ngFor="let task of proceso" cdkDrag (cdkDragStarted)="onDragStart(task)">
+            <div class="containerTask" cdkDropList [cdkDropListData]="states.proceso" (cdkDropListDropped)="drop($event, 'en proceso')" >
+                <div class="divTask" *ngFor="let task of states.proceso" cdkDrag (cdkDragStarted)="onDragStart(task)">
                     <div class="custom-placeholder" *cdkDragPlaceholder></div>
                     <h3>{{task?.name}}</h3>
                     <p>{{task?.deadline}}</p>
@@ -39,8 +39,8 @@
         <div class="hecho">
             <h2>Hecho</h2>
 
-            <div class="containerTask"  cdkDropList [cdkDropListData]="hecho" (cdkDropListDropped)="drop($event, 'hecho')">
-                <div class="divTask" *ngFor="let task of hecho" cdkDrag (cdkDragStarted)="onDragStart(task)">
+            <div class="containerTask"  cdkDropList [cdkDropListData]="states.hecho" (cdkDropListDropped)="drop($event, 'hecho')">
+                <div class="divTask" *ngFor="let task of states.hecho" cdkDrag (cdkDragStarted)="onDragStart(task)">
                     <div class="custom-placeholder" *cdkDragPlaceholder></div>
                     <h3>{{task?.name}}</h3>
                     <p>{{task?.deadline}}</p>
@@ -54,5 +54,28 @@
             <button *ngIf="mostrar === 'hecho'" (click)="createNewTask()">Añadir tarea</button>
             <button *ngIf="mostrar === 'hecho'" (click)="newTask('')">X</button>
         </div>
+        <div *ngFor="let list of listDivs" class="hecho">
+            <h2>{{list.name}}</h2>
+
+            <div class="containerTask"  cdkDropList [cdkDropListData]="list.state" (cdkDropListDropped)="drop($event, list.name)">
+                <div class="divTask" *ngFor="let task of list.state" cdkDrag (cdkDragStarted)="onDragStart(task)">
+                    <div class="custom-placeholder" *cdkDragPlaceholder></div>
+                    <h3>{{task?.name}}</h3>
+                    <p>{{task?.deadline}}</p>
+                    <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>
+                </div>
+            </div>
+
+            <input type="text" *ngIf="mostrar === list.name" [(ngModel)]="newTaskToCreate.name">
+
+            <button *ngIf="mostrar !== list.name" (click)="newTask(list.name)">Añada una tarea</button>
+            <button *ngIf="mostrar === list.name" (click)="createNewTask()">Añadir tarea</button>
+            <button *ngIf="mostrar === list.name" (click)="newTask('')">X</button>
+        </div>
+        <div *ngIf="newList === true">
+            <input type="text"  [(ngModel)]="nameList">
+            <button (click)="addNewList()">Añadir lista</button>
+        </div>
+        <button *ngIf="newList === false" (click)="newList = !newList">Añadir otra lista</button>
     </div>
 </div>
