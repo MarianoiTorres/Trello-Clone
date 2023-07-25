@@ -32,10 +32,4 @@ const updateTask = async (id: string, body: Task) => {
   }
 };
 
-const updateStateTask = async(listId: string, body: Task) => {
-  const list = await ListModel.findById(body.listId)
-  const stateUpdated = await TaskModel.updateMany({listId: listId}, {listId: body.listId, state: list?.name})
-  return stateUpdated
-}
-
-export { createNewTask, getAllTasks, getTaskById, updateTask, updateStateTask };
+export { createNewTask, getAllTasks, getTaskById, updateTask };

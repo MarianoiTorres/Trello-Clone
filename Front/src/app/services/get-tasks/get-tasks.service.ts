@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NewTaskToCreate } from 'src/app/interfaces/task';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,11 @@ export class GetTasksService {
   constructor(public http: HttpClient) { }
 
   getAllTasks(projectId: string){
-    return this.http.get(`http://localhost:3001/task/${projectId}`)
+    return this.http.get<any[]>(`http://localhost:3001/task/${projectId}`)
   }
 
   createTask(task: object){
-    this.http.post('http://localhost:3001/task/', task).subscribe((response) => {
-      console.log('tarea creada', response)
-    }, 
-    (error) => {
-      console.log('error ', error)
-    })
+    return this.http.post<any>('http://localhost:3001/task/', task)
   }
 
   updateTask(id: string, body: object) {

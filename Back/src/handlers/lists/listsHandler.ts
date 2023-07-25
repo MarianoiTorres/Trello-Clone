@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createNewList, getAllLists, updateList } from "../../controllers/lists/listsController";
+import { createNewList, deleteListController, getAllLists, updateList } from "../../controllers/lists/listsController";
 
 const postList = async(req: Request, res: Response) => {
     try {
@@ -32,8 +32,19 @@ const putList = async(req: Request, res: Response) => {
     }
 }
 
+const deleteList = async(req: Request, res: Response) => {
+    try {
+        const {listId} = req.params
+        const listDeleted = await deleteListController(listId)
+        res.status(200).json(listDeleted)
+    } catch (error) {
+        res.status(400).json({ error: (error as Error).message }) 
+    }
+}
+
 export {
     postList, 
     getLists,
-    putList
+    putList,
+    deleteList
 }

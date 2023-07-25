@@ -7,14 +7,19 @@ const createNewList = async(body: List) => {
         projectId: body.projectId,
         name: body.name
     })
-    console.log(list?.name);
-    console.log(body.name);
-    
-    console.log(list?.name === body.name);
     
     if(list?.name === body.name) return {message: 'esta lista ya existe'}
     const newList = await ListModel.create(body)
-    return newList
+    console.log(newList);
+    
+    const listForFront = {
+        _id: newList._id,
+        projectId: newList.projectId,
+        name: newList.name
+    }
+    console.log(listForFront);
+    
+    return listForFront
 }
 
 const getAllLists = async(projectId: string) => {
@@ -22,7 +27,15 @@ const getAllLists = async(projectId: string) => {
         projectId: projectId
     }).exec()
 
-    return allLists
+    const lists = allLists.map(list => {
+        return {
+            _id: list._id,
+            projectId: list.projectId,
+            name: list.name,
+        }
+    })
+
+    return lists
 }
 
 const updateList = async(body: List, listId: string) => {
@@ -31,8 +44,14 @@ const updateList = async(body: List, listId: string) => {
     return tasksUpdated
 }
 
+const deleteListController = async(listId: string) => {
+    const deleted = await ListModel.deleteOne({listId: listId})
+    return deleted
+}
+
 export {
     createNewList,
     getAllLists,
-    updateList
+    updateList,
+    deleteListController
 }
