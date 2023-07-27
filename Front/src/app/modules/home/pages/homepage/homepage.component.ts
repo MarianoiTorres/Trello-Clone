@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
+import { Component } from '@angular/core'
 
 
 @Component({
@@ -9,15 +7,9 @@ import { GetProjectsService } from 'src/app/services/get-projects/get-projects.s
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent {
-  constructor(public getProjectsService: GetProjectsService, public router: Router){}
+  constructor(){}
 
-  ngOnInit() {
-   this.getProjectsService.getProjects()
-  }
+  email: string = ''
 
-  goProject(projectId: string){
-    console.log(projectId);
 
-    this.router.navigate(['project', projectId])
-  }
 }

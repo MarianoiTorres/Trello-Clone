@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProjectpageComponent } from './pages/projectpage/projectpage.component';
 
 const routes: Routes = [{
-  path: 'project/:id',
+  path: '',
   component: ProjectpageComponent
 }];
 

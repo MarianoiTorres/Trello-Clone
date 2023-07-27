@@ -1,0 +1,8 @@
+<app-nav></app-nav>
+<div class="firstContainer">
+    <div class="secondContainer">
+        <div class="divProject" *ngFor="let project of getProjectsService.projects" (click) = "goProject(project._id)">
+            <h2>{{project.name}}</h2>
+        </div>
+    </div>
+</div>

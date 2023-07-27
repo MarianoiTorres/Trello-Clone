@@ -5,6 +5,7 @@ import { NewTaskToCreate } from '../../../../interfaces/task';
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { GetListsService } from 'src/app/services/get-lists/get-lists.service';
 import { List } from 'src/app/interfaces/list';
+import {MatDialog} from '@angular/material/dialog'
 
 @Component({
   selector: 'app-projectpage',
