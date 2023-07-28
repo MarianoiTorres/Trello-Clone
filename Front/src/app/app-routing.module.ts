@@ -8,12 +8,16 @@ const routes: Routes = [
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   },
   {
-    path: '',
+    path: 'project/:id',
     loadChildren: () => import('./modules/project/project.module').then(m => m.ProjectModule)
   },
   {
     path: 'board',
     loadChildren: () => import('./modules/board/board.module').then((m) => m.BoardModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule)
   }
 ]
 

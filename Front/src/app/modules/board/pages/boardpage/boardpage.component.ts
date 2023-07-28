@@ -15,8 +15,6 @@ export class BoardpageComponent {
    }
  
    goProject(projectId: string){
-     console.log(projectId);
- 
      this.router.navigate(['project', projectId])
    }
 }
