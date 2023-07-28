@@ -13,7 +13,7 @@ export class LoginpageComponent {
   constructor(public authService: AuthService, public router: Router){}
 
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   })
 
@@ -23,12 +23,12 @@ export class LoginpageComponent {
       this.authService.authLogin(this.loginForm.value as UserRegister).subscribe((response) => {
         if(response.name)
         {
+          localStorage.setItem('userId', response._id)
           this.router.navigate(['board'])
         }
         else
         {
           console.log('usuario no existente ');
-          
         }
       }) 
     }

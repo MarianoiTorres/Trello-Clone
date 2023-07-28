@@ -6,9 +6,14 @@
                 <a routerLink="/">Home</a>
             </li>
         </ul>
-        <button>
-            Crear
-        </button>
+
+        <div class="containerCreate">
+            <button (click)="show = !show">Crear</button>
+            <div *ngIf="show === true" class="divCreate" >
+                    <input type="text" [(ngModel)]="name" >
+                    <button (click)="createNewProject()">Enviar</button>
+            </div>
+        </div>
     </div>
     <div class="secondContainer">
         <input type="text" placeholder="Buscar">

@@ -17,3 +17,15 @@ nav{
     justify-content: center;
     align-items: center;
 }
+
+.containerCreate{
+    position: relative;
+}
+
+.divCreate{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: lightgray;
+    padding: 10px;
+}

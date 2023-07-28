@@ -10,8 +10,13 @@ import { GetProjectsService } from 'src/app/services/get-projects/get-projects.s
 export class BoardpageComponent {
   constructor(public getProjectsService: GetProjectsService, public router: Router){}
 
+  projects: any = []
+
   ngOnInit() {
-    this.getProjectsService.getProjects()
+    const userId = localStorage.getItem('userId')
+    this.getProjectsService.getProjects(userId!).subscribe((response) => {
+      this.projects = response
+    })
    }
  
    goProject(projectId: string){
