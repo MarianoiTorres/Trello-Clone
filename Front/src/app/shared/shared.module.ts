@@ -4,22 +4,29 @@ import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { LandingNavComponent } from './landing-nav/landing-nav.component';
 import { FormsModule } from '@angular/forms';
+import { InvitationComponent } from './dialogs/invitation/invitation.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
 @NgModule({
   declarations: [
     NavComponent,
-    LandingNavComponent
+    LandingNavComponent,
+    InvitationComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   exports: [
     NavComponent,
-    LandingNavComponent
+    LandingNavComponent,
+    InvitationComponent
   ]
 })
 export class SharedModule { }

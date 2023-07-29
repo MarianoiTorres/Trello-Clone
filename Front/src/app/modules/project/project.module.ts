@@ -11,6 +11,8 @@ import {
   CdkDropListGroup,
   CdkDragPlaceholder
 } from '@angular/cdk/drag-drop';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [ProjectpageComponent],
@@ -22,7 +24,9 @@ import {
     CdkDropList,
     CdkDropListGroup,
     CdkDrag,
-    CdkDragPlaceholder
+    CdkDragPlaceholder,
+    MatButtonModule,
+    MatDialogModule
   ],
 })
 export class ProjectModule {}

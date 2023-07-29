@@ -14,9 +14,7 @@ export class BoardpageComponent {
 
   ngOnInit() {
     const userId = localStorage.getItem('userId')
-    this.getProjectsService.getProjects(userId!).subscribe((response) => {
-      this.projects = response
-    })
+    this.getProjectsService.getProjects(userId!)
    }
  
    goProject(projectId: string){

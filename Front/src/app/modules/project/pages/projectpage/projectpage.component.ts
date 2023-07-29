@@ -5,7 +5,10 @@ import { NewTaskToCreate } from '../../../../interfaces/task';
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { GetListsService } from 'src/app/services/get-lists/get-lists.service';
 import { List } from 'src/app/interfaces/list';
-import {MatDialog} from '@angular/material/dialog'
+import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
+import { InvitationComponent } from 'src/app/shared/dialogs/invitation/invitation.component';
+import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-projectpage',
@@ -16,7 +19,9 @@ export class ProjectpageComponent {
   constructor(
     public route: ActivatedRoute,
     public getTasksService: GetTasksService,
-    public getListsServce: GetListsService
+    public getListsServce: GetListsService,
+    public getProjectService: GetProjectsService, 
+    public dialog: MatDialog
   ) {}
 
   private draggedTask: any;
@@ -38,6 +43,7 @@ export class ProjectpageComponent {
   ngOnInit() {
     this.route.params.subscribe((value) => {
       this.projectId = value['id']
+      this.getProjectService.getProjectById(this.projectId)
       this.getListsServce.getLists(this.projectId).subscribe((lists) => {
         const arrayOfList = lists.map(response => {
           return{
@@ -101,5 +107,14 @@ export class ProjectpageComponent {
       this.listDivs.push({...response, tasks: []})
     })
 
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(InvitationComponent, {
+      width: '250px',
+      hasBackdrop: true,
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 }
