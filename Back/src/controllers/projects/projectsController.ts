@@ -43,6 +43,8 @@ const deleteProjectCtrl = async (
 };
 
 const addMemberProject = async (id: string, userId: string) => {
+  console.log(id);
+  console.log(userId);
   const projectUpdated = await ProjectModel.updateOne(
     { _id: id },
     { $push: { member: userId } }

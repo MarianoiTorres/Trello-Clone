@@ -6,9 +6,9 @@ const generateToken = async(invitation: Invitation) => {
         projectId: invitation.projectId,
         userCreator: invitation.userCreator,
     },
-    'good',
+    process.env.JWT_SECRETKEY!,
     {
-        expiresIn: "1d"
+        expiresIn: "5m"
     })
 } 
 

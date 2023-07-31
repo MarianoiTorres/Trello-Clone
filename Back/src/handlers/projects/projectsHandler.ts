@@ -53,6 +53,7 @@ const putProject = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { userId } = req.body;
+  
     const projectUpdated = await addMemberProject(id, userId);
     res.status(200).json(projectUpdated);
   } catch (error) {

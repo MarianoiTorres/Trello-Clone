@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { ProjectToCreate } from 'src/app/interfaces/project';
 
 @Injectable({
@@ -40,5 +40,15 @@ export class GetProjectsService {
     })
   }
 
+  addMember(projectId: string, token: string, body: any): any {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    console.log(projectId);
+          
+    console.log(token);
+    console.log(body);
 
-}
+    return this.http.put(`http://localhost:3001/project/${projectId}`, body, {headers})
+  }
+ }

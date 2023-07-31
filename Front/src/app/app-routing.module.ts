@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule)
+  },
+  {
+    path: 'accept-board/:id',
+    loadChildren: () => import('./modules/invitation/invitation.module').then((m) => m.InvitationModule)
   }
 ]
 

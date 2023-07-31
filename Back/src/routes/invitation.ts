@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { sendMailHandler } from "../handlers/invitation/invitationHandler";
+import { getPayload, sendMailHandler } from "../handlers/invitation/invitationHandler";
 
 const router = Router();
 
 router.post("/", sendMailHandler);
+router.post('/decode', getPayload)
 
 export { router };

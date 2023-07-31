@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InvitationPageComponent } from './pages/invitation-page/invitation-page.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: InvitationPageComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
