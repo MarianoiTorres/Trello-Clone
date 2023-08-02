@@ -7,7 +7,7 @@ const verifyTokenInvitation = async(req: Request, res: Response, next: NextFunct
     
     jwt.verify(token!, process.env.JWT_SECRETKEY!, (err: Error | null, decodedToken: any) => {
         if(err){
-           return res.status(401).json({message: 'TOKEN EXPIRADO!'})
+           return res.status(401).json({message: 'TOKEN EXPIRADO'})
         }
         next()
     })

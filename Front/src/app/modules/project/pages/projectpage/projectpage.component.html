@@ -1,8 +1,6 @@
 <app-nav></app-nav>
-<div>
     <h1>{{getProjectService.project.name}}</h1>
-    <button mat-raised-button (click)="openDialog('0ms', '0ms')">Open dialog without animation</button>
-</div>
+    <button mat-raised-button (click)="openDialog('0ms', '0ms')">Compartir</button>
 <div class="firstContainer" id="hola">
     <div class="secondContainer" cdkDropListGroup>
         <div *ngFor="let list of listDivs" class="hecho">

@@ -8,7 +8,7 @@ import { List } from 'src/app/interfaces/list';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
 import { InvitationComponent } from 'src/app/shared/dialogs/invitation/invitation.component';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import {MatButtonModule} from '@angular/material/button'
 
 @Component({
   selector: 'app-projectpage',
@@ -111,8 +111,7 @@ export class ProjectpageComponent {
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(InvitationComponent, {
-      width: '250px',
-      hasBackdrop: true,
+      width: '40%',
       enterAnimationDuration,
       exitAnimationDuration,
     });

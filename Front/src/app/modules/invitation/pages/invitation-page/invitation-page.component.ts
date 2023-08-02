@@ -16,24 +16,29 @@ export class InvitationPageComponent {
   ) {}
 
   projectId: string = '';
-  token: string = ''
+  token: string = '';
 
   ngOnInit() {
-    const userId = localStorage.getItem('userId');
     this.route.params.subscribe((value) => {
       this.token = value['id'];
       this.invitationService
         .decodeToken({ token: this.token })
         .subscribe((response: any) => {
-          this.projectId = response.projectId
-
-          // ESTO ES PARA OTRO EVENTO DE CUANDDO SE HAGA CLICK
-          this.projectService
-            .addMember(this.projectId, this.token, {userId})
-            .subscribe((r: any) => {
-              console.log(r);
-            });
+          this.projectId = response.projectId;
+          this.projectService.getProjectById(this.projectId)
+        },
+        (error: Error) => {
+          this.token = 'invitacion expirada'
         });
     });
+  }
+
+  addMember(): any {
+    const userId = localStorage.getItem('userId');
+    this.projectService
+      .addMember(this.projectId, this.token, { userId })
+      .subscribe((response: any) => {
+        console.log(response);
+      });
   }
 }

@@ -1,0 +1,9 @@
+#link {
+    color: rgb(115, 115, 202);
+}
+
+#link:hover {
+    text-decoration:underline;
+    user-select: none;
+    cursor: pointer;
+}

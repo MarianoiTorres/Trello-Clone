@@ -33,10 +33,13 @@ export class GetProjectsService {
   }
 
   getProjectById(projectId: string): any {
-    this.http.get(`http://localhost:3001/project/${projectId}`).subscribe((response) => {
-      this.project = response
-      console.log(this.project);
-      
+    this.http.get(`http://localhost:3001/project/${projectId}`).subscribe((response: any) => {
+      this.project = {
+        projectName: response.name,
+        userCreator: response.userCreator.name + ' ' + response.userCreator.surname,
+        projectId: response._id,
+        userCreatorId: response.userCreator._id
+      } 
     })
   }
 
@@ -44,11 +47,6 @@ export class GetProjectsService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     })
-    console.log(projectId);
-          
-    console.log(token);
-    console.log(body);
-
     return this.http.put(`http://localhost:3001/project/${projectId}`, body, {headers})
   }
  }

@@ -1,1 +1,9 @@
-<p>invitation-page works!</p>
+<div>
+    <h3 *ngIf="this.token !== 'invitacion expirada'">
+        {{this.projectService.project.userCreator}} te invito a unirte a {{this.projectService.project.projectName}}
+    </h3>
+    <h3 *ngIf="this.token === 'invitacion expirada'">
+        Esta invitacion ya expiro :c
+    </h3>
+    <button [disabled]="this.token === 'invitacion expirada'" (click)="addMember()">Aceptar invitacion</button>
+</div>

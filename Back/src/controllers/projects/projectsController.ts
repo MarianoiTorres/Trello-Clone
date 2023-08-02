@@ -1,6 +1,7 @@
 import { Project } from "../../interfaces/project";
 import ProjectModel from "../../models/projectModel";
 import QueryString from "qs";
+import UserModel from "../../models/usersModel";
 
 const getAllProjects = async (userId: string) => {
   const allProjects = await ProjectModel.find({
@@ -12,7 +13,7 @@ const getAllProjects = async (userId: string) => {
 };
 
 const getProjectById = async (id: string) => {
-  const project = await ProjectModel.findOne({ _id: id });
+  const project = await ProjectModel.findOne({ _id: id }).populate({path: 'userCreator', model: UserModel});
   return project;
 };
 

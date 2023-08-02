@@ -1,26 +1,37 @@
 import { Request, Response } from "express";
-import { decodedController, sendMailController } from "../../controllers/invitation/invitationController";
+import {
+  decodedController,
+  generateLinkController,
+  sendMailController,
+} from "../../controllers/invitation/invitationController";
 
-const sendMailHandler = async (req: Request, res: Response) => {
+const generateLink = async (req: Request, res: Response) => {
   try {
     const { body } = req;
-    const sentMail = await sendMailController(body);
+    const sentMail = await generateLinkController(body);
     res.status(200).json(sentMail);
   } catch (error) {
     res.status(400).json({ error: (error as Error).message });
   }
 };
 
-const getPayload = async(req: Request, res: Response) => {
+const sendMailWithLink = async (req: Request, res: Response) => {
   try {
-    const {body} = req
-    const payload = await decodedController(body.token)
-    res.status(200).json(payload)
+    const sentMail = await sendMailController()
+    res.status(200).json(sentMail);
   } catch (error) {
-    res.status(400).json({error: (error as Error).message})
+    res.status(400).json({ error: (error as Error).message });
   }
-  
-}
+};
 
+const getPayload = async (req: Request, res: Response) => {
+  try {
+    const { body } = req;
+    const payload = await decodedController(body.token);
+    res.status(200).json(payload);
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message });
+  }
+};
 
-export { sendMailHandler,getPayload };
+export { generateLink, getPayload, sendMailWithLink };

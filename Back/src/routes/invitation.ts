@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { getPayload, sendMailHandler } from "../handlers/invitation/invitationHandler";
+import { generateLink, getPayload, sendMailWithLink } from "../handlers/invitation/invitationHandler";
+import verifyTokenInvitation from "../utils/verifyTokenInvitation";
 
 const router = Router();
 
-router.post("/", sendMailHandler);
-router.post('/decode', getPayload)
+router.post("/", generateLink);
+router.post('/mail', sendMailWithLink)
+router.post('/decode', verifyTokenInvitation, getPayload)
 
 export { router };
