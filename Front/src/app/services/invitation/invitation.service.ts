@@ -18,4 +18,15 @@ export class InvitationService {
   generateLink(body: any): any {
     return this.http.post<string>('http://localhost:3001/invitation', body)
   }
+
+  sendInvitation(body: any): any {
+    this.http.post<any>('http://localhost:3001/invitation/mail', body).subscribe((response) => {
+      console.log(response);
+      
+    },
+    (error) => {
+      console.log(error);
+      
+    })
+  }
 }

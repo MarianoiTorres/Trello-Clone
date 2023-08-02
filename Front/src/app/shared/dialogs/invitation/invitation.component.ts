@@ -14,6 +14,7 @@ export class InvitationComponent {
   constructor(public invitationService: InvitationService, public projectService: GetProjectsService){}
 
   linkToCopy: string = ''
+  userEmail: string = ''
 
   ngOnInit(): any {
     const body = {
@@ -38,5 +39,16 @@ export class InvitationComponent {
     tempElement.select();
     document.execCommand('copy')
     document.body.removeChild(tempElement);
+  }
+
+  sendMail(): any {
+    const body = {
+      projectId: this.projectService.project.projectId,
+      userCreator: this.projectService.project.userCreatorId,
+      userInvited: this.userEmail
+    }
+    console.log(body);
+    
+    this.invitationService.sendInvitation(body)
   }
 }
