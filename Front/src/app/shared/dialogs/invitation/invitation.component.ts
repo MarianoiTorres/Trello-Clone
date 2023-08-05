@@ -46,9 +46,7 @@ export class InvitationComponent {
       projectId: this.projectService.project.projectId,
       userCreator: this.projectService.project.userCreatorId,
       userInvited: this.userEmail
-    }
-    console.log(body);
-    
+    } 
     this.invitationService.sendInvitation(body)
   }
 }

@@ -17,7 +17,7 @@ const generateLink = async (req: Request, res: Response) => {
 
 const sendMailWithLink = async (req: Request, res: Response) => {
   try {
-    const {body} = req    //projectId, userCreator, invitacion para...
+    const {body} = req 
     const sentMail = await sendMailController(body)
     res.status(200).json(sentMail);
   } catch (error) {

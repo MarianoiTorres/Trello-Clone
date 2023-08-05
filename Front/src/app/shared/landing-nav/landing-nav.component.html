@@ -1,21 +1,21 @@
 <nav>
     <div class="firstContainer">
-        <h1>Trello</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Trello-logo-blue.svg" alt="">
         <ul>
             <li>
-                <a routerLink="/">About</a>
+                <a class="navigatorLinks" mat-button routerLink="/">About</a>
             </li>
             <li>
-                <a routerLink="/">Guide</a>
+                <a class="navigatorLinks" mat-button routerLink="/">Guide</a>
             </li>
             <li>
-                <a routerLink="/">Home</a>
+                <a class="navigatorLinks" mat-button routerLink="/">Home</a>
             </li>
         </ul>
-        
     </div>
     <div class="secondContainer">
-        <a routerLink="/auth/login"><button>Login</button></a>
-        <a routerLink="/auth/register"><button>Register</button></a>
+        <a  routerLink="/auth/login"><button class="buttons" mat-flat-button>Log in</button></a>
+        <a  routerLink="/auth/register"><button class="buttons" mat-flat-button color="primary">Sign Up</button>
+        </a>
     </div>
 </nav>
