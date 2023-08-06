@@ -1,9 +1,20 @@
 <div class="container">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <input type="text" placeholder="Name" formControlName="name">
-        <input type="text" placeholder="Surname" formControlName="surname">
-        <input type="text" placeholder="Email" formControlName="email">
-        <input type="password" placeholder="Password" formControlName="password">
-        <button>Submit</button>
-    </form>
+    <div class="containerForm">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Trello-logo-blue.svg" alt="">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <input type="text" placeholder="Name" formControlName="name">
+            <input type="text" placeholder="Surname" formControlName="surname">
+            <input type="text" placeholder="Email" formControlName="email">
+            <input type="password" placeholder="Password" formControlName="password">
+            <button>Sign Up</button>
+        </form>
+    </div>
+    <div class="image">
+        <h2 class="title">Plan your tasks</h2>
+        <p class="sub">Plan out your tasks using trello</p>
+        <img class="background" src="https://cutewallpaper.org/21/trello-backgrounds/Picture-This-Free-Unsplash-Backgrounds-For-Every-Trello-Board.png" alt="">
+        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#E9BBF4" fill-opacity="1" d="M0,128L48,117.3C96,107,192,85,288,117.3C384,149,480,235,576,240C672,245,768,171,864,144C960,117,1056,139,1152,128C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>]
+    </div>
 </div>
