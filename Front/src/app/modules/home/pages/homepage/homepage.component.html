@@ -1,6 +1,7 @@
 <div class="firstContainer">
     <app-landing-nav></app-landing-nav>
     <div class="secondContainer">
+        
         <div class="div-reg">
             <div class="container-info">
                 <h2>Trello brings all your tasks, teammates, and tools together</h2>
@@ -10,12 +11,21 @@
                     <input placeholder="Email" class="email" type="text" [(ngModel)]="email">
                     <a routerLink="/board"><button  class="button-signup" mat-raised-button color="primary">Sign up - it's free!</button></a>
                 </div>
-                <button class="openVideo" (click)="openDialogVideo()">Watch video <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m5 5h14v14h-14z"></path><path clip-rule="evenodd" d="m10.0138 16.3878c-.83597.4912-1.5138.105-1.5138-.8645v-7.04491c0-.97008.6755-1.358 1.5138-.86566l6.465 3.79747c.5548.3261.5589.8517 0 1.1801z" fill="currentColor" fill-rule="evenodd"></path><circle cx="12" cy="12" r="11.5" stroke="currentColor"></circle></svg></button>
+                <button class="openVideo" (click)="openDialogVideo()">Watch video
+                     <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m5 5h14v14h-14z"></path>
+                        <path clip-rule="evenodd" d="m10.0138 16.3878c-.83597.4912-1.5138.105-1.5138-.8645v-7.04491c0-.97008.6755-1.358 1.5138-.86566l6.465 3.79747c.5548.3261.5589.8517 0 1.1801z" fill="currentColor" fill-rule="evenodd"></path>
+                        <circle cx="12" cy="12" r="11.5" stroke="currentColor"></circle>
+                    </svg>
+                </button>
             </div>
 
         </div>
         <div class="div-img">
             <img class="img-int" src="https://images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png?w=1140&fm=webp" alt="">
         </div>
+        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fill-opacity="1" d="M0,256L48,261.3C96,267,192,277,288,256C384,235,480,181,576,170.7C672,160,768,192,864,213.3C960,235,1056,245,1152,224C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
     </div>
 </div>
