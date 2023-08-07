@@ -61,6 +61,13 @@ const deleteUserOfProject = async (id: string, userId: string) => {
   return userDeleted;
 };
 
+const projectsRecently = async(projects: string | string[] | QueryString.ParsedQs | QueryString.ParsedQs[] | undefined) => {
+  const projectsRecent = await ProjectModel.find({
+  _id: projects
+  }).exec()
+  return projectsRecent
+}
+
 export {
   getAllProjects,
   getProjectById,
@@ -68,4 +75,5 @@ export {
   deleteProjectCtrl,
   addMemberProject,
   deleteUserOfProject,
+  projectsRecently
 };

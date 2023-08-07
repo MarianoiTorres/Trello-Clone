@@ -49,4 +49,11 @@ export class GetProjectsService {
     })
     return this.http.put(`http://localhost:3001/project/${projectId}`, body, {headers})
   }
+
+  getProjectsRecentlyViewed(projectsId: string[]): any {
+    const ids = projectsId.map(id => `id=${id}`)
+
+    return this.http.get(`http://localhost:3001/project/recently?${ids}`)
+  }
+
  }
