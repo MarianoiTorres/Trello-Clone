@@ -19,6 +19,7 @@ nav{
 
 
 .containerLogo h2 {
+    font-weight: 400;
     margin: 0;
     bottom: 0;
     color: #2C97B9;
@@ -30,7 +31,7 @@ nav{
     display: flex;
     user-select: none;
     font-size: 15px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   
 }
 
 .logo {
@@ -68,7 +69,6 @@ nav{
     color: white;
     font-size: 15px;
     font-weight: bold;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .containerCreate button:hover {

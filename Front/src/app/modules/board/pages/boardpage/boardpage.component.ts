@@ -21,6 +21,8 @@ export class BoardpageComponent {
     this.getProjectsService.getProjects(userId!)
     projectsRecently !== null && this.getProjectsService.getProjectsRecentlyViewed(projectsRecently).subscribe((response: any[]) => {
       this.projectsRecentlyViewed = response
+      console.log(this.projectsRecentlyViewed);
+      
     })
    }
  

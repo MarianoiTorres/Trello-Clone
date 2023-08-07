@@ -51,7 +51,9 @@ export class GetProjectsService {
   }
 
   getProjectsRecentlyViewed(projectsId: string[]): any {
-    const ids = projectsId.map(id => `id=${id}`)
+    const ids = projectsId.map(id => `id=${id}`).join('&')
+    console.log(`http://localhost:3001/project/recently?${ids}`);
+    
 
     return this.http.get(`http://localhost:3001/project/recently?${ids}`)
   }
