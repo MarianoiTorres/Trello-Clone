@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { deleteComent, postComent, putComent } from "../handlers/coments/comentsHandler";
+import { deleteComent, getComents, postComent, putComent } from "../handlers/coments/comentsHandler";
 
 const router = Router()
 
+router.get('/:userId', getComents)
 router.post('/', postComent)
 router.put('/:id', putComent)
 router.delete('/:id', deleteComent)

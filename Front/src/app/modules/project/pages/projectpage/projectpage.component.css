@@ -1,3 +1,6 @@
+.container {
+    height: 100%;
+}
 
 
 .divTask {
@@ -9,7 +12,13 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
+.menu {
+    background-color: red;
+    width: 100%;
 }
 
 .secondContainer{
