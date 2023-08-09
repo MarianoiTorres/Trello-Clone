@@ -7,3 +7,53 @@
     user-select: none;
     cursor: pointer;
 }
+
+h2 {
+    font-weight: 400;
+}
+.containerInvitationEmail {
+    width: 90%;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerInvitationEmail input {
+    width: 75%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid #504f4f;
+    padding-left: 15px;
+    outline-color: #2C97B9;
+    border-radius: 4px;
+}
+
+.containerInvitationEmail button {
+    width: 100px;
+    height: 100%;
+    background-color: #2C97B9;
+    border-radius: 5px;
+    width: fit-content;
+    border: none;
+    color: white;
+    font-weight: 500;
+}
+
+.containerInvitationEmail button:hover {
+    background-color: #00789c;
+    cursor: pointer;
+    transition: 0.1s ease-in;
+}
+
+.text {
+    background-image: url(https://images.vexels.com/media/users/3/129748/isolated/preview/29d0ea34158402c1581b9ec6214ad95c-piezas-de-la-cadena-icono-by-vexels.png);
+    background-repeat: no-repeat;
+    background-size:19px;
+    background-position: left;
+    background-position-x: 7px;
+    padding-left: 35px;
+}
+
+.link {
+    margin-left: 35px;
+}

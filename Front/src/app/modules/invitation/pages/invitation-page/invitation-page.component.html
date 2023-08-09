@@ -1,9 +1,14 @@
-<div>
-    <h3 *ngIf="this.token !== 'invitacion expirada'">
-        {{this.projectService.project.userCreator}} te invito a unirte a {{this.projectService.project.projectName}}
-    </h3>
-    <h3 *ngIf="this.token === 'invitacion expirada'">
-        Esta invitacion ya expiro :c
-    </h3>
-    <button [disabled]="this.token === 'invitacion expirada'" (click)="addMember()">Aceptar invitacion</button>
+<div class="firstContainer">
+    <div class="secondContainer">
+        
+        <h3 class="title" *ngIf="this.token !== 'invitacion expirada'">
+            <b class="invitation">{{this.projectService.project.userCreator}}</b> I invite you to join the project <b class="invitation">{{this.projectService.project.projectName}}</b>
+        </h3>
+        <h3 class="title" *ngIf="this.token === 'invitacion expirada'">
+            Invitation Expired <b class="rolex">🕒</b>
+        </h3>
+        <p *ngIf="this.token !== 'invitacion expirada'" class="text">Press "Accept" to join the project.</p>
+        <p *ngIf="this.token === 'invitacion expirada'" class="text">The invitation has expired. We apologize for any inconvenience, but this invitation is no longer valid. Please contact the sender to request a new invitation link</p>
+        <button class="buttonAccept" [disabled]="this.token === 'invitacion expirada'" (click)="addMember()">Accept</button>
+    </div>
 </div>

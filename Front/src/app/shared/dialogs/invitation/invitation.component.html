@@ -1,11 +1,11 @@
 <mat-dialog-content>
   <h2>Compartir tablero</h2>
-  <div>
+  <div class="containerInvitationEmail">
     <input placeholder="Direccion de correo electronico" type="text" [(ngModel)]="userEmail">
     <button (click)="sendMail()">Compartir</button>
   </div>
-  <div>
-    <p>Cualquiera que tenga un enlace para compartir el tablero</p>
-    <p id="link" (click)="copyLinkToClipboard()">Copiar enlace</p>
+  <div class="containerInvitationLink">
+    <p class="text">Cualquiera que tenga un enlace para compartir el tablero</p>
+    <p class="link" id="link" (click)="copyLinkToClipboard()">Copiar enlace</p>
   </div>
 </mat-dialog-content>
