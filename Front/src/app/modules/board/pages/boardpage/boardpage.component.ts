@@ -12,12 +12,12 @@ export class BoardpageComponent {
   constructor(
     public getProjectsService: GetProjectsService,
     public router: Router,
-    public comentsService: ComentsService,
+    public comentsService: ComentsService
   ) {}
   projects: any = [];
   projectsRecentlyViewed: any = [];
   render: string = 'home';
-  coments: any = []
+  coments: any = [];
 
   ngOnInit() {
     const userId = localStorage.getItem('userId');
@@ -35,8 +35,22 @@ export class BoardpageComponent {
           console.log(this.projectsRecentlyViewed);
         });
     this.comentsService.getComentsHome(userId!).subscribe((response: any) => {
-      this.coments = response
-    })
+      response.map((element: any) => {
+        if (element.deadline) {
+          const date = new Date(element.deadline);
+          const options: Intl.DateTimeFormatOptions = {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          };
+          const formatter = new Intl.DateTimeFormat("en-US", options);
+          const formattedDate = formatter.format(date);
+          element.deadline = formattedDate
+        }
+      });
+      this.coments = response;
+      console.log(this.coments);
+    });
   }
 
   goProject(projectId: string) {
@@ -60,6 +74,6 @@ export class BoardpageComponent {
   }
 
   redirectComentToProject(projectId: string): any {
-    this.router.navigate([`project/${projectId}`])
+    this.router.navigate([`project/${projectId}`]);
   }
 }

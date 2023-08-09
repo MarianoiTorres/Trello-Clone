@@ -36,8 +36,16 @@ const deleteComentCtrl = async (
 
 const getAllComents = async(userId: string) => {
   const coments = await TaskModel.find({
-    member: {$in: userId},
-    coments: { $exists: true, $not: { $size: 0 } }
+    $or: [
+      {
+        member: userId,
+        coments: { $exists: true, $not: { $size: 0 } }
+      },
+      {
+        member: userId,
+        deadline: { $exists: true }
+      }
+    ]
   }).populate({path: 'coments', model: ComentModel}).populate({path: 'projectId', model: ProjectModel})
   return coments
 }

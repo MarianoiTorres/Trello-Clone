@@ -53,6 +53,13 @@
                             </div>
                             <p class="comentInfo"><b>{{coment.projectId.name}}:</b> {{coment.state}}</p>
                         </div>
+                        <div *ngIf="coment.deadline" class="coment">
+                            <div (click)="redirectComentToProject(coment.projectId._id)">
+                                <p>{{coment.projectId.name}}</p>
+                            </div>
+                            <p class="comentInfo"><b>{{coment.projectId.name}}:</b> {{coment.state}}</p>
+                            <p class="comentInfo">Expires on <b class="expires">{{coment.deadline}}</b></p>
+                        </div>
                     </div>
                 </div>
                 <div class="recentNav">

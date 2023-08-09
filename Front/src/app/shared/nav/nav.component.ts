@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { GetProjectsService } from 'src/app/services/get-projects/get-projects.s
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  constructor(public projectService: GetProjectsService){}
+  constructor(public projectService: GetProjectsService, public route: Router){}
 
   show: boolean = false
   name: string = ''
@@ -20,5 +21,9 @@ export class NavComponent {
       member: [userId!]
     }
     this.projectService.createProject(project)    
+  }
+
+  goBoardPage(): any {
+    this.route.navigate(['board'])
   }
 }
