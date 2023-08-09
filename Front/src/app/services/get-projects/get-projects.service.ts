@@ -11,7 +11,7 @@ export class GetProjectsService {
 
   projects: any = []
   project: any = {}
-
+  
   createProject(project: ProjectToCreate): any{
     this.http.post('http://localhost:3001/project', project).subscribe((response) => {
       this.projects.push(response)
@@ -40,6 +40,8 @@ export class GetProjectsService {
         projectId: response._id,
         userCreatorId: response.userCreator._id
       } 
+      console.log(this.project);
+      
     })
   }
 

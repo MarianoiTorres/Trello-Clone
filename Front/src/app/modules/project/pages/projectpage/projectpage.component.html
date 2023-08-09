@@ -5,33 +5,40 @@
     <div class="firstContainer" id="hola">
         <div class="menu">
         
-            <h1>{{getProjectService.project.name}}</h1>
+            <h1>{{getProjectService.project.projectName}}</h1>
             <button mat-raised-button (click)="openDialog('0ms', '0ms')">Compartir</button>
         </div>
         <div class="secondContainer" cdkDropListGroup>
-            <div *ngFor="let list of listDivs" class="hecho">
-                <h2>{{list.name}}</h2>
+            <div *ngFor="let list of listDivs" class="divList">
+                <h2 class="title">{{list.name}}</h2>
     
-                <div class="containerTask"  cdkDropList [cdkDropListData]="list.tasks" (cdkDropListDropped)="drop($event, list)">
+                <div class="containerTask"  cdkDropList [cdkDropListData]="list.tasks" (cdkDropListDropped)="drop($event, list)" [ngStyle]="getContainerTaskStyles(list.tasks)">
                     <div class="divTask" *ngFor="let task of list.tasks" cdkDrag (cdkDragStarted)="onDragStart(task)">
                         <div class="custom-placeholder" *cdkDragPlaceholder></div>
-                        <h3>{{task?.name}}</h3>
+                        <h3 class="taskName">{{task?.name}}</h3>
                         <p>{{task?.deadline}}</p>
-                        <p *ngFor="let user of task.member">{{user?.name + ' ' + user?.surname}}</p>
+                        
                     </div>
                 </div>
+                <div class="containerCreateNewTask">
+
+                    <input class="inputCreateTask" type="text" placeholder="Introduzca un titulo" *ngIf="mostrar === list.name" [(ngModel)]="newTaskToCreate.name">
+                    <div class="containerButtons">
+                        <button class="add" *ngIf="mostrar === list.name" (click)="createNewTask()">Añadir tarea</button>
+                        <button class="cancel" *ngIf="mostrar === list.name" (click)="newTask('')"></button>
+                    </div>
+                    <button class="buttonAddTask" *ngIf="mostrar !== list.name" (click)="newTask(list)">Añada una tarea</button>
+                </div>
     
-                <input type="text" *ngIf="mostrar === list.name" [(ngModel)]="newTaskToCreate.name">
-    
-                <button *ngIf="mostrar !== list.name" (click)="newTask(list)">Añada una tarea</button>
-                <button *ngIf="mostrar === list.name" (click)="createNewTask()">Añadir tarea</button>
-                <button *ngIf="mostrar === list.name" (click)="newTask('')">X</button>
             </div>
-            <div *ngIf="newList === true">
+            <div class="containerAddNewList" *ngIf="newList === true">
                 <input type="text"  [(ngModel)]="nameList">
-                <button (click)="addNewList()">Añadir lista</button>
+                <div class="containerButtons">
+                    <button class="add" (click)="addNewList()">Añadir lista</button>
+                    <button class="cancel" (click)="newList = !newList"></button>
+                </div>
             </div>
-            <button *ngIf="newList === false" (click)="newList = !newList">Añadir otra lista</button>
+            <button class="buttonAddList" *ngIf="newList === false" (click)="newList = !newList">Añadir otra lista</button>
         </div>
     </div>
 </div>

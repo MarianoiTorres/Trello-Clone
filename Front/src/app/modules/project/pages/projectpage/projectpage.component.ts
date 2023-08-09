@@ -116,4 +116,17 @@ export class ProjectpageComponent {
       exitAnimationDuration,
     });
   }
+
+  getContainerTaskStyles(tasks: any[]): any {
+    const minHeight = 25; // Altura mínima
+    const itemHeight = 40; // Altura por cada item
+
+    const totalTasks = tasks.length;
+    const containerHeight = minHeight + totalTasks * itemHeight;
+
+    return {
+      'min-height': `${containerHeight}px`,
+      'height': 'fit-content'
+    };
+  }
 }
