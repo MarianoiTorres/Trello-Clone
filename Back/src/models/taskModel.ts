@@ -24,7 +24,7 @@ const taskSchema = new Schema({
         type: String,
     },
     deadline: {
-        type: String,
+        type: Date,
     },
     member: [{
         type: Schema.Types.ObjectId,

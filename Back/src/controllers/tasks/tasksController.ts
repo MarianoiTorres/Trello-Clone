@@ -34,4 +34,9 @@ const updateTask = async (id: string, body: Task) => {
   }
 };
 
-export { createNewTask, getAllTasks, getTaskById, updateTask };
+const deleteTaskController = async(taskId: string) => {
+  const deletedTask = await TaskModel.deleteOne({_id: taskId})
+  return deletedTask
+}
+
+export { createNewTask, getAllTasks, getTaskById, updateTask, deleteTaskController };

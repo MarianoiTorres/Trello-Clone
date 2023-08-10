@@ -76,4 +76,6 @@ export class BoardpageComponent {
   redirectComentToProject(projectId: string): any {
     this.router.navigate([`project/${projectId}`]);
   }
+
+ 
 }

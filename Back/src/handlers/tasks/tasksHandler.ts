@@ -4,6 +4,7 @@ import {
   getAllTasks,
   getTaskById,
   updateTask,
+  deleteTaskController
 } from "../../controllers/tasks/tasksController";
 
 const postTask = async (req: Request, res: Response) => {
@@ -49,5 +50,15 @@ const putTask = async (req: Request, res: Response) => {
   }
 };
 
+const deleteTaskHandler = async(req: Request, res: Response) => {
+  try {
+    const { taskId } = req.params
+    const deletedTask = await deleteTaskController(taskId)
+    res.status(200).json(deletedTask)
+  } catch (error) {
+    res.status(400).json({error: (error as Error).message})
+  }
+}
 
-export { postTask, getTasks, getTask, putTask };
+
+export { postTask, getTasks, getTask, putTask, deleteTaskHandler };

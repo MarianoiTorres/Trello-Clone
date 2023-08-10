@@ -26,4 +26,8 @@ export class GetTasksService {
   getTaskById(taskId: string): any {
     return this.http.get(`http://localhost:3001/task/detail/${taskId}`)
   }
+
+  deleteTask(taskId: string): any { 
+    return this.http.delete(`http://localhost:3001/task/${taskId}`)
+  }
 }

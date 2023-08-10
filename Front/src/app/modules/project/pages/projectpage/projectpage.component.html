@@ -10,13 +10,22 @@
         </div>
         <div class="secondContainer" cdkDropListGroup>
             <div *ngFor="let list of listDivs" class="divList">
+                <div class="containerMore">
+                    <button class="more" (click)="mostrar = list._id"></button>
+                    <div class="divMore" *ngIf="mostrar === list._id">
+                        <button id="closeMore" (click)="mostrar = ''"></button>
+                        <p>Actions</p>
+                        <button>Add Task</button>
+                        <button>Remove List</button>
+                    </div>
+                </div>
                 <h2 class="title">{{list.name}}</h2>
     
                 <div class="containerTask"  cdkDropList [cdkDropListData]="list.tasks" (cdkDropListDropped)="drop($event, list)" [ngStyle]="getContainerTaskStyles(list.tasks)">
                     <div class="divTask" *ngFor="let task of list.tasks" cdkDrag (cdkDragStarted)="onDragStart(task)" (click)="openDialogTask(task._id)">
                         <div class="custom-placeholder" *cdkDragPlaceholder></div>
                         <h3 class="taskName">{{task?.name}}</h3>
-                        <p>{{task?.deadline}}</p>
+                        <p id="deadline">{{task?.deadline}}</p>
                         
                     </div>
                 </div>

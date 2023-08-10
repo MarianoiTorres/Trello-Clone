@@ -2,6 +2,7 @@ mat-dialog-content {
     display: flex;
     min-height: 550px;
     height: fit-content;
+    position: relative;
 }
 
 .container {
@@ -304,18 +305,20 @@ mat-dialog-content {
 
 .containerMembers {
     position: absolute;
-    width: 220px;
+    width: 210px;
+
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 3px rgb(36, 36, 36);
     height: fit-content;
     margin-top: 8px;
     border-radius: 5px;
-    left: -35px;
+    left: -42px;
     display: flex;
     justify-content: left;
     align-items: center;
     padding: 4px;
     box-sizing: border-box;
+    z-index: 1;
 }
 
 .containerMembers div {
@@ -345,4 +348,78 @@ mat-card {
     position: absolute;
     width: 230px;
     left: -60px;
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+.divConfirmation {
+    padding-top: 9px;
+    padding-bottom: 9px;
+    position: absolute;
+    left: 24%;
+    top: 34%;
+    width: 300px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 5px rgb(36, 36, 36);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 3px;
+    opacity: 0;
+    animation: fadeIn 0.2s ease-in-out forwards;
+}
+
+.divConfirmation div {
+    display: flex;
+    width: 90%;
+    gap: 20px;
+}
+
+#question {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+}
+
+#warn {
+    font-weight: 500;
+    font-size: 12px;
+    margin: 0;
+}
+
+#confirm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(68, 167, 68);
+    font-weight: 700;
+    color: white;
+}
+
+#cancel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(201, 85, 85);
+    font-weight: 700;
+    color: white;
+}
+
+.remove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    color: red;
 }

@@ -19,6 +19,7 @@ export class TaskDialogComponent {
   edit: boolean = false
   showMembers: boolean = false
   showCalendar: boolean = false
+  showConfirmation: boolean = false
 
   constructor(
     public dialogRef: DialogRef,
@@ -82,6 +83,23 @@ export class TaskDialogComponent {
       console.log(response);
       
     }, (error) => {console.log(error);
+    })
+  }
+
+  deleteTask(): any {
+    this.taskService.deleteTask(this.taskId).subscribe((response: any) => {
+      if(response.acknowledged)
+      {
+        this.dialogRef.close()
+      }
+      console.log(response);
+      
+    })
+  }
+
+  updateDeadline(): any {
+    this.taskService.updateTask(this.taskId, {deadline: this.selected}).subscribe((response: any) => {
+      this.showCalendar = !this.showCalendar
     })
   }
 }

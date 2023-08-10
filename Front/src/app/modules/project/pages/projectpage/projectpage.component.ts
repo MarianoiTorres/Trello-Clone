@@ -27,6 +27,7 @@ export class ProjectpageComponent {
 
   private draggedTask: any;
   
+  showMore: boolean = false
   projectId: string = '';
   mostrar: string = '';
 
@@ -59,6 +60,17 @@ export class ProjectpageComponent {
           this.listDivs.forEach((list: any) => {
               tasks.forEach(task => {
                 list.name === task.state && list.tasks.push(task)
+                if (task.deadline) {
+                  const date = new Date(task.deadline);
+                  const options: Intl.DateTimeFormatOptions = {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  };
+                  const formatter = new Intl.DateTimeFormat("en-US", options);
+                  const formattedDate = formatter.format(date);
+                  task.deadline = formattedDate
+                }
               })
           })
         })
