@@ -18,12 +18,9 @@ export class GetTasksService {
   }
 
   updateTask(id: string, body: object) {
-    this.http.put(`http://localhost:3001/task/${id}`, body).subscribe((response) => {
-      console.log('actualizado correctamente', response)
-    },
-    (error) => {
-      console.log('error al actualizar', error)
-    })
+    console.log(body);
+    
+    return this.http.put(`http://localhost:3001/task/${id}`, body)
   }
 
   getTaskById(taskId: string): any {

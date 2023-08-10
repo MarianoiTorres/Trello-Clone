@@ -8,21 +8,22 @@
         <div class="containerDescription">
             <div class="title">
                 <p>Description</p>
-                <button class="editButton">Edit</button>
+                <button *ngIf="edit" class="editButton" (click)="edit = !edit">Edit</button>
+                <button *ngIf="edit === false" class="saveButton" (click)="saveDescription()">Save</button>
             </div>
             <div class="description">
-                <input type="text" placeholder="Add a more detailed description">
-                <p>{{task.description}}</p>
+                <input *ngIf="edit === false || !task.description" type="text" placeholder="Add a more detailed description" [(ngModel)]="task.description" >
+                <p *ngIf="edit">{{task.description}}</p>
             </div>
         </div>
         <div class="containerCommentsTitle">
             <div class="title">
                 <p>Comments</p>
-                <button class="addComment">Add</button>
+                <button class="addComment" (click)="addComment()">Add</button>
 
             </div>
             <div class="description">
-                <input type="text" placeholder="Leave a comment">
+                <input type="text" placeholder="Leave a comment" [(ngModel)]="comment" value="comment">
             </div>
         </div>
         <div class="containerComments">

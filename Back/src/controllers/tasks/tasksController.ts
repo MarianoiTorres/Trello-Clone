@@ -29,7 +29,7 @@ const updateTask = async (id: string, body: Task) => {
     const comentsUpdated = await TaskModel.updateOne({_id: id},{$push: {coments: body.coments[0]}})
     return comentsUpdated
   } else {
-    const taskUpdated = TaskModel.updateOne({ _id: id }, body);
+    const taskUpdated = await TaskModel.updateOne({ _id: id }, body);
     return taskUpdated;
   }
 };

@@ -222,6 +222,17 @@ mat-dialog-content {
     color: #504f4f;
 }
 
+.saveButton {
+    background-image: url(../../../../../assets/img/save.png);
+    background-repeat: no-repeat;
+    background-size:18px;
+    background-position: left;
+    background-position-x: 5px;
+    background-position-y: 3px;
+    padding-left: 5px;
+    color: #504f4f;
+}
+
 .join {
     background-image: url(../../../../../assets/img/user.png);
     background-repeat: no-repeat;

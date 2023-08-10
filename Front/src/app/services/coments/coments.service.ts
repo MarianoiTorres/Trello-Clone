@@ -11,4 +11,8 @@ export class ComentsService {
   getComentsHome(userId: string): any {
     return this.http.get(`http://localhost:3001/coments/${userId}`)
   }
+
+  createComment(userId: string, taskId: string, comment: string): any {
+    return this.http.post('http://localhost:3001/coments/', {userId, taskId, coment: comment})
+  }
 }
