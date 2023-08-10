@@ -13,9 +13,10 @@ import {
 } from '@angular/cdk/drag-drop';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import { TaskDialogComponent } from './pages/task-dialog/task-dialog.component';
 
 @NgModule({
-  declarations: [ProjectpageComponent],
+  declarations: [ProjectpageComponent, TaskDialogComponent],
   imports: [
     CommonModule,
     ProjectRoutingModule,

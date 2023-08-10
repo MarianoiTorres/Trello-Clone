@@ -7,10 +7,11 @@ body{
     margin: 0;
     padding: 0;
     height: 100vh;
+
 }
 
 
-button, input, select, textarea, input::placeholder {
+p, h2, h1, h3,button, input, select, textarea, input::placeholder {
     font-family: 'Montserrat', sans-serif;
   }
   

@@ -17,7 +17,9 @@ const getAllTasks = async (projectId: string) => {
 
 const getTaskById = async (id: string) => {
 
-  const task = await TaskModel.findById(id).populate({ path: 'coments', model: ComentModel })
+  const task = await TaskModel.findById(id).populate({ path: 'coments', model: ComentModel, populate: {
+    path: 'userId', model: UserModel
+  } }).populate({ path: 'projectId', model: ProjectModel }).populate({ path: 'listId', model: ListModel })
 
   return task;
 };

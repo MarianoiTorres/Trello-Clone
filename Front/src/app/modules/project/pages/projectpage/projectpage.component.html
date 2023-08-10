@@ -13,7 +13,7 @@
                 <h2 class="title">{{list.name}}</h2>
     
                 <div class="containerTask"  cdkDropList [cdkDropListData]="list.tasks" (cdkDropListDropped)="drop($event, list)" [ngStyle]="getContainerTaskStyles(list.tasks)">
-                    <div class="divTask" *ngFor="let task of list.tasks" cdkDrag (cdkDragStarted)="onDragStart(task)">
+                    <div class="divTask" *ngFor="let task of list.tasks" cdkDrag (cdkDragStarted)="onDragStart(task)" (click)="openDialogTask(task._id)">
                         <div class="custom-placeholder" *cdkDragPlaceholder></div>
                         <h3 class="taskName">{{task?.name}}</h3>
                         <p>{{task?.deadline}}</p>

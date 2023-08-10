@@ -11,6 +11,8 @@ export class VideodialogComponent {
   video: string = '../../../../../assets/videos/Trello.mp4'
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-    this.mostrar = data.mostrar; // Recibe el estado "mostrar" del componente que abre el dialog
+    this.mostrar = data.mostrar;
   }
+
+ 
 }

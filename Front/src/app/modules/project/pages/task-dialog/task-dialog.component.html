@@ -1,0 +1,46 @@
+<mat-dialog-content>
+    <button class="closeDialog" (click)="dialogRef.close()"></button>
+    <div class="container">
+        <div class="containerTitle">
+            <h2>{{task?.projectId?.name}}</h2>
+            <p>In list <b>{{task.state}}</b></p>
+        </div>
+        <div class="containerDescription">
+            <div class="title">
+                <p>Description</p>
+                <button class="editButton">Edit</button>
+            </div>
+            <div class="description">
+                <input type="text" placeholder="Add a more detailed description">
+                <p>{{task.description}}</p>
+            </div>
+        </div>
+        <div class="containerCommentsTitle">
+            <div class="title">
+                <p>Comments</p>
+                <button class="addComment">Add</button>
+
+            </div>
+            <div class="description">
+                <input type="text" placeholder="Leave a comment">
+            </div>
+        </div>
+        <div class="containerComments">
+            <div class="userComment" *ngFor="let comment of task.coments">
+                <div class="commentInfo">
+                    <div>
+                        <img src="../../../../../assets/img/logoTrello.png" alt="">
+                    </div>
+                    <div>
+                        <p class="user">{{comment.userId.name}} {{comment.userId.surname}}</p>
+                        <p class="date">{{comment.createdAt}}</p>
+                    </div>
+                </div>
+                <div class="comment">
+                    <p>{{comment.coment}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="secondContainer">hola</div>
+</mat-dialog-content>

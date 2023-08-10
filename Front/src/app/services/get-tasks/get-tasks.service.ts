@@ -25,4 +25,8 @@ export class GetTasksService {
       console.log('error al actualizar', error)
     })
   }
+
+  getTaskById(taskId: string): any {
+    return this.http.get(`http://localhost:3001/task/detail/${taskId}`)
+  }
 }

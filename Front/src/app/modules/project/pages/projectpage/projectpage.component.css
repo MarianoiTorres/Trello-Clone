@@ -220,6 +220,7 @@
 }
 
 .containerCreateNewTask {
+    margin-top: 5px;
     box-sizing: border-box;
     width: 100%;
     height: fit-content;

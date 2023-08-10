@@ -1,0 +1,199 @@
+mat-dialog-content {
+    display: flex;
+    min-height: 550px;
+    height: fit-content;
+}
+
+.container {
+    height: fit-content;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+.closeDialog {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    width: 25px;
+    height: 25px;
+    background: none;
+    background-image: url(../../../../../assets/img/close.png);
+    background-repeat: no-repeat;
+    background-size:25px;
+    background-position: left;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.secondContainer {
+    width: 20%;
+}
+
+.containerTitle {
+    height: fit-content;
+}
+
+.containerTitle h2{
+    font-size: 19px;
+    margin: 0;
+    color: black;
+    font-weight: 500;
+}
+
+.containerTitle p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.container b {
+    color: black;
+    font-weight: 500;
+}
+
+.containerDescription {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    padding: 10px;
+    padding-left: 0;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.title p{
+    margin: 0;
+    width: fit-content;
+}
+
+.title button {
+    width: 80px;
+    background-color: rgb(236, 242, 245);
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    font-weight: 500;
+}
+
+.title button:hover {
+    cursor: pointer;
+    transform: scale(1.07);
+    transition: 0.2s ease-out;
+}
+
+.description {
+    width: 100%;
+}
+
+.description input {
+    width: 100%;
+    min-height: 60px;
+    height: fit-content;
+    border: 1px solid rgb(179, 179, 179);
+    padding: 0;
+    margin: 0;
+    outline-color: rgb(145, 145, 145);
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-indent: 10px;
+    vertical-align: top;
+    position: relative;
+    text-align: top;
+    padding-bottom: 15px;
+    
+}
+
+.containerCommentsTitle {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerComments {
+    width: 100%;
+    height: fit-content;
+    gap: 13px;
+    margin-top: 10px;
+}
+
+.commentInfo {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 5px;
+}
+
+.commentInfo img {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: -2px;
+}
+
+
+
+.user {
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+    width: fit-content;
+    color: black;
+}
+
+.date {
+    font-size: 11px;
+    width: fit-content;
+    position: relative;
+    top: -9px;
+    margin: 0;
+}
+
+.comment {
+    width: 100%;
+    min-height: 20px;
+    font-size: 13px;
+    height: fit-content;
+    position: relative;
+    top: -13px;
+}
+
+.comment p {
+    margin: 0;
+    color: black;
+}
+
+.userComment {
+
+}
+
+.addComment {
+    background-image: url(../../../../../assets/img/plus.png);
+    background-repeat: no-repeat;
+    background-size:17px;
+    background-position: left;
+    background-position-x: 7px;
+    background-position-y: 4px;
+    padding-left: 5px;
+    color: #504f4f;
+}
+
+.editButton {
+    background-image: url(https://cdn.icon-icons.com/icons2/906/PNG/512/pencil_icon-icons.com_69999.png);
+    background-repeat: no-repeat;
+    background-size:14px;
+    background-position: left;
+    background-position-x: 7px;
+    background-position-y: 4px;
+    padding-left: 5px;
+    color: #504f4f;
+}

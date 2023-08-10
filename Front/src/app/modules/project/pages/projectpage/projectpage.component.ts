@@ -9,6 +9,7 @@ import { GetProjectsService } from 'src/app/services/get-projects/get-projects.s
 import { InvitationComponent } from 'src/app/shared/dialogs/invitation/invitation.component';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button'
+import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 
 @Component({
   selector: 'app-projectpage',
@@ -128,5 +129,14 @@ export class ProjectpageComponent {
       'min-height': `${containerHeight}px`,
       'height': 'fit-content'
     };
+  }
+
+  openDialogTask(taskId: string): any {
+    this.dialog.open(TaskDialogComponent, {
+      width: '55%',
+      data: {
+        taskId: taskId
+      }
+    })
   }
 }
