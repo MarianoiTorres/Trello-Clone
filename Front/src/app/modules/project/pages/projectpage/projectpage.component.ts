@@ -133,7 +133,7 @@ export class ProjectpageComponent {
 
   openDialogTask(taskId: string): any {
     this.dialog.open(TaskDialogComponent, {
-      width: '55%',
+      width: '45%',
       data: {
         taskId: taskId
       }
