@@ -57,7 +57,12 @@
                 </div>
             </div>
         </div>
-        <button class="dateTask">Change Due Date</button>
+        <div class="containerCalend">
+            <button class="dateTask" (click)="showCalendar = !showCalendar">Change Due Date</button>
+                <mat-card *ngIf="showCalendar" class="demo-inline-calendar-card">
+                    <mat-calendar [(selected)]="selected"></mat-calendar>
+                  </mat-card>
+        </div>
         <button class="delete">Delete</button>
     </div>
 </mat-dialog-content>

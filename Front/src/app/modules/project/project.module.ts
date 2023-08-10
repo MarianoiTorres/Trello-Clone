@@ -9,11 +9,14 @@ import {
   CdkDrag,
   CdkDropList,
   CdkDropListGroup,
-  CdkDragPlaceholder
+  CdkDragPlaceholder,
 } from '@angular/cdk/drag-drop';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { TaskDialogComponent } from './pages/task-dialog/task-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [ProjectpageComponent, TaskDialogComponent],
@@ -27,7 +30,10 @@ import { TaskDialogComponent } from './pages/task-dialog/task-dialog.component';
     CdkDrag,
     CdkDragPlaceholder,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class ProjectModule {}

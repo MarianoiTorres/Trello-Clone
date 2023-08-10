@@ -334,3 +334,15 @@ mat-dialog-content {
 .member:hover {
     background-color: rgb(236, 242, 245);
 }
+
+.containerCalend {
+    position: relative;
+    
+}
+
+mat-card {
+    margin-top: 5px;
+    position: absolute;
+    width: 230px;
+    left: -60px;
+}

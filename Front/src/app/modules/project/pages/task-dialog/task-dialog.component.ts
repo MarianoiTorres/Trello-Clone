@@ -11,12 +11,14 @@ import { GetProjectsService } from 'src/app/services/get-projects/get-projects.s
   styleUrls: ['./task-dialog.component.css'],
 })
 export class TaskDialogComponent {
+  
   taskId: string = '';
   userId: string = ''
   task: any = {};
   comment: string = ''
   edit: boolean = false
   showMembers: boolean = false
+  showCalendar: boolean = false
 
   constructor(
     public dialogRef: DialogRef,
@@ -24,9 +26,11 @@ export class TaskDialogComponent {
     public projectService: GetProjectsService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public taskService: GetTasksService
-  ) {
-    this.taskId = data.taskId;
-  }
+    ) {
+      this.taskId = data.taskId;
+    }
+    
+    selected: Date | null = null;
 
   ngOnInit(): any {
     console.log(this.projectService.project);
