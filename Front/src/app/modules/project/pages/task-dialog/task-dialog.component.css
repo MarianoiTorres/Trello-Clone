@@ -97,7 +97,22 @@ mat-dialog-content {
 
 .title p{
     margin: 0;
+    padding-left: 25px;
     width: fit-content;
+}
+
+#titleDescription {
+    background-image: url(../../../../../assets/img/description.png);
+    background-repeat: no-repeat;
+    background-size:26px;
+    background-position: left;
+}
+
+#titleComments {
+    background-image: url(../../../../../assets/img/comment.png);
+    background-repeat: no-repeat;
+    background-size:24px;
+    background-position: left;
 }
 
 .title button {
@@ -281,4 +296,41 @@ mat-dialog-content {
     background-position-x: 5px;
     padding-left: 23.5px;
     color: #504f4f;
+}
+
+.containerMembersInfo {
+    position: relative;
+}
+
+.containerMembers {
+    position: absolute;
+    width: 220px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 3px rgb(36, 36, 36);
+    height: fit-content;
+    margin-top: 8px;
+    border-radius: 5px;
+    left: -35px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.containerMembers div {
+    width: 100%;
+}
+
+.member {
+    cursor: pointer;
+    height: 30px;
+    font-size: 15px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.member:hover {
+    background-color: rgb(236, 242, 245);
 }

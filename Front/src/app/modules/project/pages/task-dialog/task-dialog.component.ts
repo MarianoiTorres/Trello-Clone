@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GetTasksService } from 'src/app/services/get-tasks/get-tasks.service';
 import { DialogRef } from '@angular/cdk/dialog';
 import { ComentsService } from 'src/app/services/coments/coments.service';
+import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
 
 @Component({
   selector: 'app-task-dialog',
@@ -15,10 +16,12 @@ export class TaskDialogComponent {
   task: any = {};
   comment: string = ''
   edit: boolean = false
+  showMembers: boolean = false
 
   constructor(
     public dialogRef: DialogRef,
     public commentService: ComentsService,
+    public projectService: GetProjectsService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public taskService: GetTasksService
   ) {
@@ -26,6 +29,8 @@ export class TaskDialogComponent {
   }
 
   ngOnInit(): any {
+    console.log(this.projectService.project);
+    
     this.userId = localStorage.getItem('userId')!
     this.taskService.getTaskById(this.taskId).subscribe((response: any) => {
       response.coments.map((comment: any) => {
@@ -65,6 +70,14 @@ export class TaskDialogComponent {
           }
         })
       }
+    })
+  }
+
+  addMember(userId?: string): any {
+    this.taskService.updateTask(this.taskId, {member: [userId ? userId : this.userId]}).subscribe((response: any) => {
+      console.log(response);
+      
+    }, (error) => {console.log(error);
     })
   }
 }

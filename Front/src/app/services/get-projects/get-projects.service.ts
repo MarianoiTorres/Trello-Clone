@@ -38,7 +38,8 @@ export class GetProjectsService {
         projectName: response.name,
         userCreator: response.userCreator.name + ' ' + response.userCreator.surname,
         projectId: response._id,
-        userCreatorId: response.userCreator._id
+        userCreatorId: response.userCreator._id,
+        member: response.member
       } 
       console.log(this.project);
       

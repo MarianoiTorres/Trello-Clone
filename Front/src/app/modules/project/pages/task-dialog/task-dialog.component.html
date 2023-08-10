@@ -6,8 +6,8 @@
             <p>In list <b>{{task.state}}</b></p>
         </div>
         <div class="containerDescription">
-            <div class="title">
-                <p>Description</p>
+            <div class="title" >
+                <p id="titleDescription">Description</p>
                 <button *ngIf="edit" class="editButton" (click)="edit = !edit">Edit</button>
                 <button *ngIf="edit === false" class="saveButton" (click)="saveDescription()">Save</button>
             </div>
@@ -17,8 +17,8 @@
             </div>
         </div>
         <div class="containerCommentsTitle">
-            <div class="title">
-                <p>Comments</p>
+            <div class="title" >
+                <p id="titleComments">Comments</p>
                 <button class="addComment" (click)="addComment()">Add</button>
 
             </div>
@@ -47,9 +47,16 @@
     </div>
     <div class="secondContainer">
         <p>Actions</p>
-        <button class="join">Join</button>
+        <button class="join" (click)="addMember()">Join</button>
         <button class="label">Edit Label</button>
-        <button class="members">Members</button>
+        <div class="containerMembersInfo">
+            <button  class="members" (click)="showMembers = !showMembers">Members</button>
+            <div *ngIf="showMembers" class="containerMembers">
+                <div *ngFor="let user of projectService.project.member" (click)="addMember(user._id)">
+                    <p class="member">{{user.name}} {{user.surname}}</p>
+                </div>
+            </div>
+        </div>
         <button class="dateTask">Change Due Date</button>
         <button class="delete">Delete</button>
     </div>

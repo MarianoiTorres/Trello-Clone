@@ -13,7 +13,7 @@ const getAllProjects = async (userId: string) => {
 };
 
 const getProjectById = async (id: string) => {
-  const project = await ProjectModel.findOne({ _id: id }).populate({path: 'userCreator', model: UserModel});
+  const project = await ProjectModel.findOne({ _id: id }).populate({path: 'userCreator', model: UserModel}).populate({path: 'member', model: UserModel});
   return project;
 };
 
