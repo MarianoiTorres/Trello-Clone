@@ -2,6 +2,7 @@ import { Project } from "../../interfaces/project";
 import ProjectModel from "../../models/projectModel";
 import QueryString from "qs";
 import UserModel from "../../models/usersModel";
+import TaskModel from "../../models/taskModel";
 
 const getAllProjects = async (userId: string) => {
   const allProjects = await ProjectModel.find({
@@ -35,6 +36,7 @@ const deleteProjectCtrl = async (
   
   if (project?.userCreator.toString() === userId) {
     const projectDeleted = await ProjectModel.deleteOne({ _id: id });
+    const tasksDeleted = await TaskModel.deleteMany({projectId: id})
     return projectDeleted;
   }
   else 
@@ -73,6 +75,11 @@ const getProjectController = async(name: string | string[] | QueryString.ParsedQ
   return project
 }
 
+const changeBackground = async(id: string, body: any) => {
+  const updatedBackground = await ProjectModel.updateOne({_id: id}, {background: body.background})
+  return updatedBackground
+}
+
 export {
   getAllProjects,
   getProjectById,
@@ -81,5 +88,6 @@ export {
   addMemberProject,
   deleteUserOfProject,
   projectsRecently,
-  getProjectController
+  getProjectController,
+  changeBackground
 };

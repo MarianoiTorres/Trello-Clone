@@ -1,7 +1,7 @@
 .container {
     height: 100vh;
     position: relative;
-    background-color: rgb(236, 242, 245);
+    background: var(--container-background-image);
     overflow: hidden;
 }
 
@@ -491,4 +491,24 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+#buttonRemoveColor {
+    margin-top: 40px;
+    width: 200px;
+    height: 35px;
+    background-color: rgb(236, 242, 245);
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    font-weight: 700;
+    color: #504f4f;
+    letter-spacing: 1px;
+    box-shadow: 0 1px 3px rgb(68, 68, 68);
+}
+
+#buttonRemoveColor:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: 0.2s ease;
 }

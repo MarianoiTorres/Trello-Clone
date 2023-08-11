@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetTasksService } from 'src/app/services/get-tasks/get-tasks.service';
 import { NewTaskToCreate } from '../../../../interfaces/task';
@@ -23,12 +23,10 @@ export class ProjectpageComponent {
     public getListsServce: GetListsService,
     public getProjectService: GetProjectsService, 
     public dialog: MatDialog,
-    private renderer: Renderer2
   ) {}
 
   private draggedTask: any;
   
-  containerBackgroundImage: string = '';
   showMore: boolean = false
   showColorsDiv: boolean = false
   showBackgroundMenu: boolean = false
@@ -169,6 +167,7 @@ export class ProjectpageComponent {
 
   
   changeColor(gradient: string): any {
-    this.containerBackgroundImage = gradient;
+    this.getProjectService.containerBackgroundImage = gradient;
+    this.getProjectService.updateBackground(this.projectId, this.getProjectService.containerBackgroundImage)
   }
 }

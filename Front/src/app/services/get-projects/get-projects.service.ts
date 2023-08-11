@@ -11,6 +11,7 @@ export class GetProjectsService {
 
   projects: any = []
   project: any = {}
+  containerBackgroundImage: string = ''
   
   createProject(project: ProjectToCreate): any{
     this.http.post('http://localhost:3001/project', project).subscribe((response) => {
@@ -41,8 +42,7 @@ export class GetProjectsService {
         userCreatorId: response.userCreator._id,
         member: response.member
       } 
-      console.log(this.project);
-      
+      this.containerBackgroundImage = response.background
     })
   }
 
@@ -55,10 +55,18 @@ export class GetProjectsService {
 
   getProjectsRecentlyViewed(projectsId: string[]): any {
     const ids = projectsId.map(id => `id=${id}`).join('&')
-    console.log(`http://localhost:3001/project/recently?${ids}`);
-    
-
     return this.http.get(`http://localhost:3001/project/recently?${ids}`)
+  }
+
+  updateBackground(id: string, background: string): any {
+    console.log(id);
+    console.log(background);
+    
+    this.http.put(`http://localhost:3001/project/background/${id}`, {background: background}).subscribe((response: any) => {
+      console.log(response);
+    },
+    (error) => {console.log(error)}
+    )
   }
 
  }

@@ -7,7 +7,8 @@ import {
   getAllProjects,
   getProjectById,
   projectsRecently,
-  getProjectController
+  getProjectController,
+  changeBackground
 } from "../../controllers/projects/projectsController";
 
 const getProjects = async (req: Request, res: Response) => {
@@ -96,6 +97,17 @@ const getProjectByName = async(req: Request, res: Response) => {
   }
 }
 
+const updateBackground = async(req: Request, res: Response) => {
+  try {
+    const {id} = req.params
+    const {body} = req //background = ''
+    const updatedBackground = await changeBackground(id, body)
+    res.status(200).json(updatedBackground)
+  } catch (error) {
+    res.status(400).json({error: (error as Error).message})
+  }
+}
+
 
 export {
   getProjects,
@@ -105,5 +117,6 @@ export {
   putProject,
   deleteUser,
   getProjectRecently, 
-  getProjectByName
+  getProjectByName,
+  updateBackground
 };

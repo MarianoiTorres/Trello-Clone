@@ -1,5 +1,5 @@
 
-<div class="container" [style.backgroundImage]="containerBackgroundImage">
+<div class="container" [style.backgroundImage]="getProjectService.containerBackgroundImage">
     <app-nav></app-nav>
     
     <div class="containerColors" *ngIf="showBackgroundMenu">
@@ -27,6 +27,7 @@
                 <span (click)="changeColor('linear-gradient(to bottom right, blue, violet)')" class="color clr5"></span>
                 <span (click)="changeColor('linear-gradient(to bottom right, pink, green)')" class="color clr6"></span>
             </div>
+            <button id="buttonRemoveColor" (click)="changeColor('linear-gradient(to bottom right, rgb(236, 242, 245), rgb(236, 242, 245))')">Remove Color</button>
         </div>
     </div>
     <div class="firstContainer" id="hola">

@@ -7,12 +7,14 @@ import {
   postProject,
   putProject,
   getProjectRecently,
-  getProjectByName
+  getProjectByName,
+  updateBackground
 } from "../handlers/projects/projectsHandler";
 import verifyTokenInvitation from "../utils/verifyTokenInvitation";
 
 const router = Router();
 
+router.put('/background/:id', updateBackground)
 router.get('/recently', getProjectRecently)
 router.get("/projects/:id", getProjects);
 router.get('/', getProjectByName)

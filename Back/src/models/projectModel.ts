@@ -12,7 +12,11 @@ const projectSchema = new Schema({
     member: [{
         type: Schema.Types.ObjectId,
         ref: 'UserModel'
-    }]
+    }],
+    background: {
+        type: String,
+        default: 'linear-gradient(to bottom right, rgb(236, 242, 245), rgb(236, 242, 245))'
+    }
 },
 {
     timestamps: true,
