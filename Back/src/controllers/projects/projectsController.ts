@@ -68,6 +68,11 @@ const projectsRecently = async(projects: string | string[] | QueryString.ParsedQ
   return projectsRecent
 }
 
+const getProjectController = async(name: string | string[] | QueryString.ParsedQs | QueryString.ParsedQs[] | undefined) => {
+  const project = await ProjectModel.find({name: name})
+  return project
+}
+
 export {
   getAllProjects,
   getProjectById,
@@ -75,5 +80,6 @@ export {
   deleteProjectCtrl,
   addMemberProject,
   deleteUserOfProject,
-  projectsRecently
+  projectsRecently,
+  getProjectController
 };

@@ -1,12 +1,42 @@
 
-<div class="container">
+<div class="container" [style.backgroundImage]="containerBackgroundImage">
     <app-nav></app-nav>
     
+    <div class="containerColors" *ngIf="showBackgroundMenu">
+        <p>Change Background</p>
+        <button id="closeBackgroundMenu" (click)="showBackgroundMenu = !showBackgroundMenu"></button>
+        <div class="containerOptions">
+            <div>
+                <img src="" alt="">
+                <p>Photo</p>
+            </div>
+            <div (click)="showColorsDiv = !showColorsDiv">
+                <img src="" alt="">
+                <p>Colors</p>
+            </div>
+        </div>
+        <div *ngIf="showColorsDiv" class="containerOptionColors">
+            <div id="back" (click)="showColorsDiv = !showColorsDiv"><</div>
+            <p>Colors</p>
+            <hr>
+            <div  class="colors">
+                <span (click)="changeColor('linear-gradient(to bottom right, red, yellow)')" class="color clr1"></span>
+                <span (click)="changeColor('linear-gradient(to bottom right, blue, green)')" class="color clr2"></span>
+                <span (click)="changeColor('linear-gradient(to bottom right, yellow, green)')" class="color clr3"></span>
+                <span (click)="changeColor('linear-gradient(to bottom right, yellow, red)')" class="color clr4"></span>
+                <span (click)="changeColor('linear-gradient(to bottom right, blue, violet)')" class="color clr5"></span>
+                <span (click)="changeColor('linear-gradient(to bottom right, pink, green)')" class="color clr6"></span>
+            </div>
+        </div>
+    </div>
     <div class="firstContainer" id="hola">
         <div class="menu">
-        
             <h1>{{getProjectService.project.projectName}}</h1>
-            <button mat-raised-button (click)="openDialog('0ms', '0ms')">Compartir</button>
+            <div class="containerButtonsMenu">
+                <button mat-raised-button (click)="openDialog('0ms', '0ms')">Compartir</button>
+                
+                <button class="openMenuColors" (click)="showBackgroundMenu = !showBackgroundMenu"></button>
+            </div>
         </div>
         <div class="secondContainer" cdkDropListGroup>
             <div *ngFor="let list of listDivs" class="divList">
@@ -50,4 +80,5 @@
             <button class="buttonAddList" *ngIf="newList === false" (click)="newList = !newList">Añadir otra lista</button>
         </div>
     </div>
+   
 </div>

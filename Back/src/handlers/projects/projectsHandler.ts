@@ -6,7 +6,8 @@ import {
   deleteUserOfProject,
   getAllProjects,
   getProjectById,
-  projectsRecently
+  projectsRecently,
+  getProjectController
 } from "../../controllers/projects/projectsController";
 
 const getProjects = async (req: Request, res: Response) => {
@@ -85,6 +86,17 @@ const getProjectRecently = async(req:Request, res: Response) => {
   }
 }
 
+const getProjectByName = async(req: Request, res: Response) => {
+  try {
+    const {name} = req.query
+    const project = await getProjectController(name)
+    res.status(200).json(project)
+  } catch (error) {
+    res.status(400).json({error: (error as Error).message})
+  }
+}
+
+
 export {
   getProjects,
   getProject,
@@ -92,5 +104,6 @@ export {
   deleteProject,
   putProject,
   deleteUser,
-  getProjectRecently
+  getProjectRecently, 
+  getProjectByName
 };
