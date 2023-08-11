@@ -15,4 +15,8 @@ export class GetListsService {
   createList(body: any){
     return this.http.post<List>(`http://localhost:3001/list/`, body)
   }
+
+  deleteList(listId: string): any {
+    return this.http.delete(`http://localhost:3001/list/${listId}`)
+  }
 }

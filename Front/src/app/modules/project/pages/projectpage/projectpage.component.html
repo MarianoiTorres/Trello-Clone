@@ -15,8 +15,8 @@
                     <div class="divMore" *ngIf="mostrar === list._id">
                         <button id="closeMore" (click)="mostrar = ''"></button>
                         <p>Actions</p>
-                        <button>Add Task</button>
-                        <button>Remove List</button>
+                        <button (click)="mostrar = list.name">Add Task</button>
+                        <button (click)="deleteList(list._id)">Remove List</button>
                     </div>
                 </div>
                 <h2 class="title">{{list.name}}</h2>

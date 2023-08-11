@@ -98,7 +98,9 @@ export class ProjectpageComponent {
       state: list.name,
       listId: list._id
     };
-    this.getTasksService.updateTask(this.draggedTask._id, stateTask);
+    this.getTasksService.updateTask(this.draggedTask._id, stateTask).subscribe((response: any) => {
+      console.log(response);
+    });
     transferArrayItem(
       event.previousContainer.data,
       event.container.data,
@@ -132,7 +134,7 @@ export class ProjectpageComponent {
 
   getContainerTaskStyles(tasks: any[]): any {
     const minHeight = 25; // Altura mínima
-    const itemHeight = 40; // Altura por cada item
+    const itemHeight = 30; // Altura por cada item
 
     const totalTasks = tasks.length;
     const containerHeight = minHeight + totalTasks * itemHeight;
@@ -148,6 +150,15 @@ export class ProjectpageComponent {
       width: '45%',
       data: {
         taskId: taskId
+      }
+    })
+  }
+
+  deleteList(listId: string): any {
+    this.getListsServce.deleteList(listId).subscribe((response: any) => {
+      if(response.acknowledged && response.deletedCount === 1)
+      {
+        this.listDivs = this.listDivs.filter((list: any) => list._id !== listId)
       }
     })
   }

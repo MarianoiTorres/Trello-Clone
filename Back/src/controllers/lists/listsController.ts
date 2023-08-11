@@ -45,7 +45,7 @@ const updateList = async(body: List, listId: string) => {
 }
 
 const deleteListController = async(listId: string) => {
-    const deleted = await ListModel.deleteOne({listId: listId})
+    const deleted = await ListModel.deleteOne({_id: listId})
     return deleted
 }
 
