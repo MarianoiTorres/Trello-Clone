@@ -6,7 +6,7 @@
         <p id="titleBackgroundMenu">Change Background</p>
         <button id="closeBackgroundMenu" (click)="showBackgroundMenu = !showBackgroundMenu"></button>
         <div class="containerOptions">
-            <div class="option">
+            <div class="option" (click)="showImageDiv = !showImageDiv">
                 <img src="https://th.bing.com/th/id/R.f527048ea1c002d78b6d5967ab45df31?rik=MCPBkF4%2bOL0wfw&pid=ImgRaw&r=0" alt="">
                 <p>Photo</p>
             </div>
@@ -15,12 +15,14 @@
                 <p>Colors</p>
             </div>
         </div>
-        <div class="containerOptionColors">
-            <div id="back" (click)="showColorsDiv = !showColorsDiv"></div>
+        <div class="containerOptionColors" *ngIf="showImageDiv">
+            <div id="back" (click)="showImageDiv = !showImageDiv"></div>
             <p id="titleBackgroundMenu">Photo</p>
             <div  class="colors">
                 <input id="fichero" type="file" (change)="onChangeBackground($event)">
-                <label for="fichero" class="circle">Select a file</label>
+                <label for="fichero" class="labelFile">Select a file</label>
+                <img id="image" [src]="previewSource" alt="" *ngIf="previewSource">
+                <button class="buttonSave" *ngIf="previewSource" (click)="saveBackgroundImage()">Save</button>
             </div>
         </div>
         <div *ngIf="showColorsDiv" class="containerOptionColors">

@@ -66,17 +66,8 @@ export class GetProjectsService {
   }
 
   updateBackground(id: string, background: string): any {
-    this.http
-      .put(`http://localhost:3001/project/background/${id}`, {
-        background: background,
-      })
-      .subscribe(
-        (response: any) => {
-          this.containerBackgroundImage = response.backgroun;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    this.http.put(`http://localhost:3001/project/background/${id}`, {background: background}).subscribe((response: any) => {
+      this.containerBackgroundImage = response.background
+    })
   }
 }

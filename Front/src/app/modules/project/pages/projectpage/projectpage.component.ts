@@ -29,6 +29,7 @@ export class ProjectpageComponent {
   
   showMore: boolean = false
   showColorsDiv: boolean = false
+  showImageDiv: boolean = false
   showBackgroundMenu: boolean = false
   projectId: string = '';
   mostrar: string = '';
@@ -180,10 +181,12 @@ export class ProjectpageComponent {
     reader.readAsDataURL(file)
     reader.onloadend = () => {
       this.previewSource = reader.result
-      console.log(this.previewSource);
-      if(!this.previewSource) return
+    }  
+  }
+
+  saveBackgroundImage(): any {
+    if(!this.previewSource) return
 
       this.getProjectService.updateBackground(this.projectId, this.previewSource)
-    }  
   }
 }
