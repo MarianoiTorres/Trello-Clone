@@ -1,7 +1,10 @@
 .container {
     height: 100vh;
+    width: 100%;
     position: relative;
     background: var(--container-background-image);
+    background-image: var(--container-background-image);
+    background-size: cover;
     overflow: hidden;
 }
 
@@ -15,6 +18,7 @@
 }
 
 .menu {
+    background-color: rgb(236, 242, 245, 0.6);
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -27,6 +31,8 @@
     font-weight: 600;
     font-size: 17px;
     margin-left: 15px;
+    color: white;
+    text-shadow: 1px 1px 2px black;
 }
 
 .menu button {
@@ -141,23 +147,42 @@
     cursor: pointer;
 }
 
+.buttonAddList::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Color de superposición semi-transparente */
+    pointer-events: none;
+    border-radius: 12px;
+    z-index: -1;
+}
+
 .buttonAddList {
+    position: relative;
     display: flex;
     align-items: center;
-    background-image: url(../../../../../assets/img/plusWhite.png);
-    background-repeat: no-repeat;
-    background-size:19px;
-    background-position: left;
-    background-position-x: 7px;
-    padding-left: 28px;
+    padding-left: 12px;
     height: 45px;
     width: 240px;
-    background-color: rgba(16, 115, 207, 0.3);
+    background-color: var(--container-background-image);
     border-radius: 12px;
     border: none;
     color: white;
     font-weight: 600;
     box-shadow: 0 1px 2px #464646;
+    z-index: 0;
+}
+.buttonAddList img {
+    width: 23px;
+   position: relative;
+    z-index: 1;
+}
+.buttonAddList span {
+    position: relative;
+    z-index: 1;
 }
 
 .buttonAddList:hover {
@@ -261,7 +286,8 @@
     margin: 0;
 }
 
-.more {
+.more {position: relative;
+    z-index: 1;
     width: 35px;
     height: 20px;
     background: none;
@@ -287,6 +313,7 @@
 
 .containerMore {
     position: relative;
+    z-index: 1;
 }
 
 .divMore {
@@ -370,7 +397,6 @@
 }
 
 .containerOptions div {
-    background-color: red;
     width: 80%;
     height: 140px;
 }
@@ -415,9 +441,24 @@
 }
 
 #back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 25px;
     width: 25px;
     cursor: pointer;
+    position: absolute;
+    background-image: url(../../../../../assets/img/left.png);
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+    object-fit: cover;
+    left: 10px;
+}
+
+#back:hover {
+    transform:translateX(-3px);
+    transition: 0.1s ease;
 }
 
 .clr1 {
@@ -455,7 +496,7 @@
     right: 5px;
     background-image: url(../../../../../assets/img/burg.png);
     background-repeat: no-repeat;
-    background-size:27px;
+    background-size:34px;
     background-position: center;
     outline: none;
     display: flex;
@@ -464,7 +505,6 @@
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    background-position-y: 2px;
 }
 
 .containerButtonsMenu {
@@ -482,9 +522,9 @@
     width: 25px;
     height: 25px;
     background: none;
-    background-image: url(../../../../../assets/img/close.png);
+    background-image: url(../../../../../assets/img/closeBlack.png);
     background-repeat: no-repeat;
-    background-size:25px;
+    background-size:23px;
     background-position: left;
     outline: none;
     display: flex;
@@ -512,3 +552,63 @@
     transform: scale(1.02);
     transition: 0.2s ease;
 }
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.option:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: 0.2s ease;
+}
+
+.option p{
+    margin: 0;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.option img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+#titleBackgroundMenu {
+    font-weight: 600;
+    font-size: 17px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
+}
+
+
+#fichero{
+    display: none;
+}
+  
+.circle{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+    border-radius: 5px;
+    width: 80%;
+    height: 30px;
+    font-weight: 500;
+    background-color:  rgb(236, 242, 245);
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgb(73, 73, 73);
+}
+
+.circle:hover {
+    transform: scale(1.02);
+    transition: 0.2s ease;
+}
+

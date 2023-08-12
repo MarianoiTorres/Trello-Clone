@@ -165,9 +165,25 @@ export class ProjectpageComponent {
     })
   }
 
-  
   changeColor(gradient: string): any {
     this.getProjectService.containerBackgroundImage = gradient;
     this.getProjectService.updateBackground(this.projectId, this.getProjectService.containerBackgroundImage)
+  }
+
+  previewSource: any
+
+  onChangeBackground(event: any): any {
+    const file = event.target.files[0]
+    console.log(file);
+    
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      this.previewSource = reader.result
+      console.log(this.previewSource);
+      if(!this.previewSource) return
+
+      this.getProjectService.updateBackground(this.projectId, this.previewSource)
+    }  
   }
 }
