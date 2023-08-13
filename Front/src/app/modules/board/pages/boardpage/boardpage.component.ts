@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { ComentsService } from 'src/app/services/coments/coments.service';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
+import { loadProjects, loadProjectsRecently } from 'src/app/state/actions/project.action';
+import { selectProjectsRecentlyViewed } from 'src/app/state/selectors/projects.selectors';
 
 @Component({
   selector: 'app-boardpage',
@@ -12,28 +15,30 @@ export class BoardpageComponent {
   constructor(
     public getProjectsService: GetProjectsService,
     public router: Router,
-    public comentsService: ComentsService
+    public comentsService: ComentsService,
+    private store: Store<any>
   ) {}
-  projects: any = [];
-  projectsRecentlyViewed: any = [];
+  
+  projectsRecentlyViewed$ = this.store.select(selectProjectsRecentlyViewed);
   render: string = 'home';
   coments: any = [];
 
   ngOnInit() {
-    const userId = localStorage.getItem('userId');
+    const userId = JSON.parse(localStorage.getItem('userId')!)
+    this.store.dispatch(loadProjects({userId}))
     const projectsRecently = JSON.parse(
       localStorage.getItem('projectsRecently')!
     );
     projectsRecently === null &&
       localStorage.setItem('projectsRecently', JSON.stringify([]));
-    this.getProjectsService.getProjects(userId!);
-    projectsRecently !== null &&
-      this.getProjectsService
-        .getProjectsRecentlyViewed(projectsRecently)
-        .subscribe((response: any[]) => {
-          this.projectsRecentlyViewed = response;
-          console.log(this.projectsRecentlyViewed);
-        });
+      this.getProjectsService.projects$.subscribe((response: any) => {
+        console.log(response);
+        
+      })
+
+      
+    projectsRecently !== null && this.store.dispatch(loadProjectsRecently({projectsId: projectsRecently}))
+      
     this.comentsService.getComentsHome(userId!).subscribe((response: any) => {
       response.map((element: any) => {
         if (element.deadline) {

@@ -9,7 +9,7 @@
                 </ul>
                 <hr>
                 <p class="projectTitle">Projects</p>
-                <div class="projectNameNav" *ngFor="let project of getProjectsService.projects">
+                <div class="projectNameNav" *ngFor="let project of getProjectsService.projects$ | async">
                     <p (click)="goProject(project._id)">{{project.name}}</p>
                 </div>
             </div>
@@ -19,9 +19,9 @@
                         <img src="https://imgs.search.brave.com/fO_vdRR8FjhEbkd6_b-ypFcAVnmTHs_J4bwDNSnCBnE/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZW5wbmcuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDE1LzAz/L3JlbG9qcG5nLnBu/Zw" alt="">
                         <h2>Recently Viewed</h2>
                     </div>
-                    <div class="containerProjects" >
-                        <div class="project" *ngFor="let project of projectsRecentlyViewed" (click)="goProject(project._id)" [style.background]="project.background">
-                            <h2 >{{project.name}}</h2>
+                    <div class="containerProjects">
+                        <div class="project" *ngFor="let project of projectsRecentlyViewed$ |  async" (click)="goProject(project._id)" [style.background]="project.background">
+                            <h2>{{project.name}}</h2>
                         </div>
                     </div>
                 </div>    
@@ -31,7 +31,7 @@
                         <h2>Your Boards</h2>
                     </div>
                     <div  class="containerProjects">
-                        <div class="project" *ngFor="let project of getProjectsService.projects" (click)="goProject(project._id)" [style.background]="project.background">
+                        <div class="project" *ngFor="let project of getProjectsService.projects$ | async" (click)="goProject(project._id)" [style.background]="project.background">
                             <h2>{{project.name}}</h2>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                         <h2>Recently Viewed</h2>
                     </div>
                     <div class="contProjects">
-                        <div class="recentProject" *ngFor="let project of projectsRecentlyViewed" (click)="goProject(project._id)">
+                        <div class="recentProject" *ngFor="let project of projectsRecentlyViewed$ |  async" (click)="goProject(project._id)">
                             <h2>{{project.name}}</h2>
                         </div>
                     </div>

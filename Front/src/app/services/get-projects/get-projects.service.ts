@@ -1,22 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProjectToCreate } from 'src/app/interfaces/project';
+import { Store } from '@ngrx/store';
+import { loadProjects } from 'src/app/state/actions/project.action';
+import { ProjectModel } from 'src/app/models/interfaces/Project.interface';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/state/app.state';
+import { selectProjects } from 'src/app/state/selectors/projects.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetProjectsService {
-  constructor(public http: HttpClient) {}
 
-  projects: any = [];
+  projects$ = this.store.select(selectProjects)
+  
+  constructor(public http: HttpClient, private store: Store<AppState>) {}
   project: any = {};
   containerBackgroundImage: string = '';
 
   createProject(project: ProjectToCreate): any {
     this.http.post('http://localhost:3001/project', project).subscribe(
       (response) => {
-        this.projects.push(response);
-        console.log(this.projects);
+        //this.projects.push(response);
+        //console.log(this.projects);
       },
       (error) => {
         console.log(error);
@@ -25,14 +32,7 @@ export class GetProjectsService {
   }
 
   getProjects(userId: string) {
-    this.http.get(`http://localhost:3001/project/projects/${userId}`).subscribe(
-      (response) => {
-        this.projects = response;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    return this.http.get(`http://localhost:3001/project/projects/${userId}`)
   }
 
   getProjectById(projectId: string): any {
@@ -48,6 +48,8 @@ export class GetProjectsService {
           member: response.member,
         };
         this.containerBackgroundImage = response.background
+        console.log(this.containerBackgroundImage);
+        
       });
   }
 
@@ -60,7 +62,7 @@ export class GetProjectsService {
     });
   }
 
-  getProjectsRecentlyViewed(projectsId: string[]): any {
+  getProjectsRecentlyViewed(projectsId: string[]) {
     const ids = projectsId.map((id) => `id=${id}`).join('&');
     return this.http.get(`http://localhost:3001/project/recently?${ids}`);
   }
