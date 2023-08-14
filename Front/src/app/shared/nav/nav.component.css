@@ -146,3 +146,45 @@ nav{
   bottom: 5px;
   left: 30px;
 }
+
+
+.containerSearchBar {
+    height: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.projects {
+    width: 330px;
+    background-color: white;
+    right: 21px;
+    position: absolute;
+    top: 35px;
+    box-shadow: 5px 4px 3px rgb(71, 71, 71);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+#project {
+    background-color: white;
+    color: black;
+    width: 100%;
+    font-weight: 500;
+    font-size: 15px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+#project:hover {
+    background-color: rgb(236, 242, 245);
+    transition: 0.2s ease;
+}

@@ -16,7 +16,14 @@
 
     </div>
     <div class="secondContainer">
-        <input class="searchBar" type="text" placeholder="Search">
+        <div class="containerSearchBar">
+            <input class="searchBar" type="text" placeholder="Search" [(ngModel)]="projectName" (input)="searchProject($event)" (focus)="showProjectsDiv = true" (blur)="showProjectsDiv = false">
+            <div *ngIf="showProjectsDiv" class="projects">
+                <div id="project"  *ngFor="let project of projectsFiltered">
+                    <p>{{project.name}}</p>
+                </div>
+            </div>
+        </div>
         <div class="profile">
             M
         </div>

@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProjectToCreate } from 'src/app/interfaces/project';
 import { Store } from '@ngrx/store';
-import { loadProjects } from 'src/app/state/actions/project.action';
-import { ProjectModel } from 'src/app/models/interfaces/Project.interface';
-import { Observable } from 'rxjs';
 import { AppState } from 'src/app/state/app.state';
 import { selectProjects } from 'src/app/state/selectors/projects.selectors';
 
@@ -12,22 +9,18 @@ import { selectProjects } from 'src/app/state/selectors/projects.selectors';
   providedIn: 'root',
 })
 export class GetProjectsService {
+  projects$ = this.store.select(selectProjects);
 
-  projects$ = this.store.select(selectProjects)
-  
   constructor(public http: HttpClient, private store: Store<AppState>) {}
   project: any = {};
   containerBackgroundImage: string = '';
 
   createProject(project: ProjectToCreate) {
-    console.log(project);
-    
-    return this.http.post<any>('http://localhost:3001/project', project)
-  
+    return this.http.post<any>('http://localhost:3001/project', project);
   }
 
   getProjects(userId: string) {
-    return this.http.get(`http://localhost:3001/project/projects/${userId}`)
+    return this.http.get(`http://localhost:3001/project/projects/${userId}`);
   }
 
   getProjectById(projectId: string): any {
@@ -42,9 +35,7 @@ export class GetProjectsService {
           userCreatorId: response.userCreator._id,
           member: response.member,
         };
-        this.containerBackgroundImage = response.background
-        console.log(this.containerBackgroundImage);
-        
+        this.containerBackgroundImage = response.background;
       });
   }
 
@@ -63,8 +54,12 @@ export class GetProjectsService {
   }
 
   updateBackground(id: string, background: string): any {
-    this.http.put(`http://localhost:3001/project/background/${id}`, {background: background}).subscribe((response: any) => {
-      this.containerBackgroundImage = response.background
-    })
+    this.http
+      .put(`http://localhost:3001/project/background/${id}`, {
+        background: background,
+      })
+      .subscribe((response: any) => {
+        this.containerBackgroundImage = response.background;
+      });
   }
 }

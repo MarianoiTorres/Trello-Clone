@@ -23,8 +23,6 @@ export class InvitationComponent {
     }
     this.invitationService.generateLink(body).subscribe((response: any) => {
       this.linkToCopy = response
-      console.log(this.linkToCopy);
-      
     })
   }
   

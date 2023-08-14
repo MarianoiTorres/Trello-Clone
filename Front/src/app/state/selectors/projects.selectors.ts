@@ -8,3 +8,16 @@ export const selectProjects = createSelector(
     selectProjectsFeature,
     (state: ProjectState) => state.projects
 )     
+
+export const searchProjects = createSelector(
+    selectProjectsFeature,
+    (state: ProjectState, props: {name: string}) => {
+        if (!props.name) {
+            return props.name;
+          }
+          return state.projects.filter(project =>
+            project.name.toLowerCase().includes(props.name.toLowerCase())
+          );
+    }
+    
+)     

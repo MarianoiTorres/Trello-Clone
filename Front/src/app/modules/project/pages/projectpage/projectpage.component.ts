@@ -175,8 +175,7 @@ export class ProjectpageComponent {
 
   onChangeBackground(event: any): any {
     const file = event.target.files[0]
-    console.log(file);
-    
+
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onloadend = () => {

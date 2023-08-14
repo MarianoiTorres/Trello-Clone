@@ -22,9 +22,6 @@ export class InvitationService {
   sendInvitation(body: any): any {
     this.http.post<any>('http://localhost:3001/invitation/mail', body).subscribe((response) => {
       console.log(response);  
-    },
-    (error) => {
-      console.log(error)
     })
   }
 }

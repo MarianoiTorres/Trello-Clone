@@ -34,8 +34,6 @@ export class TaskDialogComponent {
     selected: Date | null = null;
 
   ngOnInit(): any {
-    console.log(this.projectService.project);
-    
     this.userId = localStorage.getItem('userId')!
     this.taskService.getTaskById(this.taskId).subscribe((response: any) => {
       response.coments.map((comment: any) => {
@@ -50,8 +48,7 @@ export class TaskDialogComponent {
         comment.createdAt = formattedDate;
         response.description ? this.edit = true : this.edit = false
       });
-      this.task = response;
-      console.log(this.task);
+      this.task = response
     });
   }
 
@@ -92,8 +89,6 @@ export class TaskDialogComponent {
       {
         this.dialogRef.close()
       }
-      console.log(response);
-      
     })
   }
 

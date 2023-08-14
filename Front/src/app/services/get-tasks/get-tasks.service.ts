@@ -18,8 +18,6 @@ export class GetTasksService {
   }
 
   updateTask(id: string, body: object) {
-    console.log(body);
-    
     return this.http.put(`http://localhost:3001/task/${id}`, body)
   }
 
