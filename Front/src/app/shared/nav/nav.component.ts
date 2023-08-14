@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
+import { Store } from '@ngrx/store'
+import { createNewProject } from 'src/app/state/actions/project.action';
 
 @Component({
   selector: 'app-nav',
@@ -8,19 +9,19 @@ import { GetProjectsService } from 'src/app/services/get-projects/get-projects.s
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  constructor(public projectService: GetProjectsService, public route: Router){}
+  constructor(public route: Router, private store: Store<any>){}
 
   show: boolean = false
   name: string = ''
 
   createNewProject(): any {
-    const userId = localStorage.getItem('userId')
+    const userId = JSON.parse(localStorage.getItem('userId')!)
     const project = {
       name: this.name,
       userCreator: userId!,
       member: [userId!]
     }
-    this.projectService.createProject(project)    
+    this.store.dispatch(createNewProject({project}))
   }
 
   goBoardPage(): any {

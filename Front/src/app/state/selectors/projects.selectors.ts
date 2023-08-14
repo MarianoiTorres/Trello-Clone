@@ -8,8 +8,3 @@ export const selectProjects = createSelector(
     selectProjectsFeature,
     (state: ProjectState) => state.projects
 )     
-
-export const selectProjectsRecentlyViewed = createSelector(
-    selectProjectsFeature,
-    (state: ProjectState) => state.projectsRecentlyViewed
-)

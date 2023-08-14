@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ComentsService } from 'src/app/services/coments/coments.service';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
-import { loadProjects, loadProjectsRecently } from 'src/app/state/actions/project.action';
-import { selectProjectsRecentlyViewed } from 'src/app/state/selectors/projects.selectors';
+import { loadProjects } from 'src/app/state/actions/project.action';
 
 @Component({
   selector: 'app-boardpage',
@@ -18,43 +17,43 @@ export class BoardpageComponent {
     public comentsService: ComentsService,
     private store: Store<any>
   ) {}
-  
-  projectsRecentlyViewed$ = this.store.select(selectProjectsRecentlyViewed);
+
+  projectsRecentlyViewed: any = [];
   render: string = 'home';
   coments: any = [];
 
   ngOnInit() {
-    const userId = JSON.parse(localStorage.getItem('userId')!)
-    this.store.dispatch(loadProjects({userId}))
+    const userId = JSON.parse(localStorage.getItem('userId')!);
+    this.store.dispatch(loadProjects({ userId }));
     const projectsRecently = JSON.parse(
       localStorage.getItem('projectsRecently')!
     );
     projectsRecently === null &&
       localStorage.setItem('projectsRecently', JSON.stringify([]));
-      this.getProjectsService.projects$.subscribe((response: any) => {
-        console.log(response);
-        
-      })
-
-      
-    projectsRecently !== null && this.store.dispatch(loadProjectsRecently({projectsId: projectsRecently}))
-      
+    this.getProjectsService.projects$.subscribe((response: any) => {
+      console.log(response);
+    });
+    projectsRecently !== null &&
+      this.getProjectsService
+        .getProjectsRecentlyViewed(projectsRecently)
+        .subscribe((projects: any) => {
+          this.projectsRecentlyViewed = projects;
+        });
     this.comentsService.getComentsHome(userId!).subscribe((response: any) => {
       response.map((element: any) => {
         if (element.deadline) {
           const date = new Date(element.deadline);
           const options: Intl.DateTimeFormatOptions = {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
           };
-          const formatter = new Intl.DateTimeFormat("en-US", options);
+          const formatter = new Intl.DateTimeFormat('en-US', options);
           const formattedDate = formatter.format(date);
-          element.deadline = formattedDate
+          element.deadline = formattedDate;
         }
       });
       this.coments = response;
-      console.log(this.coments);
     });
   }
 
@@ -81,6 +80,4 @@ export class BoardpageComponent {
   redirectComentToProject(projectId: string): any {
     this.router.navigate([`project/${projectId}`]);
   }
-
- 
 }

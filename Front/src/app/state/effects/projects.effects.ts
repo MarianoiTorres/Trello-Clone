@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, exhaustMap,  mergeMap, catchError, tap } from 'rxjs/operators';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
-import { loadProjects, loadProjectsRecently, projectsLoaded, projectsRecentlyLoaded } from '../actions/project.action';
+import { addProject, createNewProject, loadProjects, projectsLoaded} from '../actions/project.action';
 
 @Injectable()
 export class ProjectEffects {
@@ -19,12 +19,12 @@ export class ProjectEffects {
     )
   );
 
-  loadProjectsRecentlyViewed$ = createEffect(() =>
+  addProject$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(loadProjectsRecently),
+    ofType(createNewProject),
     exhaustMap(action =>
-      this.projectService.getProjectsRecentlyViewed(action.projectsId).pipe(
-        map((projects) => projectsRecentlyLoaded({projects})),
+      this.projectService.createProject(action.project).pipe(
+        map((project) => addProject({project})),
         catchError(() => EMPTY)
       )
     )

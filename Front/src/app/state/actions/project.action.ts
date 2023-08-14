@@ -11,12 +11,12 @@ export const projectsLoaded = createAction(
     props<{projects: any}>()
 )
 
-export const loadProjectsRecently = createAction(
-    '[Projects Recently] Load projects recently',
-    props<{projectsId: string[]}>()
+export const createNewProject = createAction(
+    '[New Project] Create project',
+    props<{project: any}>()
 )
 
-export const projectsRecentlyLoaded = createAction(
-    '[Projects Recently Loaded] Projects loaded',
-    props<{projects: any}>()
+export const addProject = createAction(
+    '[Add project] Add project',
+    props<{project: any}>()
 )

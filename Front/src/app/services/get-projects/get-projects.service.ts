@@ -19,16 +19,11 @@ export class GetProjectsService {
   project: any = {};
   containerBackgroundImage: string = '';
 
-  createProject(project: ProjectToCreate): any {
-    this.http.post('http://localhost:3001/project', project).subscribe(
-      (response) => {
-        //this.projects.push(response);
-        //console.log(this.projects);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  createProject(project: ProjectToCreate) {
+    console.log(project);
+    
+    return this.http.post<any>('http://localhost:3001/project', project)
+  
   }
 
   getProjects(userId: string) {
