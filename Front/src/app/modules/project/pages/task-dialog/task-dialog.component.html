@@ -74,5 +74,11 @@
                 </div>
             </div>
         </div>
+        <div>
+            <p>Members</p>
+            <div *ngFor="let user of task.member" (click)="removeMember(user._id)">
+                <p class="membersOnTask">{{user.name}} {{user.surname}}</p>
+            </div>
+        </div>
     </div>
 </mat-dialog-content>

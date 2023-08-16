@@ -28,4 +28,8 @@ export class GetTasksService {
   deleteTask(taskId: string): any { 
     return this.http.delete(`http://localhost:3001/task/${taskId}`)
   }
+
+  removeMemberOfTask(userId: string, taskId: string): any {
+    return this.http.put(`http://localhost:3001/task/removeMember/${taskId}?userId=${userId}`, {})
+  }
 }

@@ -4,7 +4,8 @@ import {
   getAllTasks,
   getTaskById,
   updateTask,
-  deleteTaskController
+  deleteTaskController,
+  removeMemberOfTask
 } from "../../controllers/tasks/tasksController";
 
 const postTask = async (req: Request, res: Response) => {
@@ -60,5 +61,16 @@ const deleteTaskHandler = async(req: Request, res: Response) => {
   }
 }
 
+const deleteMember = async(req: Request, res: Response) => {
+  try {
+    const { taskId } = req.params
+    const { userId } = req.query
+    const userDeleted = await removeMemberOfTask(userId, taskId)
+    res.status(200).json(userDeleted)
+  } catch (error) {
+    res.status(400).json({error: (error as Error).message})
+  }
+}
 
-export { postTask, getTasks, getTask, putTask, deleteTaskHandler };
+
+export { postTask, getTasks, getTask, putTask, deleteTaskHandler, deleteMember };

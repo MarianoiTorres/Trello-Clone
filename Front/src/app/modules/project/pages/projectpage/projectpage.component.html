@@ -44,7 +44,7 @@
         <div class="menu">
             <h1>{{getProjectService.project.projectName}}</h1>
             <div class="containerButtonsMenu">
-                <button mat-raised-button (click)="openDialog('0ms', '0ms')">Compartir</button>
+                <button mat-raised-button (click)="openDialog('0ms', '0ms')">Share</button>
                 
                 <button class="openMenuColors" (click)="showBackgroundMenu = !showBackgroundMenu"></button>
             </div>
@@ -72,23 +72,23 @@
                 </div>
                 <div class="containerCreateNewTask">
 
-                    <input class="inputCreateTask" type="text" placeholder="Introduzca un titulo" *ngIf="mostrar === list.name" [(ngModel)]="newTaskToCreate.name">
+                    <input class="inputCreateTask" type="text" placeholder="Inscribe a title" *ngIf="mostrar === list.name" [(ngModel)]="newTaskToCreate.name">
                     <div class="containerButtons">
-                        <button class="add" *ngIf="mostrar === list.name" (click)="createNewTask()">Añadir tarea</button>
+                        <button class="add" *ngIf="mostrar === list.name" (click)="createNewTask()">Add task</button>
                         <button class="cancel" *ngIf="mostrar === list.name" (click)="newTask('')"></button>
                     </div>
-                    <button class="buttonAddTask" *ngIf="mostrar !== list.name" (click)="newTask(list)">Añada una tarea</button>
+                    <button class="buttonAddTask" *ngIf="mostrar !== list.name" (click)="newTask(list)">Add a task</button>
                 </div>
     
             </div>
             <div class="containerAddNewList" *ngIf="newList === true">
                 <input type="text"  [(ngModel)]="nameList" (blur)="newList = false" >
                 <div class="containerButtons">
-                    <button class="add" (click)="addNewList()">Añadir lista</button>
+                    <button class="add" (click)="addNewList()">Add list</button>
                     <button class="cancel" (click)="newList = !newList"></button>
                 </div>
             </div>
-            <button class="buttonAddList" *ngIf="newList === false" (click)="newList = !newList"><img src="../../../../../assets/img/plusWhite.png" alt="Icono de plus"><span>Añadir otra lista</span></button>
+            <button class="buttonAddList" *ngIf="newList === false" (click)="newList = !newList"><img src="../../../../../assets/img/plusWhite.png" alt="Icono de plus"><span>Add other list</span></button>
         </div>
     </div>
    

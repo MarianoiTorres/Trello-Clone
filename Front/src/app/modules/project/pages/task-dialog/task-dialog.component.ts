@@ -55,6 +55,9 @@ export class TaskDialogComponent {
         });
         
         this.task = response;
+        console.log(this.task);
+        
+        
       });
     });
   }
@@ -92,12 +95,10 @@ export class TaskDialogComponent {
       .updateTask(this.taskId, { member: [userId ? userId : this.userId] })
       .subscribe(
         (response: any) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+          this.task.member = response.member
+          console.log(this.task);
+          
+        });
   }
 
   deleteTask(): any {
@@ -114,5 +115,13 @@ export class TaskDialogComponent {
       .subscribe((response: any) => {
         this.showCalendar = !this.showCalendar;
       });
+  }
+
+  removeMember(userId: string): any{
+    this.taskService.removeMemberOfTask(userId, this.taskId).subscribe((response: any ) => {
+      this.task.member = response.member
+      console.log(this.task.member);
+      
+    })
   }
 }

@@ -338,6 +338,21 @@ mat-dialog-content {
     background-color: rgb(236, 242, 245);
 }
 
+.membersOnTask {
+    cursor:pointer;
+    height: 30px;
+    font-size: 15px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.membersOnTask:hover {
+    background-color: rgb(236, 242, 245);
+}
+
 .containerCalend {
     position: relative;
     

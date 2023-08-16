@@ -185,6 +185,10 @@ li:hover {
     margin: 0;
 }
 
+.text p {
+    font-size: 15px;
+}
+
 .containerHome {
     position: relative;
     display: flex;
