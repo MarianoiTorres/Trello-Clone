@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
 import { InvitationService } from 'src/app/services/invitation/invitation.service';
+import { selectUser } from 'src/app/state/selectors/user.selectors';
 
 @Component({
   selector: 'app-invitation-page',
@@ -12,11 +14,13 @@ export class InvitationPageComponent {
   constructor(
     public route: ActivatedRoute,
     public invitationService: InvitationService,
-    public projectService: GetProjectsService
+    public projectService: GetProjectsService,
+    private store: Store<any>
   ) {}
 
   projectId: string = '';
   token: string = '';
+  user$ = this.store.select(selectUser)
 
   ngOnInit() {
     this.route.params.subscribe((value) => {
@@ -34,11 +38,13 @@ export class InvitationPageComponent {
   }
 
   addMember(): any {
-    const userId = localStorage.getItem('userId');
+
+    this.user$.subscribe((user) => 
     this.projectService
-      .addMember(this.projectId, this.token, { userId })
+      .addMember(this.projectId, this.token, { userId: user._id })
       .subscribe((response: any) => {
         console.log(response);
-      });
+      })
+    )
   }
 }

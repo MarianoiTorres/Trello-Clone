@@ -6,7 +6,7 @@
                 <h2>Boards</h2>
             </div>
             <div class="containerCreate">
-                <button (click)="show = !show">Crear</button>
+                <button (click)="show = !show">Create</button>
                 <div *ngIf="show === true" class="divCreate" >
                         <input class="inputCreate" type="text" [(ngModel)]="name" placeholder="Project name">
                         <button [disabled]="name.length === 0" (click)="createNewProject()">Crear</button>
@@ -17,15 +17,32 @@
     </div>
     <div class="secondContainer">
         <div class="containerSearchBar">
-            <input class="searchBar" type="text" placeholder="Search" [(ngModel)]="projectName" (input)="searchProject($event)" (focus)="showProjectsDiv = true" (blur)="showProjectsDiv = false">
+            <input class="searchBar" type="text" placeholder="Search" [(ngModel)]="projectName" (input)="searchProject($event)" (focus)="showDiv()" (blur)="hideDiv()">
             <div *ngIf="showProjectsDiv" class="projects">
-                <div id="project"  *ngFor="let project of projectsFiltered">
+                <div id="project"  *ngFor="let project of projectsFiltered" (mousedown)="goProject(project._id)" >
                     <p>{{project.name}}</p>
                 </div>
             </div>
         </div>
-        <div class="profile">
-            M
+        <div class="containerProfile">
+            <div class="profile" (click)="showUserMenu = !showUserMenu">
+                {{user.userInitials}}
+            </div>
+            <div *ngIf="showUserMenu" class="userMenu">
+                <p id="title">Cuenta</p>
+                <div class="containerAccount">
+                    <div class="profile2">
+                       {{user.userInitials}}
+                    </div>
+                    <div class="nameAndEmail">
+                        <p>{{user.userName}}</p>
+                        <p id="email">{{user.email}}</p>
+                    </div>
+                </div>
+                <div class="containerButton">
+                    <button (click)="logOut()">Log out</button>
+                </div>
+            </div>
         </div>
     </div>
 </nav>

@@ -153,6 +153,7 @@ li:hover {
 }
 
 .message {
+    margin-right: 45px;
     margin-top: 60px;
     position: relative;
     width: 465px;

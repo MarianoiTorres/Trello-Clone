@@ -10,6 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCER } from './state/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectEffects } from './state/effects/projects.effects';
+import { UserEffects } from './state/effects/user.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,7 @@ import { ProjectEffects } from './state/effects/projects.effects';
     MatButtonModule,
     StoreModule.forRoot(ROOT_REDUCER),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([ProjectEffects]),
+    EffectsModule.forRoot([ProjectEffects, UserEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

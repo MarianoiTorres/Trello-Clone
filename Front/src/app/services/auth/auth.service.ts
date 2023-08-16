@@ -13,7 +13,7 @@ export class AuthService {
     return this.http.post<any>(`http://localhost:3001/users/register`, user)
   }
 
-  authLogin(user: UserRegister){
-    return this.http.post<any>(`http://localhost:3001/users/login`, user)
+  authLogin(user: any){
+    return this.http.post(`http://localhost:3001/users/login`, user)
   }
 }

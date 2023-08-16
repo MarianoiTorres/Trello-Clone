@@ -1,5 +1,5 @@
 
-<div class="container" [style.backgroundImage]="getProjectService.containerBackgroundImage">
+<div class="container" id="appRoot" [style.backgroundImage]="getProjectService.containerBackgroundImage">
     <app-nav></app-nav>
     
     <div class="containerColors" *ngIf="showBackgroundMenu">
@@ -51,9 +51,9 @@
         </div>
         <div class="secondContainer" cdkDropListGroup>
             <div *ngFor="let list of listDivs" class="divList">
-                <div class="containerMore">
+                <div class="containerMore" >
                     <button class="more" (click)="mostrar = list._id"></button>
-                    <div class="divMore" *ngIf="mostrar === list._id">
+                    <div class="divMore" *ngIf="mostrar === list._id" >
                         <button id="closeMore" (click)="mostrar = ''"></button>
                         <p>Actions</p>
                         <button (click)="mostrar = list.name">Add Task</button>
@@ -82,7 +82,7 @@
     
             </div>
             <div class="containerAddNewList" *ngIf="newList === true">
-                <input type="text"  [(ngModel)]="nameList">
+                <input type="text"  [(ngModel)]="nameList" (blur)="newList = false" >
                 <div class="containerButtons">
                     <button class="add" (click)="addNewList()">Añadir lista</button>
                     <button class="cancel" (click)="newList = !newList"></button>

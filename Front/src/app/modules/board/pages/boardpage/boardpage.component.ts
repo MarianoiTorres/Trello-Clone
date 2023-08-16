@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { ComentsService } from 'src/app/services/coments/coments.service';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
 import { loadProjects } from 'src/app/state/actions/project.action';
+import { selectUser } from 'src/app/state/selectors/user.selectors';
 
 @Component({
   selector: 'app-boardpage',
@@ -22,9 +23,34 @@ export class BoardpageComponent {
   render: string = 'home';
   coments: any = [];
 
+  user$ = this.store.select(selectUser)
+
   ngOnInit() {
-    const userId = JSON.parse(localStorage.getItem('userId')!);
-    this.store.dispatch(loadProjects({ userId }));
+    this.user$.subscribe((user) => {
+
+      this.store.dispatch(loadProjects({ userId: user._id }))
+    
+      this.comentsService.getComentsHome(user._id).subscribe((response: any) => {
+        response.map((element: any) => {
+          if (element.deadline) {
+            const date = new Date(element.deadline);
+            const options: Intl.DateTimeFormatOptions = {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            };
+            const formatter = new Intl.DateTimeFormat('en-US', options);
+            const formattedDate = formatter.format(date);
+            element.deadline = formattedDate;
+          }
+          console.log(element);
+          
+        });
+        console.log(this.coments);
+        this.coments = response;
+      });
+    })
+    
     const projectsRecently = JSON.parse(
       localStorage.getItem('projectsRecently')!
     );
@@ -39,22 +65,7 @@ export class BoardpageComponent {
         .subscribe((projects: any) => {
           this.projectsRecentlyViewed = projects;
         });
-    this.comentsService.getComentsHome(userId!).subscribe((response: any) => {
-      response.map((element: any) => {
-        if (element.deadline) {
-          const date = new Date(element.deadline);
-          const options: Intl.DateTimeFormatOptions = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          };
-          const formatter = new Intl.DateTimeFormat('en-US', options);
-          const formattedDate = formatter.format(date);
-          element.deadline = formattedDate;
-        }
-      });
-      this.coments = response;
-    });
+  
   }
 
   goProject(projectId: string) {
