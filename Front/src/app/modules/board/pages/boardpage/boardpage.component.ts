@@ -43,11 +43,10 @@ export class BoardpageComponent {
             const formattedDate = formatter.format(date);
             element.deadline = formattedDate;
           }
-          console.log(element);
-          
         });
-        console.log(this.coments);
         this.coments = response;
+        console.log(this.coments);
+        
       });
     })
     

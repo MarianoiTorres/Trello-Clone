@@ -16,9 +16,15 @@ export class RegisterpageComponent {
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     surname: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   })
+
+  emailFromHome: string = ''
+
+  ngOnInit(){
+    this.emailFromHome = history.state.email
+  }
 
   onSubmit(): any {
     if(this.registerForm.valid)

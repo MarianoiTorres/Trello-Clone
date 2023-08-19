@@ -18,7 +18,9 @@
     <div class="secondContainer">
         <div class="containerSearchBar">
             <input class="searchBar" type="text" placeholder="Search" [(ngModel)]="projectName" (input)="searchProject($event)" (focus)="showDiv()" (blur)="hideDiv()">
+            
             <div *ngIf="showProjectsDiv" class="projects">
+
                 <div id="project"  *ngFor="let project of projectsFiltered" (mousedown)="goProject(project._id)" >
                     <p>{{project.name}}</p>
                 </div>

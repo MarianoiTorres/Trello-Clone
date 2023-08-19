@@ -3,6 +3,7 @@ import ComentModel from "../../models/comentModel";
 import QueryString from "qs";
 import TaskModel from "../../models/taskModel";
 import ProjectModel from "../../models/projectModel";
+import ListModel from "../../models/listOfTaskModel";
 
 const createNewComent = async (body: Coment) => {
   const newComent = await ComentModel.create(body);
@@ -26,28 +27,31 @@ const deleteComentCtrl = async (
     | QueryString.ParsedQs[]
     | undefined
 ) => {
-    console.log(id);
-    
+  console.log(id);
+
   const comentDeleted = await ComentModel.deleteOne({
     $and: [{ _id: id }, { userId: userId }],
   });
   return comentDeleted;
 };
 
-const getAllComents = async(userId: string) => {
+const getAllComents = async (userId: string) => {
   const coments = await TaskModel.find({
     $or: [
       {
         member: userId,
-        coments: { $exists: true, $not: { $size: 0 } }
+        coments: { $exists: true, $not: { $size: 0 } },
       },
       {
         member: userId,
-        deadline: { $exists: true }
-      }
-    ]
-  }).populate({path: 'coments', model: ComentModel}).populate({path: 'projectId', model: ProjectModel})
-  return coments
-}
+        deadline: { $exists: true },
+      },
+    ],
+  })
+    .populate({ path: "coments", model: ComentModel })
+    .populate({ path: "projectId", model: ProjectModel })
+    .populate({ path: "listId", model: ListModel });
+  return coments;
+};
 
 export { createNewComent, updateComent, deleteComentCtrl, getAllComents };
