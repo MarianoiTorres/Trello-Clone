@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { loadUser, userLoaded } from '../actions/user.action';
-import { EMPTY, catchError, exhaustMap, map } from 'rxjs';
+import { EMPTY, catchError, exhaustMap, map, of } from 'rxjs';
 
 @Injectable()
 export class UserEffects {
@@ -15,7 +15,7 @@ export class UserEffects {
           map((user) => {
             console.log(user)
             return userLoaded({ user })}),
-          catchError(() => EMPTY)
+          catchError(() => of(userLoaded({ user: null })))
         )
       )
     )

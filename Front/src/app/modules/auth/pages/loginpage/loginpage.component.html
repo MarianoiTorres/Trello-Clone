@@ -6,6 +6,7 @@
             <input type="password" placeholder="Password" formControlName="password">
             <button>Sign in</button>
         </form>
+        <p id="messageInvalid" *ngIf="(user$ | async).message">Invalid email or password. Please check your credentials.</p>
     </div>
     <div class="image">
         <h2 class="title">Organize Your Tasks</h2>

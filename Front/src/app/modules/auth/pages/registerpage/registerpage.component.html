@@ -2,10 +2,10 @@
     <div class="containerForm">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Trello-logo-blue.svg" alt="">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-            <input type="text" placeholder="Name" formControlName="name">
-            <input type="text" placeholder="Surname" formControlName="surname">
-            <input type="text" [value]="emailFromHome" placeholder="Email" >
-            <input type="password" placeholder="Password" formControlName="password">
+            <input type="text" placeholder="Name" formControlName="name" class="custom-input" (input)="onInputValueChanged('name')" [class.ng-invalid]="registerForm.controls.name.invalid && registerForm.controls.name.touched">
+            <input type="text" placeholder="Surname" formControlName="surname" class="custom-input" (input)="onInputValueChanged('surname')" [class.ng-invalid]="registerForm.controls.surname.invalid && registerForm.controls.surname.touched">
+            <input type="text" formControlName="email" placeholder="Email" class="custom-input" (input)="onInputValueChanged('email')" [class.ng-invalid]="registerForm.controls.email.invalid && registerForm.controls.email.touched">
+            <input type="password" placeholder="Password" formControlName="password" class="custom-input" (input)="onInputValueChanged('password')" [class.ng-invalid]="registerForm.controls.password.invalid && registerForm.controls.password.touched">
             <button>Sign Up</button>
         </form>
     </div>

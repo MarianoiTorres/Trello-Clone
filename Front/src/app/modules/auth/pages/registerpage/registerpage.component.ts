@@ -23,7 +23,12 @@ export class RegisterpageComponent {
   emailFromHome: string = ''
 
   ngOnInit(){
-    this.emailFromHome = history.state.email
+    this.registerForm.patchValue({
+      name: '',
+      surname: '',
+      email: history.state.email,
+      password: ''
+    })
   }
 
   onSubmit(): any {
@@ -46,4 +51,12 @@ export class RegisterpageComponent {
       
     }
   }
+
+  onInputValueChanged(controlName: string) {
+    const control = this.registerForm.get(controlName)
+    if (control) {
+      control.updateValueAndValidity();
+    }
+  }
+
 }

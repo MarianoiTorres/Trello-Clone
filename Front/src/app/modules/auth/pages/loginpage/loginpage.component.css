@@ -109,3 +109,11 @@ form button:hover {
     text-shadow: 2px 2px 5px rgb(104, 104, 104);
     left:45px;
 }
+
+#messageInvalid {
+    text-align: center;
+    font-size: 13px;
+    width: 80%;
+    font-weight: 500;
+    color: red;
+}
