@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createUser, loginUser } from '../../controllers/users/usersController' 
+import { createUser, loginUser, addProjectId } from '../../controllers/users/usersController' 
 
 const postUserHandler = async (req: Request, res: Response) => {
   try {
@@ -21,4 +21,15 @@ const loginUserHandler = async(req: Request, res: Response) => {
   }
 }
 
-export { postUserHandler, loginUserHandler };
+const updateUser = async(req: Request, res: Response) => {
+  try {
+    const { projectId } = req.params
+    const {body} = req
+    const projectUpdated = await addProjectId(projectId, body)
+    res.status(200).json(projectUpdated)
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export { postUserHandler, loginUserHandler, updateUser };

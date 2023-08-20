@@ -10,15 +10,13 @@ const createNewList = async(body: List) => {
     
     if(list?.name === body.name) return {message: 'esta lista ya existe'}
     const newList = await ListModel.create(body)
-    console.log(newList);
-    
+
     const listForFront = {
         _id: newList._id,
         projectId: newList.projectId,
         name: newList.name
     }
-    console.log(listForFront);
-    
+
     return listForFront
 }
 

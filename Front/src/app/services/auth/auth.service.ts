@@ -16,4 +16,8 @@ export class AuthService {
   authLogin(user: any){
     return this.http.post(`http://localhost:3001/users/login`, user)
   }
+
+  addProjectId(projectId: string, userId: string) {
+    return this.http.put(`http://localhost:3001/users/${projectId}`, {userId})
+  }
 }

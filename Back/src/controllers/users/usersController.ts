@@ -3,10 +3,13 @@ import UserModel from "../../models/usersModel";
 import { encrypt, verify } from "../../utils/passwordHandle";
 
 const createUser = async (body: User) => {
-  const userFound = await UserModel.findOne({email: body.email})
-  if(userFound) return "Este usuario ya existe"
-  const passwordHash = await encrypt(body.password)
-  const newUserCreated = await UserModel.create({...body, password: passwordHash});
+  const userFound = await UserModel.findOne({ email: body.email });
+  if (userFound) return "Este usuario ya existe";
+  const passwordHash = await encrypt(body.password);
+  const newUserCreated = await UserModel.create({
+    ...body,
+    password: passwordHash,
+  });
   return newUserCreated;
 };
 
@@ -15,9 +18,22 @@ const loginUser = async (body: User) => {
     email: body.email,
   });
   if (!user) return { message: "usuario no registrado" };
-  const passwordCompare = await verify(body.password, user.password)
-  if(!passwordCompare) return { message: "password incorrecto"}
+  const passwordCompare = await verify(body.password, user.password);
+  if (!passwordCompare) return { message: "password incorrecto" };
   return user;
 };
 
-export { createUser, loginUser };
+const addProjectId = async (projectId: string, body: any) => {
+  const updated = await UserModel.updateOne(
+    { _id: body.userId },
+    {
+      $addToSet: {
+        projectsRecentlyView: projectId,
+        $slice: -3
+      }
+    }
+  );
+  return updated;
+};
+
+export { createUser, loginUser, addProjectId };

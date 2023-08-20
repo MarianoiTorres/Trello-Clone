@@ -84,7 +84,6 @@ const deleteUser = async (req: Request, res: Response) => {
 };
 
 const getProjectRecently = async (req: Request, res: Response) => {
-  console.log("hola");
   try {
     const projectsId = req.query.id;
 
@@ -115,12 +114,8 @@ const updateBackground = async (req: Request, res: Response) => {
       const uploadedResponse = await cloudinary.uploader.upload(
         body.background
       );
-      console.log(uploadedResponse);
-      
       body.background = `url(${uploadedResponse.secure_url})`
     }
-    console.log(body);
-    
     const updatedBackground = await changeBackground(id, body);
     const updated = {...updatedBackground, background: body.background}
     

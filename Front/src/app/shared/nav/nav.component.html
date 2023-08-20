@@ -9,7 +9,7 @@
                 <button (click)="show = !show">Create</button>
                 <div *ngIf="show === true" class="divCreate" >
                         <input class="inputCreate" type="text" [(ngModel)]="name" placeholder="Project name">
-                        <button [disabled]="name.length === 0" (click)="createNewProject()">Crear</button>
+                        <button [disabled]="name.length === 0" (click)="createNewProject()">Create</button>
                 </div>
             </div>
         </div>
@@ -27,13 +27,13 @@
             </div>
         </div>
         <div class="containerProfile">
-            <div class="profile" (click)="showUserMenu = !showUserMenu">
+            <div class="profile" (click)="showUserMenu = !showUserMenu" [style.background-color]="user.background">
                 {{user.userInitials}}
             </div>
             <div *ngIf="showUserMenu" class="userMenu">
                 <p id="title">Account</p>
                 <div class="containerAccount">
-                    <div class="profile2">
+                    <div class="profile2" [style.background-color]="user.background">
                        {{user.userInitials}}
                     </div>
                     <div class="nameAndEmail">

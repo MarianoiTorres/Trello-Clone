@@ -30,15 +30,7 @@ export class LoginpageComponent {
       this.user$.subscribe((response) => {
         if(response.name)
         {
-          console.log(response);
-          
           this.router.navigate(['board'])
-        }
-        else
-        {
-          console.log(response);
-          
-          console.log('usuario no existente ');
         }
       }) 
     }

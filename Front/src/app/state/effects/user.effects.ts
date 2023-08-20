@@ -13,13 +13,13 @@ export class UserEffects {
       exhaustMap(action =>
         this.userService.authLogin(action.data).pipe(
           map((user) => {
-            console.log(user)
             return userLoaded({ user })}),
           catchError(() => of(userLoaded({ user: null })))
         )
       )
     )
   );
+
 
   constructor(private actions$: Actions, private userService: AuthService) {}
 }

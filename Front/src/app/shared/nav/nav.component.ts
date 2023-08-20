@@ -31,6 +31,7 @@ export class NavComponent {
         userInitials: user.name[0] + user.surname[0],
         userName: user.name + ' ' + user.surname,
         email: user.email,
+        background: user.background
       };
     });
   }

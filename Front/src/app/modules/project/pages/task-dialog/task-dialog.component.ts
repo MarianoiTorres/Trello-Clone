@@ -14,6 +14,7 @@ import { selectUser } from 'src/app/state/selectors/user.selectors';
 })
 export class TaskDialogComponent {
   taskId: string = '';
+  backgroundColor: string = '';
   userId: string = '';
   task: any = {};
   comment: string = '';
@@ -39,6 +40,7 @@ export class TaskDialogComponent {
     this.user$.subscribe((user) => {
 
       this.userId = user._id;
+      this.backgroundColor = user.background
 
       this.taskService.getTaskById(this.taskId).subscribe((response: any) => {
         response.coments.map((comment: any) => {
@@ -54,10 +56,7 @@ export class TaskDialogComponent {
           response.description ? (this.edit = true) : (this.edit = false);
         });
         
-        this.task = response;
-        console.log(this.task);
-        
-        
+        this.task = response;      
       });
     });
   }
@@ -96,8 +95,7 @@ export class TaskDialogComponent {
       .subscribe(
         (response: any) => {
           this.task.member = response.member
-          console.log(this.task);
-          
+
         });
   }
 
@@ -120,8 +118,6 @@ export class TaskDialogComponent {
   removeMember(userId: string): any{
     this.taskService.removeMemberOfTask(userId, this.taskId).subscribe((response: any ) => {
       this.task.member = response.member
-      console.log(this.task.member);
-      
     })
   }
 }

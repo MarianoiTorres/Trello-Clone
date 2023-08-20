@@ -1,12 +1,33 @@
-import { createReducer, on } from "@ngrx/store";
-import { UserState } from "src/app/models/states/User.state";
-import { userLoaded } from "../actions/user.action";
+import { createReducer, on } from '@ngrx/store';
+import { UserState } from 'src/app/models/states/User.state';
+import { loadProjectId, userLoaded } from '../actions/user.action';
 
-export const initialState: UserState = {loading: false, user: []}
+export const initialState: UserState = {
+  loading: false,
+  user: {
+    projectsRecentlyView: [],
+  },
+};
 
 export const userReducer = createReducer(
-    initialState,
-    on(userLoaded, (state, {user}) => {
-        return {...state, loading: true, user}
-    })
-)
+  initialState,
+  on(userLoaded, (state, { user }) => {
+    return { ...state, loading: true, user };
+  }),
+  on(loadProjectId, (state, { projectId }) => {
+    const updatedProjectsRecentlyView = [...state.user.projectsRecentlyView];
+
+    if (updatedProjectsRecentlyView.length >= 3) {
+      updatedProjectsRecentlyView.shift();
+    }
+
+    updatedProjectsRecentlyView.push(projectId);
+
+    const updatedUser = {
+      ...state.user,
+      projectsRecentlyView: updatedProjectsRecentlyView,
+    };
+
+    return { ...state, user: updatedUser };
+  })
+);

@@ -17,7 +17,15 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    background: {
+        type: String,
+        required: true
+    },
+    projectsRecentlyView: [{
+        type: String,
+        
+    }]
 }, {
     timestamps: true,
     versionKey: false,

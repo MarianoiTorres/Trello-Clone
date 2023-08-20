@@ -30,7 +30,7 @@
             <div class="userComment" *ngFor="let comment of task.coments">
                 <div class="commentInfo">
                     <div class="containerProfile">
-                        <div class="profile">{{comment.userId.name[0]}}{{comment.userId.surname[0]}}</div>
+                        <div class="profile" [style.background-color]="backgroundColor">{{comment.userId.name[0]}}{{comment.userId.surname[0]}}</div>
                     </div>
                     <div>
                         <p class="user">{{comment.userId.name}} {{comment.userId.surname}}</p>

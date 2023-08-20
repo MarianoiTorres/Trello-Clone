@@ -8,8 +8,6 @@ const getAllProjects = async (userId: string) => {
   const allProjects = await ProjectModel.find({
     member: { $in: [userId] }, // in = que dentro del array de member este userId
   }).exec(); //exec convierte la consulta en un array
-  console.log(allProjects);
-  
   return allProjects;
 };
 
@@ -46,8 +44,6 @@ const deleteProjectCtrl = async (
 };
 
 const addMemberProject = async (id: string, userId: string) => {
-  console.log(id);
-  console.log(userId);
   const projectUpdated = await ProjectModel.updateOne(
     { _id: id },
     { $push: { member: userId } }

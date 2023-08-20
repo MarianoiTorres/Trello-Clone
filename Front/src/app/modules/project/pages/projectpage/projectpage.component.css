@@ -316,7 +316,9 @@
     z-index: 1;
 }
 
+
 .divMore {
+    animation:scale-up-left 0.3s;
     position: absolute;
     right: -80%;
     width: 200px;
@@ -332,6 +334,8 @@
     padding-top: 9px;
     z-index: 1;
 }
+
+@keyframes scale-up-left{0%{transform:scale(.5);transform-origin:left center}100%{transform:scale(1);transform-origin:left center}}
 
 .divMore p {
     margin: 0;
@@ -385,6 +389,7 @@
     justify-content: top;
     align-items: center;
     flex-direction: column;
+    animation:scale-up-horizontal-right 0.5s  
 }
 
 .containerOptions {
@@ -394,7 +399,10 @@
     flex-direction: column;
     gap: 20px;
     width: 100%;
+    
 }
+
+@keyframes scale-up-horizontal-right{0%{transform:scaleX(.5);transform-origin:right center}100%{transform:scaleX(1);transform-origin:right center}}
 
 .containerOptions div {
     width: 80%;

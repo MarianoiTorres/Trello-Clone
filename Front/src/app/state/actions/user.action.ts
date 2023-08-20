@@ -9,3 +9,9 @@ export const userLoaded = createAction(
     '[User] User loaded',
     props<{user: any}>()
 )
+
+
+export const loadProjectId = createAction(
+    '[User] Load Project',
+    props<{projectId: string}>()
+)

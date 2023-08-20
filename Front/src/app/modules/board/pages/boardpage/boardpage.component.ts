@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ComentsService } from 'src/app/services/coments/coments.service';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
 import { loadProjects } from 'src/app/state/actions/project.action';
+import { loadProjectId } from 'src/app/state/actions/user.action';
 import { selectUser } from 'src/app/state/selectors/user.selectors';
 
 @Component({
@@ -16,7 +19,8 @@ export class BoardpageComponent {
     public getProjectsService: GetProjectsService,
     public router: Router,
     public comentsService: ComentsService,
-    private store: Store<any>
+    private store: Store<any>,
+    private userService: AuthService
   ) {}
 
   projectsRecentlyViewed: any = [];
@@ -45,42 +49,33 @@ export class BoardpageComponent {
           }
         });
         this.coments = response;
-        console.log(this.coments);
         
+        this.getProjectsService
+          .getProjectsRecentlyViewed(user.projectsRecentlyView)
+          .subscribe((projects: any) => {
+            this.projectsRecentlyViewed = projects;
+          });
       });
     })
     
-    const projectsRecently = JSON.parse(
-      localStorage.getItem('projectsRecently')!
-    );
-    projectsRecently === null &&
-      localStorage.setItem('projectsRecently', JSON.stringify([]));
     this.getProjectsService.projects$.subscribe((response: any) => {
       console.log(response);
     });
-    projectsRecently !== null &&
-      this.getProjectsService
-        .getProjectsRecentlyViewed(projectsRecently)
-        .subscribe((projects: any) => {
-          this.projectsRecentlyViewed = projects;
-        });
-  
+
   }
 
   goProject(projectId: string) {
-    let projects = JSON.parse(localStorage.getItem('projectsRecently')!);
+    this.user$.pipe(
+      take(1) // Toma el primer valor y luego se desuscribe
+    ).subscribe((user) => {
+      const userId = user._id;
 
-    if (!projects.includes(projectId)) {
-      if (projects.length === 3) {
-        projects.shift();
-        projects.push(projectId);
-      } else {
-        projects.push(projectId);
-      }
-    }
+      this.userService.addProjectId(projectId, userId).subscribe((response) => {
+        this.store.dispatch(loadProjectId({projectId}))
+        this.router.navigate(['project', projectId]);
+      })
+    })
 
-    localStorage.setItem('projectsRecently', JSON.stringify(projects));
-    this.router.navigate(['project', projectId]);
   }
 
   changeRender(div: string): any {
