@@ -185,6 +185,11 @@ li:hover {
     display: none;
 }
 
+.projectLink {
+    width: 100%;
+    height: 100%;
+}
+
 .buttonDeleteProject:hover {
     transform: scale(1.1);
     transition: 0.2s ease;

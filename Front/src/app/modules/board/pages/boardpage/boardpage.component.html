@@ -20,9 +20,11 @@
                         <h2>Recently Viewed</h2>
                     </div>
                     <div class="containerProjects">
-                        <div class="project" *ngFor="let project of projectsRecentlyViewed" (click)="goProject(project._id)" [style.background]="project.background">
+                        <div class="project" *ngFor="let project of projectsRecentlyViewed"  [style.background]="project.background">
                             <button (click)="deleteProject(project._id)" class="buttonDeleteProject"></button>
-                            <h2>{{project.name}}</h2>
+                            <div class="projectLink" (click)="goProject(project._id)">
+                                <h2>{{project.name}}</h2>
+                            </div>
                         </div>
                     </div>
                 </div>   
@@ -32,9 +34,11 @@
                         <h2>All Boards</h2>
                     </div>
                     <div  class="containerProjects">
-                        <div class="project" *ngFor="let project of getProjectsService.projects$ | async" (click)="goProject(project._id)" [style.background]="project.background">
+                        <div class="project" *ngFor="let project of getProjectsService.projects$ | async" [style.background]="project.background">
                             <button (click)="deleteProject(project._id)" class="buttonDeleteProject"></button>
-                            <h2>{{project.name}}</h2>
+                            <div class="projectLink" (click)="goProject(project._id)">
+                                <h2>{{project.name}}</h2>
+                            </div>
                         </div>
                     </div>
                 </div>    
@@ -46,7 +50,9 @@
                     <div  class="containerProjects">
                         <div class="project" *ngFor="let project of personalProjects" [style.background]="project.background">
                             <button (click)="deleteProject(project._id)" class="buttonDeleteProject"></button>
-                            <h2>{{project.name}}</h2>
+                            <div class="projectLink" (click)="goProject(project._id)">
+                                <h2>{{project.name}}</h2>
+                            </div>
                         </div>
                     </div>
                 </div>    

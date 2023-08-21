@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs';
@@ -9,6 +10,7 @@ import { loadProjects } from 'src/app/state/actions/project.action';
 import { loadProjectId } from 'src/app/state/actions/user.action';
 import { getPersonalProjects } from 'src/app/state/selectors/projects.selectors';
 import { selectUser } from 'src/app/state/selectors/user.selectors';
+import { ConfirmdialogComponent } from '../confirmdialog/confirmdialog.component';
 
 @Component({
   selector: 'app-boardpage',
@@ -21,7 +23,8 @@ export class BoardpageComponent {
     public router: Router,
     public comentsService: ComentsService,
     private store: Store<any>,
-    private userService: AuthService
+    private userService: AuthService,
+    public dialog: MatDialog
   ) {}
 
   projectsRecentlyViewed: any = [];
@@ -93,9 +96,11 @@ export class BoardpageComponent {
   }
 
   deleteProject(projectId: string): any {
-    console.log('aaaaaaaaaaaaaaaaaaaa'+ projectId);
-    this.user$.subscribe((user) => {
-      this.getProjectsService.dateleProject(projectId, user._id)
+    this.dialog.open(ConfirmdialogComponent, {
+      width: '35%',
+      data: {
+        projectId: projectId
+      }
     })
   }
 }
