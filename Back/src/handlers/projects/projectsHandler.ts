@@ -9,6 +9,7 @@ import {
   projectsRecently,
   getProjectController,
   changeBackground,
+  
 } from "../../controllers/projects/projectsController";
 
 import { v2 as cloudinary } from "cloudinary";
@@ -125,6 +126,7 @@ const updateBackground = async (req: Request, res: Response) => {
   }
 };
 
+
 export {
   getProjects,
   getProject,
@@ -134,5 +136,5 @@ export {
   deleteUser,
   getProjectRecently,
   getProjectByName,
-  updateBackground,
+  updateBackground
 };

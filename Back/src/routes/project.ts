@@ -8,7 +8,7 @@ import {
   putProject,
   getProjectRecently,
   getProjectByName,
-  updateBackground
+  updateBackground,
 } from "../handlers/projects/projectsHandler";
 import verifyTokenInvitation from "../utils/verifyTokenInvitation";
 

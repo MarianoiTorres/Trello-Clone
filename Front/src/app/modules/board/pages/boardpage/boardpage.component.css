@@ -109,9 +109,30 @@ li:hover {
     font-size: 11px;
 }
 
+.title h2 {
+    font-weight: 600;
+}
+
 .title img {
-    width: 27px;
-    height: 27px;
+    width: 23px;
+    height: 23px;
+}
+
+.titleBoards {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+}
+
+.titleBoards h2 {
+    font-weight: 600;
+}
+
+.titleBoards img{
+    width: 20px;
+    height: 20px;
 }
 
 .containerProjects {
@@ -141,15 +162,42 @@ li:hover {
 
 .project h2 {
     margin: 0;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 700;
     color: white;
     text-shadow: 0 0 3px black;
     margin-left: 2px;
+    letter-spacing: 1px;
+}
+
+.buttonDeleteProject {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 5px;
+    top: 1px;
+    background: none;
+    border: none;
+    background-image: url(../../../../../assets/img/closeWhite.png);
+    background-size: 23px;
+    background-position: center;
+    cursor: pointer;
+    display: none;
+}
+
+.buttonDeleteProject:hover {
+    transform: scale(1.1);
+    transition: 0.2s ease;
+}
+
+.project:hover .buttonDeleteProject {
+    display: block;
+    transition: 0.2s ease;
 }
 
 .personal {
     margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 .message {
@@ -301,8 +349,10 @@ b {
 .recentProject {
     padding: 0.5px 2px 0.5px 2px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
+    min-width: 100%;
+    width: fit-content;
     margin-left: 20px;
 }
 

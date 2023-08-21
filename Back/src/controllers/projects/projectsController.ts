@@ -76,6 +76,7 @@ const changeBackground = async(id: string, body: any) => {
   return updatedBackground
 }
 
+
 export {
   getAllProjects,
   getProjectById,
@@ -85,5 +86,6 @@ export {
   deleteUserOfProject,
   projectsRecently,
   getProjectController,
-  changeBackground
+  changeBackground,
+
 };

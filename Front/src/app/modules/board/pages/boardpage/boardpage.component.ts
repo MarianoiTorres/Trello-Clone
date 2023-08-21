@@ -7,6 +7,7 @@ import { ComentsService } from 'src/app/services/coments/coments.service';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
 import { loadProjects } from 'src/app/state/actions/project.action';
 import { loadProjectId } from 'src/app/state/actions/user.action';
+import { getPersonalProjects } from 'src/app/state/selectors/projects.selectors';
 import { selectUser } from 'src/app/state/selectors/user.selectors';
 
 @Component({
@@ -28,12 +29,17 @@ export class BoardpageComponent {
   coments: any = [];
 
   user$ = this.store.select(selectUser)
+  personalProjects: any = []
 
   ngOnInit() {
     this.user$.subscribe((user) => {
 
       this.store.dispatch(loadProjects({ userId: user._id }))
-    
+      this.store.select(getPersonalProjects, {userId: user._id}).subscribe((response) => {
+        this.personalProjects = response
+        console.log(response);
+        
+      })
       this.comentsService.getComentsHome(user._id).subscribe((response: any) => {
         response.map((element: any) => {
           if (element.deadline) {
@@ -84,5 +90,12 @@ export class BoardpageComponent {
 
   redirectComentToProject(projectId: string): any {
     this.router.navigate([`project/${projectId}`]);
+  }
+
+  deleteProject(projectId: string): any {
+    console.log('aaaaaaaaaaaaaaaaaaaa'+ projectId);
+    this.user$.subscribe((user) => {
+      this.getProjectsService.dateleProject(projectId, user._id)
+    })
   }
 }

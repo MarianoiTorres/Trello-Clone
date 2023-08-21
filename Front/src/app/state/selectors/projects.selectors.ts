@@ -21,3 +21,10 @@ export const searchProjects = createSelector(
     }
     
 )     
+
+export const getPersonalProjects = createSelector(
+  selectProjectsFeature,
+  (state: ProjectState, props: {userId: string}) => {
+    return state.projects.filter((project) => project.userCreator === props.userId)
+  }
+)

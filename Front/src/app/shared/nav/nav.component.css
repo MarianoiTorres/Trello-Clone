@@ -193,9 +193,12 @@ nav{
     box-shadow: 5px 4px 3px rgb(71, 71, 71);
     border-radius: 5px;
     z-index: 1;
+    
 }
 
+
 #project {
+    animation:scale-up-top-right 0.5s;animation:scale-up-top-right 0.5s;
     background-color: white;
     color: black;
     width: 100%;
@@ -209,6 +212,8 @@ nav{
     padding-left: 10px;
     border-radius: 5px;
 }
+
+@keyframes scale-up-top-right{0%{transform:scale(.5);transform-origin:top right}100%{transform:scale(1);transform-origin:top right}}
 
 #project:hover {
     background-color: rgb(236, 242, 245);

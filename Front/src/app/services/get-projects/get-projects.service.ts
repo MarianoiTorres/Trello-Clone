@@ -4,19 +4,24 @@ import { ProjectToCreate } from 'src/app/interfaces/project';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { selectProjects } from 'src/app/state/selectors/projects.selectors';
+import { selectUser } from 'src/app/state/selectors/user.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetProjectsService {
   projects$ = this.store.select(selectProjects);
-
+  
   constructor(public http: HttpClient, private store: Store<AppState>) {}
   project: any = {};
   containerBackgroundImage: string = '';
 
   createProject(project: ProjectToCreate) {
     return this.http.post<any>('http://localhost:3001/project', project);
+  }
+
+  getPersonalProjects(userId: string) {
+    return this.http.get(`http://localhost:3001/project/personalProjects/${userId}`)
   }
 
   getProjects(userId: string) {
@@ -61,5 +66,15 @@ export class GetProjectsService {
       .subscribe((response: any) => {
         this.containerBackgroundImage = response.background;
       });
+  }
+
+  dateleProject(projectId: string, userId: string): any {
+    console.log(`http://localhost:3001/project/${projectId}?userId=${userId}`);
+    
+    this.http.delete(`http://localhost:3001/project/${projectId}?userId=${userId}`).subscribe((response) => {
+      console.log(response);
+      
+    }, (error) => console.log(error)
+    )
   }
 }
