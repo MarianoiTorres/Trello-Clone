@@ -1,7 +1,8 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { createNewProject } from 'src/app/state/actions/project.action';
+import { clearProjectState, createNewProject } from 'src/app/state/actions/project.action';
+import { clearUserState } from 'src/app/state/actions/user.action';
 import { searchProjects } from 'src/app/state/selectors/projects.selectors';
 import { selectUser } from 'src/app/state/selectors/user.selectors';
 
@@ -87,6 +88,7 @@ export class NavComponent {
   }
 
   logOut(): any {
+    this.store.dispatch(clearUserState())
     this.route.navigate(['']);
   }
 }

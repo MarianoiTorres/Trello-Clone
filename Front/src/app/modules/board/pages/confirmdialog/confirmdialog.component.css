@@ -54,11 +54,11 @@ mat-dialog-content {
     font-weight: 500;
 }
 
-#subtitle:hover {
+#confirm:hover {
     transform: scale(1.1);
     transition: 0.2s ease;
 }
-#title:hover {
+#cancel:hover {
     transform: scale(1.1);
     transition: 0.2s ease;
 }

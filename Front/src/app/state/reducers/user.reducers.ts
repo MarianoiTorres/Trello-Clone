@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { UserState } from 'src/app/models/states/User.state';
-import { loadProjectId, userLoaded } from '../actions/user.action';
+import { clearUserState, loadProjectId, userLoaded } from '../actions/user.action';
 
 export const initialState: UserState = {
   loading: false,
@@ -29,5 +29,8 @@ export const userReducer = createReducer(
     };
 
     return { ...state, user: updatedUser };
+  }),
+  on(clearUserState, (state) => {
+    return {...state, user: []}
   })
 );

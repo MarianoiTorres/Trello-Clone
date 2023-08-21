@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { addProject, projectsLoaded } from "../actions/project.action";
+import { addProject, clearProjectState, projectsLoaded } from "../actions/project.action";
 import { ProjectState } from "src/app/models/states/Project.state";
 
 export const initialState: ProjectState = {loading: false, projects: []}
@@ -11,5 +11,8 @@ export const projectReducer = createReducer(
     }),
     on(addProject, (state, {project}) => {
         return {...state, projects: [...state.projects, project]}
+    }),
+    on(clearProjectState, (state) => {
+        return {...state, projects: []}
     })
 )

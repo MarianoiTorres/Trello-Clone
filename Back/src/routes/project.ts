@@ -14,9 +14,9 @@ import verifyTokenInvitation from "../utils/verifyTokenInvitation";
 
 const router = Router();
 
+router.get("/projects/:id", getProjects);
 router.put('/background/:id', updateBackground)
 router.get('/recently', getProjectRecently)
-router.get("/projects/:id", getProjects);
 router.get('/', getProjectByName)
 router.get("/:id", getProject);
 router.post("/", postProject);

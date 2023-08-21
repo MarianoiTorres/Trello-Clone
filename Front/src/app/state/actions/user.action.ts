@@ -15,3 +15,7 @@ export const loadProjectId = createAction(
     '[User] Load Project',
     props<{projectId: string}>()
 )
+
+export const clearUserState = createAction(
+    '[Clear User] Clear User'
+)
