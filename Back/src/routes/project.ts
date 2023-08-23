@@ -14,9 +14,6 @@ import verifyTokenInvitation from "../utils/verifyTokenInvitation";
 
 const router = Router();
 
-router.get('/', async(req: Request, res: Response) => {
-  res.status(200).send('holaaa')
-})
 router.get("/projects/:id", getProjects);
 router.put('/background/:id', updateBackground)
 router.get('/recently', getProjectRecently)
