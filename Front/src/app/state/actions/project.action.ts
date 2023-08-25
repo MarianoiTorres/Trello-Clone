@@ -24,3 +24,8 @@ export const addProject = createAction(
 export const clearProjectState = createAction(
     '[Clear Projects] Clear Projects'
 )
+
+export const deleteProject = createAction(
+    '[Delete Project] Delete project',
+    props<{projectId: string}>()
+)

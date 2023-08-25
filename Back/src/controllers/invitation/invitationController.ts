@@ -12,25 +12,28 @@ const generateLinkController = async (body: Invitation) => {
 
 const sendMailController = async (body: any) => {
   const transporter = nodemailer.createTransport({
-    service: 'Gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
-      user: process.env.email, 
+      user: 'practiceapplications0@gmail.com', 
       pass: process.env.pass, 
     },
   });
 
   const bodyForToken = {
     projectId: body.projectId,
-    userCreator: body.userCreator
+    userCreator: body.userCreator,
+    userInvited: body.userInvited
   }
-
+ 
   const token = await generateToken(bodyForToken);
   const url = `http://localhost:4200/accept-board/${token}`
 
   const project = await ProjectModel.findById(body.projectId)
 
   const mailOptions = {
-    from: 'Remitente <marianxtorres@gmail.com>', 
+    from: 'Remitente <practiceapplications0@gmail.com>', 
     to: body.userInvited, 
     subject: `Invitacion a ${project!.name}`,
     html: `<!DOCTYPE html>

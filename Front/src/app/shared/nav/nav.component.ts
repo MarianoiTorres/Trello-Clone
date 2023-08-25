@@ -1,7 +1,10 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { clearProjectState, createNewProject } from 'src/app/state/actions/project.action';
+import {
+  clearProjectState,
+  createNewProject,
+} from 'src/app/state/actions/project.action';
 import { clearUserState } from 'src/app/state/actions/user.action';
 import { searchProjects } from 'src/app/state/selectors/projects.selectors';
 import { selectUser } from 'src/app/state/selectors/user.selectors';
@@ -32,7 +35,7 @@ export class NavComponent {
         userInitials: user.name[0] + user.surname[0],
         userName: user.name + ' ' + user.surname,
         email: user.email,
-        background: user.background
+        background: user.background,
       };
     });
   }
@@ -41,13 +44,13 @@ export class NavComponent {
     this.user$.subscribe((user) => {
       const userId = user._id;
 
-      const project = {
+      let project = {
         name: this.name,
         userCreator: userId!,
         member: [userId!],
       };
 
-      this.store.dispatch(createNewProject({ project }));
+      this.store.dispatch(createNewProject({ project }))
     });
   }
 
@@ -80,15 +83,16 @@ export class NavComponent {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     const clickedInside = this.el.nativeElement.contains(event.target);
-    
+
     if (!clickedInside) {
       this.showUserMenu = false;
-      this.show = false
+      this.show = false;
     }
   }
 
   logOut(): any {
-    this.store.dispatch(clearUserState())
+    this.store.dispatch(clearUserState());
+    this.store.dispatch(clearProjectState());
     this.route.navigate(['']);
   }
 }

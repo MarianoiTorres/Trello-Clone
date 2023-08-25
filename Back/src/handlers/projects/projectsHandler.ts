@@ -23,8 +23,6 @@ cloudinary.config({
 const getProjects = async (req: Request, res: Response) => {
   try {
     const { id } = req.params; // id del usuario
-    console.log('llegue handler');
-    
     const projects = await getAllProjects(id);
     res.status(200).json(projects);
   } catch (error) {
@@ -67,8 +65,10 @@ const putProject = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { userId } = req.body;
+    const header = req.headers.authorization
+    const token = header?.substring(7);
 
-    const projectUpdated = await addMemberProject(id, userId);
+    const projectUpdated = await addMemberProject(id, userId, token);
     res.status(200).json(projectUpdated);
   } catch (error) {
     res.status(400).json({ error: (error as Error).message });

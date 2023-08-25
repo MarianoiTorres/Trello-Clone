@@ -5,6 +5,7 @@ const generateToken = async(invitation: Invitation) => {
     return jwt.sign({
         projectId: invitation.projectId,
         userCreator: invitation.userCreator,
+        userInvited: invitation.userInvited
     },
     process.env.JWT_SECRETKEY!,
     {

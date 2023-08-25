@@ -3,15 +3,12 @@ import ProjectModel from "../../models/projectModel";
 import QueryString from "qs";
 import UserModel from "../../models/usersModel";
 import TaskModel from "../../models/taskModel";
+import jwt from 'jsonwebtoken';
 
 const getAllProjects = async (userId: string) => {
-  console.log(userId + '=======================');
-  
   const allProjects = await ProjectModel.find({
     member: { $in: [userId] }, // in = que dentro del array de member este userId
-  }).exec(); //exec convierte la consulta en un array
-  console.log(allProjects);
-  
+  }).exec(); //exec convierte la consulta en un arra
   return allProjects;
 };
 
@@ -47,12 +44,21 @@ const deleteProjectCtrl = async (
   }
 };
 
-const addMemberProject = async (id: string, userId: string) => {
-  const projectUpdated = await ProjectModel.updateOne(
-    { _id: id },
-    { $push: { member: userId } }
-  );
-  return projectUpdated;
+const addMemberProject = async (id: string, userId: string, token: any) => {
+
+  if(token)
+  {
+    const tokenDecoded = jwt.decode(token) as { userInvited?: string };
+
+    const user = await UserModel.findOne({email: tokenDecoded!.userInvited})
+    const projectUpdated = await ProjectModel.updateOne(
+      { _id: id },
+      { $push: { member: user!._id } },
+      {new: true}
+    ); 
+    return projectUpdated;
+  }
+
 };
 
 const deleteUserOfProject = async (id: string, userId: string) => {

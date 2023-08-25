@@ -37,12 +37,9 @@ export class BoardpageComponent {
   ngOnInit() {
     this.user$.subscribe((user) => {
       const usedId = user._id
-      console.log('////////////////' + user);
       this.store.dispatch(loadProjects({ userId: usedId }))
       this.store.select(getPersonalProjects, {userId: usedId}).subscribe((response) => {
         this.personalProjects = response
-        console.log('+++++++++' + response);
-        
       })
       this.comentsService.getComentsHome(user._id).subscribe((response: any) => {
         response.map((element: any) => {

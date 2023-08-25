@@ -27,7 +27,6 @@ const deleteComentCtrl = async (
     | QueryString.ParsedQs[]
     | undefined
 ) => {
-  console.log(id);
 
   const comentDeleted = await ComentModel.deleteOne({
     $and: [{ _id: id }, { userId: userId }],

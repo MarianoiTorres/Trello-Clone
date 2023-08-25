@@ -24,7 +24,9 @@ export class ProjectEffects {
     ofType(createNewProject),
     exhaustMap(action =>
       this.projectService.createProject(action.project).pipe(
-        map((project) => addProject({project})),
+        map((project) => {
+          return addProject({ project });
+        }),
         catchError(() => EMPTY)
       )
     )

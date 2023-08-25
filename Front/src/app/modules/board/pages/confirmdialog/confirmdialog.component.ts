@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
 import { selectUser } from 'src/app/state/selectors/user.selectors';
 import { DialogRef } from '@angular/cdk/dialog';
+import { deleteProject } from 'src/app/state/actions/project.action';
 
 @Component({
   selector: 'app-confirmdialog',
@@ -25,7 +26,9 @@ export class ConfirmdialogComponent {
 
   confirmDeleteProject(): any {
     this.user$.subscribe((user) => {
-      this.projectService.dateleProject(this.projectId, user._id);
+      this.projectService.dateleProject(this.projectId, user._id)
+      this.store.dispatch(deleteProject({projectId: this.projectId}))
+      this.dialogRef.close()
     });
   }
 }
