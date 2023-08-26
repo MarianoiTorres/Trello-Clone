@@ -31,6 +31,7 @@ export class ProjectpageComponent {
   showColorsDiv: boolean = false
   showImageDiv: boolean = false
   showBackgroundMenu: boolean = false
+  showMembersMenu: boolean = false
   projectId: string = '';
   mostrar: string = '';
 
@@ -187,5 +188,9 @@ export class ProjectpageComponent {
     if(!this.previewSource) return
 
       this.getProjectService.updateBackground(this.projectId, this.previewSource)
+  }
+
+  removeMember(userId: string): any {
+    this.getProjectService.deleteMember(this.getProjectService.project.projectId, userId)
   }
 }

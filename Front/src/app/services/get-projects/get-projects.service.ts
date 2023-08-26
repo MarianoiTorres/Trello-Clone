@@ -41,6 +41,8 @@ export class GetProjectsService {
           member: response.member,
         };
         this.containerBackgroundImage = response.background;
+        console.log(this.project);
+        
       });
   }
 
@@ -76,5 +78,14 @@ export class GetProjectsService {
       
     }, (error) => console.log(error)
     )
+  }
+
+  deleteMember(projectId: string,userId: string): any {
+    this.http.put(`http://localhost:3001/project/deleteUser/${projectId}`, {userId}).subscribe((response: any) => {
+
+        this.project.member = this.project.member.filter((member: any) => member._id !== userId)
+        console.log(this.project);
+      
+    })
   }
 }

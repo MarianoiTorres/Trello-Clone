@@ -392,6 +392,7 @@
     animation:scale-up-horizontal-right 0.5s  
 }
 
+
 .containerOptions {
     display: flex;
     justify-content: center;
@@ -430,7 +431,7 @@
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-
+    
 }
 
 .color {
@@ -516,10 +517,14 @@
 }
 
 .containerButtonsMenu {
-    width: 13%;
+    width: 27%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.buttonsSecondNav {
+    width: 140px;
 }
 
 #closeBackgroundMenu {
@@ -600,7 +605,7 @@
 #fichero{
     display: none;
 }
-  
+
 .labelFile{
     display: flex;
     justify-content: left;
@@ -652,3 +657,97 @@
     transform: scale(1.02);
     transition: 0.2s ease;
 }
+
+.containerMembers {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    width: 280px;
+    min-height: 100%;
+    overflow-y: auto;
+    box-shadow: -2px 1px 1px rgb(87, 87, 87);
+    display: flex;
+    justify-content: top;
+    align-items: center;
+    flex-direction: column;
+    animation:scale-up-horizontal-right 0.5s 
+}
+
+.profile {
+    background-color: #2C97B9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    width: 30px;
+    height: 30px;
+    cursor:pointer;
+    user-select: none;
+    letter-spacing: 1px;
+    color: white;
+    text-shadow: 0 1px 2px black;
+}
+
+.members {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.member {
+    position: relative;
+
+}
+
+.member p {
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.containerProfile:hover {
+    background-color: rgb(236, 242, 245);
+    transition: 0.2s ease-in;
+}
+
+.member:hover .buttonRemoveMember {
+    display: block;
+    transition: 0.2s ease-in;
+}
+
+.containerProfile {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    padding-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    gap: 10px;
+    
+}
+
+.buttonRemoveMember {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 5px;
+    top: 25%;
+    background: none;
+    border: none;
+    background-image: url(../../../../../assets/img/closeBlack.png);
+    background-size: 23px;
+    background-position: center;
+    cursor: pointer;
+    display: none;
+    
+}
+
+.buttonRemoveMember:hover {
+    transform: scale(1.09);
+    transition: 0.2s ease-in;
+}
+
