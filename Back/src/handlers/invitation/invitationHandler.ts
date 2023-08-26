@@ -26,8 +26,14 @@ const sendMailWithLink = async (req: Request, res: Response) => {
 };
 
 const getPayload = async (req: Request, res: Response) => {
+  console.log('oo');
+  
   try {
+    console.log('hola');
+    
     const { body } = req;
+    console.log(body);
+    
     const payload = await decodedController(body.token);
     res.status(200).json(payload);
   } catch (error) {

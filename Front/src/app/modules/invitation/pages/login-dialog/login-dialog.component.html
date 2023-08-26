@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="containerForm">
+
+        <form [formGroup]="loginFormDialog" (ngSubmit)="onSubmit()">
+            <input type="text" placeholder="Email" formControlName="email">
+            <input type="password" placeholder="Password" formControlName="password">
+            <button>Sign in</button>
+            <p id="messageInvalid" *ngIf="(user$ | async).message">Invalid email or password. Please check your credentials.</p>
+        </form>
+    </div>
+    <div class="containerImage">
+        <img src="../../../../../assets/img/backLogin.png" alt="">
+    </div>
+</div>
+

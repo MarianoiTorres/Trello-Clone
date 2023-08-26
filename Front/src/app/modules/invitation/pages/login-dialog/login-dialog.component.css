@@ -1,0 +1,94 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    height: 400px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.containerForm {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.containerForm form {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 18px;
+}
+
+form input {
+    border: none;
+    border-bottom: 1px solid rgb(149, 132, 241);
+    outline: rgb(149, 132, 241);
+    background: none;
+    height: 25px;
+    width: 100%;
+    padding: 0;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+
+form input:hover {
+    transform: scale(1.05);
+    border-color: rgb(82, 67, 170);
+    transition: 0.2s ease;
+}
+
+form button {
+    border: none;
+    height: 28px;
+    width: 100%;
+    background-color: rgb(149, 132, 241);
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+form button:hover {
+    transform: scale(1.05);
+    background-color: rgb(82, 67, 170);
+    transition: 0.2s ease;
+}
+
+.containerImage {
+    width: 60%;
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+position: relative;
+right: 0;
+background-color:#9a1bcc;
+background: linear-gradient(90deg, rgb(82, 67, 170), rgb(149, 132, 241)) 0% 0%;
+}
+
+.containerImage img {
+    width: 80%;
+}
+
+.svg {
+    position: absolute;
+  top: 0;
+  right:20%;
+  height:100% !important; 
+  z-index: 1;
+  transform: rotate(-90deg); 
+  
+}
+
+#messageInvalid {
+    text-align: center;
+    font-size: 13px;
+    width:100%;
+    font-weight: 500;
+    color: rgb(82, 67, 170);
+}

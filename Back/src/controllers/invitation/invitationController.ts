@@ -124,6 +124,8 @@ const sendMailController = async (body: any) => {
 
 const decodedController = async (token: string) => {
   const decodedToken = await decodedInvitation(token);
+  console.log(decodedToken);
+  
   return decodedToken;
 };
 

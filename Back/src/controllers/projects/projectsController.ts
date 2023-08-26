@@ -3,7 +3,7 @@ import ProjectModel from "../../models/projectModel";
 import QueryString from "qs";
 import UserModel from "../../models/usersModel";
 import TaskModel from "../../models/taskModel";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 const getAllProjects = async (userId: string) => {
   const allProjects = await ProjectModel.find({
@@ -13,7 +13,9 @@ const getAllProjects = async (userId: string) => {
 };
 
 const getProjectById = async (id: string) => {
-  const project = await ProjectModel.findOne({ _id: id }).populate({path: 'userCreator', model: UserModel}).populate({path: 'member', model: UserModel});
+  const project = await ProjectModel.findOne({ _id: id })
+    .populate({ path: "userCreator", model: UserModel })
+    .populate({ path: "member", model: UserModel });
   return project;
 };
 
@@ -31,34 +33,36 @@ const deleteProjectCtrl = async (
     | QueryString.ParsedQs[]
     | undefined
 ) => {
-  const project = await ProjectModel.findOne({ _id: id }); 
-  
+  const project = await ProjectModel.findOne({ _id: id });
+
   if (project?.userCreator.toString() === userId) {
     const projectDeleted = await ProjectModel.deleteOne({ _id: id });
-    const tasksDeleted = await TaskModel.deleteMany({projectId: id})
+    const tasksDeleted = await TaskModel.deleteMany({ projectId: id });
     return projectDeleted;
-  }
-  else 
-  {
-    return {message: "solo el creador del proyecto puede eliminarlo"}
+  } else {
+    return { message: "solo el creador del proyecto puede eliminarlo" };
   }
 };
 
 const addMemberProject = async (id: string, userId: string, token: any) => {
-
-  if(token)
-  {
+  if (userId) {
+    const projectUpdated = await ProjectModel.updateOne(
+      { _id: id},
+      {$push: {member: userId}},
+      { new: true }
+    );
+    return projectUpdated
+  } else {
     const tokenDecoded = jwt.decode(token) as { userInvited?: string };
 
-    const user = await UserModel.findOne({email: tokenDecoded!.userInvited})
+    const user = await UserModel.findOne({ email: tokenDecoded!.userInvited });
     const projectUpdated = await ProjectModel.updateOne(
       { _id: id },
       { $push: { member: user!._id } },
-      {new: true}
-    ); 
+      { new: true }
+    );
     return projectUpdated;
   }
-
 };
 
 const deleteUserOfProject = async (id: string, userId: string) => {
@@ -69,23 +73,39 @@ const deleteUserOfProject = async (id: string, userId: string) => {
   return userDeleted;
 };
 
-const projectsRecently = async(projects: string | string[] | QueryString.ParsedQs | QueryString.ParsedQs[] | undefined) => {
+const projectsRecently = async (
+  projects:
+    | string
+    | string[]
+    | QueryString.ParsedQs
+    | QueryString.ParsedQs[]
+    | undefined
+) => {
   const projectsRecent = await ProjectModel.find({
-  _id: projects
-  }).exec()
-  return projectsRecent
-}
+    _id: projects,
+  }).exec();
+  return projectsRecent;
+};
 
-const getProjectController = async(name: string | string[] | QueryString.ParsedQs | QueryString.ParsedQs[] | undefined) => {
-  const project = await ProjectModel.find({name: name})
-  return project
-}
+const getProjectController = async (
+  name:
+    | string
+    | string[]
+    | QueryString.ParsedQs
+    | QueryString.ParsedQs[]
+    | undefined
+) => {
+  const project = await ProjectModel.find({ name: name });
+  return project;
+};
 
-const changeBackground = async(id: string, body: any) => {
-  const updatedBackground = await ProjectModel.updateOne({_id: id}, {background: body.background})
-  return updatedBackground
-}
-
+const changeBackground = async (id: string, body: any) => {
+  const updatedBackground = await ProjectModel.updateOne(
+    { _id: id },
+    { background: body.background }
+  );
+  return updatedBackground;
+};
 
 export {
   getAllProjects,
@@ -97,5 +117,4 @@ export {
   projectsRecently,
   getProjectController,
   changeBackground,
-
 };
