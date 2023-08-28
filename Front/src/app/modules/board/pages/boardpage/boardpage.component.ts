@@ -15,7 +15,7 @@ import { ConfirmdialogComponent } from '../confirmdialog/confirmdialog.component
 @Component({
   selector: 'app-boardpage',
   templateUrl: './boardpage.component.html',
-  styleUrls: ['./boardpage.component.css'],
+  styleUrls: ['./boardpage.component.css', './styles/style1.component.css'],
 })
 export class BoardpageComponent {
   constructor(

@@ -59,7 +59,7 @@ ul li {
     margin: 0;
     padding: 0;
     display: flex;
-    background-image: url(../../../../../assets/img/logoHome.png);
+    background-image: url(https://res.cloudinary.com/djdqwkavb/image/upload/v1693260389/logoHome_zochnk.png);
     background-repeat: no-repeat;
     background-size:17px;
     background-position: left;
@@ -80,7 +80,7 @@ ul li {
     margin: 0;
     padding: 0;
     display: flex;
-    background-image: url(../../../../../assets/img/logoTrello.png);
+    background-image: url(https://res.cloudinary.com/djdqwkavb/image/upload/v1693260432/logoTrello_ckhi6a.png);
     background-repeat: no-repeat;
     background-size:15px;
     background-position: left;
@@ -178,7 +178,7 @@ li:hover {
     top: 1px;
     background: none;
     border: none;
-    background-image: url(../../../../../assets/img/closeWhite.png);
+    background-image: url(https://res.cloudinary.com/djdqwkavb/image/upload/v1693260466/closeWhite_gwvwv7.png);
     background-size: 23px;
     background-position: center;
     cursor: pointer;
@@ -245,135 +245,4 @@ li:hover {
 .containerHome {
     position: relative;
     display: flex;
-}
-
-.projectNameNav {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    height: fit-content;
-    max-width:100%;
-    padding: 1px;
-    padding-left: 5px;
-    font-weight:400;
-    font-size: 15px;
-    color: #504f4f;
-    margin-top: 5px;
-}
-
-.projectNameNav p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.projectNameNav:hover{
-    cursor: pointer;
-    background-color:rgb(184, 194, 201);
-    border-radius: 8px;
-}
-
-.containerComents {
-    width: 100%;
-    margin-top: 60px;
-    height:fit-content;
-    gap: 20px;
-}
-
-.coment {
-    width: 450px;
-    margin-bottom: 7px;
-    height: fit-content;
-    min-height: 90px;
-    background: linear-gradient(to bottom, #0789b1, #33bee9);
-    background-color: #0789b1;
-    display: flex;
-    flex-direction: column;
-    padding: 8px;
-    border-radius: 8px;
-    box-shadow: 0 0 3px black;
-}
-
-.coment:hover {
-    transform: scale(1.02);
-    transition: 0.2s ease-in;
-}
-
-.coment div {
-    background-color: white;
-    height: fit-content;
-    min-height: 40px;
-    border-radius: 8px;
-    padding: 1px 5px 1px 5px;
-    box-shadow: 0 1px 2px black;
-    font-size: 13px;
-}
-
-.coment div:hover {
-    cursor: pointer;
-    background-color: rgb(240, 240, 240);
-}
-
-b {
-    font-weight: 600;
-    margin-left: 4px;
-}
-
-.comentInfo {
-    font-size: 14px;
-}
-
-.recentNav {
-    width: 200px;
-    margin-top: 60px;
-}
-
-.navTitle {
-    font-size: 9px;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    gap: 5px;
-}
-
-.navTitle h2 {
-    font-weight: 500;
-}
-
-.navTitle img {
-    width: 15px;
-    height: 15px;
-}
-
-.contProjects {
-
-    height: fit-content;
-    width: 100%;
-}
-
-.recentProject {
-    padding: 0.5px 2px 0.5px 2px;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    min-width: 100%;
-    width: fit-content;
-    margin-left: 20px;
-}
-
-.recentProject h2 {
-    font-weight: 400;
-    font-size: 12px;
-}
-
-.recentProject:hover {
-    cursor: pointer;
-    background-color:rgb(184, 194, 201);
-    border-radius: 8px;
-}
-
-.expires {
-    color: rgb(212, 118, 118);
-    text-shadow: 0 1px 2px black;
-    letter-spacing: 1px;
 }

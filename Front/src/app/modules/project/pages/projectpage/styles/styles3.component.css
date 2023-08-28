@@ -1,0 +1,45 @@
+.clr1 {
+    background: linear-gradient(to bottom right, red, yellow);
+}
+.clr2 {
+    background: linear-gradient(to bottom right, blue, green);
+}
+.clr3 {
+    background: linear-gradient(to bottom right, yellow, green);
+}
+.clr4 {
+    background: linear-gradient(to bottom right, yellow, red);
+}
+.clr5 {
+    background: linear-gradient(to bottom right, blue, violet);
+}
+.clr6 {
+    background: linear-gradient(to bottom right, pink, green);
+}
+.openMenuColors {
+    width: 35px;
+    height: 35px;
+    background: none;
+    top: 15px;
+    right: 5px;
+    background-image: url(https://res.cloudinary.com/djdqwkavb/image/upload/v1693260626/burg_f78ioa.png);
+    background-repeat: no-repeat;
+    background-size:34px;
+    background-position: center;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+.containerButtonsMenu {
+    width: 27%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttonsSecondNav {
+    width: 140px;
+}

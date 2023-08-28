@@ -10,7 +10,7 @@ import { selectUser } from 'src/app/state/selectors/user.selectors';
 @Component({
   selector: 'app-task-dialog',
   templateUrl: './task-dialog.component.html',
-  styleUrls: ['./task-dialog.component.css'],
+  styleUrls: ['./task-dialog.component.css', './styles/style1.component.css'],
 })
 export class TaskDialogComponent {
   taskId: string = '';

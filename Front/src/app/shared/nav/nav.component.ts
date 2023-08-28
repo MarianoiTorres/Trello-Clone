@@ -13,7 +13,7 @@ import { selectUser } from 'src/app/state/selectors/user.selectors';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css'],
+  styleUrls: ['./nav.component.css', './styles/style1.component.css'],
 })
 export class NavComponent {
   constructor(

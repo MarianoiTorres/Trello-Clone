@@ -14,7 +14,7 @@ import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 @Component({
   selector: 'app-projectpage',
   templateUrl: './projectpage.component.html',
-  styleUrls: ['./projectpage.component.css'],
+  styleUrls: ['./projectpage.component.css', './styles/styles1.component.css', './styles/styles2.component.css', './styles/styles3.component.css'],
 })
 export class ProjectpageComponent {
   constructor(
