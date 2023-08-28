@@ -10,26 +10,26 @@ export class GetTasksService {
   constructor(public http: HttpClient) { }
 
   getAllTasks(projectId: string){
-    return this.http.get<any[]>(`http://localhost:3001/task/${projectId}`)
+    return this.http.get<any[]>(`https://nice-red-monkey-sock.cyclic.app/task/${projectId}`)
   }
 
   createTask(task: object){
-    return this.http.post<any>('http://localhost:3001/task/', task)
+    return this.http.post<any>('https://nice-red-monkey-sock.cyclic.app/task/', task)
   }
 
   updateTask(id: string, body: object) {
-    return this.http.put(`http://localhost:3001/task/${id}`, body)
+    return this.http.put(`https://nice-red-monkey-sock.cyclic.app/task/${id}`, body)
   }
 
   getTaskById(taskId: string): any {
-    return this.http.get(`http://localhost:3001/task/detail/${taskId}`)
+    return this.http.get(`https://nice-red-monkey-sock.cyclic.app/task/detail/${taskId}`)
   }
 
   deleteTask(taskId: string): any { 
-    return this.http.delete(`http://localhost:3001/task/${taskId}`)
+    return this.http.delete(`https://nice-red-monkey-sock.cyclic.app/task/${taskId}`)
   }
 
   removeMemberOfTask(userId: string, taskId: string): any {
-    return this.http.put(`http://localhost:3001/task/removeMember/${taskId}?userId=${userId}`, {})
+    return this.http.put(`https://nice-red-monkey-sock.cyclic.app/task/removeMember/${taskId}?userId=${userId}`, {})
   }
 }

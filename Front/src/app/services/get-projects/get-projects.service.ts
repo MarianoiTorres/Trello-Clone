@@ -17,20 +17,20 @@ export class GetProjectsService {
   containerBackgroundImage: string = '';
 
   createProject(project: ProjectToCreate) {
-    return this.http.post<any>('http://localhost:3001/project', project);
+    return this.http.post<any>('https://nice-red-monkey-sock.cyclic.app/project', project);
   }
 
   getPersonalProjects(userId: string) {
-    return this.http.get(`http://localhost:3001/project/personalProjects/${userId}`)
+    return this.http.get(`https://nice-red-monkey-sock.cyclic.app/project/personalProjects/${userId}`)
   }
 
   getProjects(userId: string) {
-    return this.http.get(`http://localhost:3001/project/projects/${userId}`);
+    return this.http.get(`https://nice-red-monkey-sock.cyclic.app/project/projects/${userId}`);
   }
 
   getProjectById(projectId: string): any {
     this.http
-      .get(`http://localhost:3001/project/${projectId}`)
+      .get(`https://nice-red-monkey-sock.cyclic.app/project/${projectId}`)
       .subscribe((response: any) => {
         this.project = {
           projectName: response.name,
@@ -50,19 +50,19 @@ export class GetProjectsService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.put(`http://localhost:3001/project/${projectId}`, body, {
+    return this.http.put(`https://nice-red-monkey-sock.cyclic.app/project/${projectId}`, body, {
       headers,
     });
   }
 
   getProjectsRecentlyViewed(projectsId: string[]) {
     const ids = projectsId.map((id) => `id=${id}`).join('&');
-    return this.http.get(`http://localhost:3001/project/recently?${ids}`);
+    return this.http.get(`https://nice-red-monkey-sock.cyclic.app/project/recently?${ids}`);
   }
 
   updateBackground(id: string, background: string): any {
     this.http
-      .put(`http://localhost:3001/project/background/${id}`, {
+      .put(`https://nice-red-monkey-sock.cyclic.app/project/background/${id}`, {
         background: background,
       })
       .subscribe((response: any) => {
@@ -71,9 +71,9 @@ export class GetProjectsService {
   }
 
   dateleProject(projectId: string, userId: string): any {
-    console.log(`http://localhost:3001/project/${projectId}?userId=${userId}`);
+    console.log(`https://nice-red-monkey-sock.cyclic.app/project/${projectId}?userId=${userId}`);
     
-    this.http.delete(`http://localhost:3001/project/${projectId}?userId=${userId}`).subscribe((response) => {
+    this.http.delete(`https://nice-red-monkey-sock.cyclic.app/project/${projectId}?userId=${userId}`).subscribe((response) => {
       console.log(response);
       
     }, (error) => console.log(error)
@@ -81,7 +81,7 @@ export class GetProjectsService {
   }
 
   deleteMember(projectId: string,userId: string): any {
-    this.http.put(`http://localhost:3001/project/deleteUser/${projectId}`, {userId}).subscribe((response: any) => {
+    this.http.put(`https://nice-red-monkey-sock.cyclic.app/project/deleteUser/${projectId}`, {userId}).subscribe((response: any) => {
 
         this.project.member = this.project.member.filter((member: any) => member._id !== userId)
         console.log(this.project);

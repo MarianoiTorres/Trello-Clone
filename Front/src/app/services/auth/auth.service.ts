@@ -14,15 +14,15 @@ export class AuthService {
   constructor(public http: HttpClient, public store: Store<any>, public router: Router) { }
 
   authRegister(user: UserRegister) {
-    return this.http.post<any>(`http://localhost:3001/users/register`, user)
+    return this.http.post<any>(`https://nice-red-monkey-sock.cyclic.app/users/register`, user)
   }
 
   authLogin(user: any){
-    return this.http.post(`http://localhost:3001/users/login`, user)
+    return this.http.post(`https://nice-red-monkey-sock.cyclic.app/users/login`, user)
   }
 
   addProjectId(projectId: string, userId: string) {
-    return this.http.put(`http://localhost:3001/users/${projectId}`, {userId})
+    return this.http.put(`https://nice-red-monkey-sock.cyclic.app/users/${projectId}`, {userId})
   }
 
   isLoggedIn$(): Observable<boolean> {

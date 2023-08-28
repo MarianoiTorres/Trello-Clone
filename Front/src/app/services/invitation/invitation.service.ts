@@ -12,15 +12,15 @@ export class InvitationService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${body.token}`
     })
-    return this.http.post<any>('http://localhost:3001/invitation/decode', body, {headers})
+    return this.http.post<any>('https://nice-red-monkey-sock.cyclic.app/invitation/decode', body, {headers})
   }
 
   generateLink(body: any): any {
-    return this.http.post<string>('http://localhost:3001/invitation', body)
+    return this.http.post<string>('https://nice-red-monkey-sock.cyclic.app/invitation', body)
   }
 
   sendInvitation(body: any): any {
-    this.http.post<any>('http://localhost:3001/invitation/mail', body).subscribe((response) => {
+    this.http.post<any>('https://nice-red-monkey-sock.cyclic.app/invitation/mail', body).subscribe((response) => {
       console.log(response);  
     })
   }

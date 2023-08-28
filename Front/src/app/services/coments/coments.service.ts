@@ -9,10 +9,10 @@ export class ComentsService {
   constructor(public http: HttpClient) { }
 
   getComentsHome(userId: string): any {
-    return this.http.get(`http://localhost:3001/coments/${userId}`)
+    return this.http.get(`https://nice-red-monkey-sock.cyclic.app/coments/${userId}`)
   }
 
   createComment(userId: string, taskId: string, comment: string): any {
-    return this.http.post('http://localhost:3001/coments/', {userId, taskId, coment: comment})
+    return this.http.post('https://nice-red-monkey-sock.cyclic.app/coments/', {userId, taskId, coment: comment})
   }
 }
