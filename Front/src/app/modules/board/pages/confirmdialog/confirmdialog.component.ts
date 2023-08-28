@@ -5,6 +5,8 @@ import { GetProjectsService } from 'src/app/services/get-projects/get-projects.s
 import { selectUser } from 'src/app/state/selectors/user.selectors';
 import { DialogRef } from '@angular/cdk/dialog';
 import { deleteProject } from 'src/app/state/actions/project.action';
+import { removeProjectRecentlyView } from 'src/app/state/actions/user.action';
+import { Subscription, take } from 'rxjs';
 
 @Component({
   selector: 'app-confirmdialog',
@@ -21,14 +23,24 @@ export class ConfirmdialogComponent {
     this.projectId = data.projectId;
   }
 
+  private userSubscription: Subscription | null = null;
+
   projectId: string = '';
   user$ = this.store.select(selectUser);
 
   confirmDeleteProject(): any {
-    this.user$.subscribe((user) => {
-      this.projectService.dateleProject(this.projectId, user._id)
+
+      this.user$.pipe(
+        take(1)
+      ).subscribe((user) => {
+        const userId = user._id
+      this.projectService.dateleProject(this.projectId, userId)
       this.store.dispatch(deleteProject({projectId: this.projectId}))
+      this.store.dispatch(removeProjectRecentlyView({projectId: this.projectId}))
       this.dialogRef.close()
     });
+  
   }
+
+
 }

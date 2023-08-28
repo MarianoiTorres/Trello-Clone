@@ -6,6 +6,7 @@
     background-image: var(--container-background-image);
     background-size: cover;
     overflow: hidden;
+    overflow-x: auto;
 }
 
 
@@ -44,9 +45,10 @@
     margin-top: 10px;
     width: 98%;
     display: flex;
-    justify-content: left;
-    align-items: top;
+    white-space: nowrap;
     gap: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 
@@ -72,6 +74,7 @@
 }
 
 .divList {
+    flex: 0 0 auto;
     min-height: 20px;
     height: fit-content;
     width: 240px;

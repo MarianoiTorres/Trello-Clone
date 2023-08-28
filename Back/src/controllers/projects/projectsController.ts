@@ -4,6 +4,7 @@ import QueryString from "qs";
 import UserModel from "../../models/usersModel";
 import TaskModel from "../../models/taskModel";
 import jwt from "jsonwebtoken";
+import ListModel from "../../models/listOfTaskModel";
 
 const getAllProjects = async (userId: string) => {
   const allProjects = await ProjectModel.find({
@@ -38,6 +39,11 @@ const deleteProjectCtrl = async (
   if (project?.userCreator.toString() === userId) {
     const projectDeleted = await ProjectModel.deleteOne({ _id: id });
     const tasksDeleted = await TaskModel.deleteMany({ projectId: id });
+    const listDeleted = await ListModel.deleteMany({projectId: id})
+    const userRemoveProjectRecentlyView = await UserModel.updateMany(
+      {},
+      {$pull: {projectsRecentlyView: id}}
+      )
     return projectDeleted;
   } else {
     return { message: "solo el creador del proyecto puede eliminarlo" };

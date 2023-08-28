@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
 import {
   clearProjectState,
   createNewProject,
@@ -41,7 +42,9 @@ export class NavComponent {
   }
 
   createNewProject(): any {
-    this.user$.subscribe((user) => {
+    this.user$.pipe(
+      take(1)
+    ).subscribe((user) => {
       const userId = user._id;
 
       let project = {

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ComentsService } from 'src/app/services/coments/coments.service';
 import { GetProjectsService } from 'src/app/services/get-projects/get-projects.service';
@@ -27,62 +27,79 @@ export class BoardpageComponent {
     public dialog: MatDialog
   ) {}
 
+  private userSubscription: Subscription | null = null;
+
   projectsRecentlyViewed: any = [];
   render: string = 'home';
   coments: any = [];
 
-  user$ = this.store.select(selectUser)
-  personalProjects: any = []
+  user$ = this.store.select(selectUser);
+  personalProjects: any = [];
 
   ngOnInit() {
-    this.user$.subscribe((user) => {
-      const usedId = user._id
-      this.store.dispatch(loadProjects({ userId: usedId }))
-      this.store.select(getPersonalProjects, {userId: usedId}).subscribe((response) => {
-        this.personalProjects = response
-      })
-      this.comentsService.getComentsHome(user._id).subscribe((response: any) => {
-        response.map((element: any) => {
-          if (element.deadline) {
-            const date = new Date(element.deadline);
-            const options: Intl.DateTimeFormatOptions = {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            };
-            const formatter = new Intl.DateTimeFormat('en-US', options);
-            const formattedDate = formatter.format(date);
-            element.deadline = formattedDate;
-          }
-        });
-        this.coments = response;
+    if (!this.userSubscription) {
+      this.userSubscription = this.user$.subscribe((user) => {
         
-        this.getProjectsService
-          .getProjectsRecentlyViewed(user.projectsRecentlyView)
-          .subscribe((projects: any) => {
-            this.projectsRecentlyViewed = projects;
+        const usedId = user._id;
+        this.store.dispatch(loadProjects({ userId: usedId }));
+        
+        this.store
+          .select(getPersonalProjects, { userId: usedId })
+          .subscribe((response) => {
+            this.personalProjects = response;
+          });
+          
+          this.comentsService
+          .getComentsHome(usedId)
+          .subscribe((response: any) => {
+            response.map((element: any) => {
+              if (element.deadline) {
+                const date = new Date(element.deadline);
+                const options: Intl.DateTimeFormatOptions = {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                };
+                const formatter = new Intl.DateTimeFormat('en-US', options);
+                const formattedDate = formatter.format(date);
+                element.deadline = formattedDate;
+              }
+            });
+            this.coments = response;
+
+            this.getProjectsService
+              .getProjectsRecentlyViewed(user.projectsRecentlyView)
+              .subscribe((projects: any) => {
+                this.projectsRecentlyViewed = projects;
+              });
           });
       });
-    })
-    
-    this.getProjectsService.projects$.subscribe((response: any) => {
-      console.log(response);
-    });
 
+      this.getProjectsService.projects$
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
   goProject(projectId: string) {
-    this.user$.pipe(
-      take(1) // Toma el primer valor y luego se desuscribe
-    ).subscribe((user) => {
-      const userId = user._id;
+      this.user$
+      .pipe(
+        take(1) // Toma el primer valor y luego se desuscribe
+      )
+      .subscribe((user) => {
+        const userId = user._id;
 
-      this.userService.addProjectId(projectId, userId).subscribe((response) => {
-        this.store.dispatch(loadProjectId({projectId}))
-        this.router.navigate(['project', projectId]);
-      })
-    })
-
+        this.userService
+          .addProjectId(projectId, userId)
+          .subscribe((response) => {
+            this.store.dispatch(loadProjectId({ projectId }));
+            this.router.navigate(['project', projectId]);
+          });
+      });
   }
 
   changeRender(div: string): any {
@@ -97,8 +114,8 @@ export class BoardpageComponent {
     this.dialog.open(ConfirmdialogComponent, {
       width: '35%',
       data: {
-        projectId: projectId
-      }
-    })
+        projectId: projectId,
+      },
+    });
   }
 }

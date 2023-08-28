@@ -118,6 +118,8 @@ export class ProjectpageComponent {
   }
 
   addNewList() {
+    console.log('llegue');
+    
     const newList = {
       projectId: this.projectId,
       name: this.nameList

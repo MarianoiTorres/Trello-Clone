@@ -64,6 +64,7 @@
                 <button class="buttonsSecondNav" mat-raised-button (click)="showBackgroundMenu = !showBackgroundMenu">Background</button>
             </div>
         </div>
+        
         <div class="secondContainer" cdkDropListGroup>
             <div *ngFor="let list of listDivs" class="divList">
                 <div class="containerMore" >
@@ -99,7 +100,7 @@
             <div class="containerAddNewList" *ngIf="newList === true">
                 <input type="text"  [(ngModel)]="nameList" (blur)="newList = false" >
                 <div class="containerButtons">
-                    <button class="add" (click)="addNewList()">Add list</button>
+                    <button class="add" (mousedown)="addNewList()">Add list</button>
                     <button class="cancel" (click)="newList = !newList"></button>
                 </div>
             </div>
