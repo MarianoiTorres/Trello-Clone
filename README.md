@@ -37,7 +37,7 @@ https://trello-clone-two-rouge.vercel.app/
 ![Login Page](https://res.cloudinary.com/djdqwkavb/image/upload/v1693277314/3_z8bmgx.png)
 ![Register Page](https://res.cloudinary.com/djdqwkavb/image/upload/v1693277313/2_ebd8cs.png)
 ![Home Page](https://res.cloudinary.com/djdqwkavb/image/upload/v1693277314/5_xphu4q.png)
+![Home Page 2](https://res.cloudinary.com/djdqwkavb/image/upload/v1693277315/10_cwoozq.png)
 ![Project Page](https://res.cloudinary.com/djdqwkavb/image/upload/v1693277314/6_p0hrru.png)
 ![Project Page 2](https://res.cloudinary.com/djdqwkavb/image/upload/v1693277314/9_kj0ccw.png)
-![Card Modal](https://res.cloudinary.com/djdqwkavb/image/upload/v1693277314/9_kj0ccw.png)
 
